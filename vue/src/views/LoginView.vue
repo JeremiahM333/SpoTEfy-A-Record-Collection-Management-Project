@@ -23,10 +23,14 @@
   </div>
    -->
 
-  <div v-if="isLoading">
-    <h1>ΣpoTEfy</h1>
-    <div class="loading">
-      <img src="src\giphy.gif">
+  <div v-if="isLoading" class="text-center">
+    <div class="container justify-content-end">
+      <h1>ΣpoTEfy</h1>
+      <div class="loading">
+        <img src="src\giphy.gif">
+
+
+      </div>
     </div>
   </div>
   <div v-else class="container">
@@ -114,11 +118,7 @@ export default {
   margin-bottom: 1rem;
 }
 
-h1{
-
-
-  
-}
+h1 {}
 
 label {
   margin-right: 0.5rem;

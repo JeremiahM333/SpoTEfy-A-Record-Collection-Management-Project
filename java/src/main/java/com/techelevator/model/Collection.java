@@ -6,12 +6,14 @@ public class Collection {
     private int userId;
     private String collectionName;
     private boolean isPublic;
+    private String collectionCover;
 
-    public Collection(int collectionId, int userId, String collectionName, boolean isPublic) {
+    public Collection(int collectionId, int userId, String collectionName, boolean isPublic, String collectionCover) {
         this.collectionId = collectionId;
         this.userId = userId;
         this.collectionName = collectionName;
         this.isPublic = isPublic;
+        this.collectionCover = collectionCover;
     }
 
     public Collection() {
@@ -47,5 +49,13 @@ public class Collection {
 
     public void setPublic(boolean aPublic) {
         isPublic = aPublic;
+    }
+
+    public String getCollectionCover() {
+        return collectionCover;
+    }
+
+    public void setCollectionCover(String collectionCover) {
+        this.collectionCover = collectionCover;
     }
 }

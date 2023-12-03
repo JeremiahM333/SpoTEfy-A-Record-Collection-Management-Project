@@ -4,8 +4,17 @@ import { createStore } from './store'
 import router from './router'
 import axios from 'axios'
 
+
+// Import all of Bootstrap's JS
+
+
+import "bootstrap/dist/css/bootstrap.min.css"
+import "bootstrap"
+
 /* sets the base url for server API communication with axios */
 axios.defaults.baseURL = import.meta.env.VITE_REMOTE_API;
+
+
 
 /*
  * The authorization header is set for axios when you login but what happens when 

@@ -3,16 +3,18 @@ package com.techelevator.model;
 public class Collection {
 
     private int collectionId;
-
+    private int userId;
     private String collectionName;
+    private boolean isPublic;
 
-    public Collection(int collectionId, String collectionName) {
+    public Collection(int collectionId, int userId, String collectionName, boolean isPublic) {
         this.collectionId = collectionId;
+        this.userId = userId;
         this.collectionName = collectionName;
+        this.isPublic = isPublic;
     }
 
     public Collection() {
-        this.collectionId = collectionId;
     }
 
     public int getCollectionId() {
@@ -23,6 +25,14 @@ public class Collection {
         this.collectionId = collectionId;
     }
 
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
     public String getCollectionName() {
         return collectionName;
     }
@@ -31,4 +41,11 @@ public class Collection {
         this.collectionName = collectionName;
     }
 
+    public boolean isPublic() {
+        return isPublic;
+    }
+
+    public void setPublic(boolean aPublic) {
+        isPublic = aPublic;
+    }
 }

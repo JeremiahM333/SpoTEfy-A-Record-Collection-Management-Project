@@ -5,6 +5,8 @@ import com.techelevator.model.Collection;
 public interface CollectionDao {
 
 
-     static Collection getCollectionById(int id);
+     Collection createCollection(Collection collection);
+
+     Collection getCollectionById(int collectionId);
 
 }

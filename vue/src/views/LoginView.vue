@@ -22,11 +22,19 @@
     </form>
   </div>
    -->
-  <div class="container">
-    <form>
+
+  <div v-if="isLoading">
+    <h1>ΣpoTEfy</h1>
+    <div class="loading">
+      <img src="src\giphy.gif">
+    </div>
+  </div>
+  <div v-else class="container">
+
+    <form @submit="showAlert = true">
 
       <h1 class="text-center">Please Sign In</h1>
-      <div class=" alert alert-success" role="alert">
+      <div v-show="showAlert" class=" alert alert-success" role="alert">
         Successful login!
       </div>
       <div class="alert alert-danger" role="alert">
@@ -48,6 +56,7 @@
 </template>
 
 <script>
+import { computed } from "vue";
 import authService from "../services/AuthService";
 
 export default {
@@ -58,10 +67,19 @@ export default {
         username: "",
         password: ""
       },
-      invalidCredentials: false
+      invalidCredentials: false,
+      showAlert: false,
+      isLoading: true
     };
+
+
   },
+  computed: {
+
+  },
+
   methods: {
+
     login() {
       authService
         .login(this.user)
@@ -71,6 +89,13 @@ export default {
             this.$store.commit("SET_USER", response.data.user);
             this.$router.push("/");
           }
+          this.isLoading = true;
+
+          // TODO set up submit form and loading gif.
+
+
+
+
         })
         .catch(error => {
           const response = error.response;
@@ -89,13 +114,10 @@ export default {
   margin-bottom: 1rem;
 }
 
-h1 {
-  color: red;
-}
+h1{
 
-.bs-test {
-  background-color: red;
 
+  
 }
 
 label {

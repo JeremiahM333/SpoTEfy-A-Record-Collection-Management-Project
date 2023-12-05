@@ -1,14 +1,8 @@
 <template>
-<<<<<<< HEAD
-  <div class="home">
-    <h1>Home</h1>
-    <p>Welcome to SpoTEfy</p>
-=======
   <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%"
     data-bs-smooth-scroll="true" class="home scrollspy-example bg-body-tertiary rounded-2" tabindex="0">
     <collection class="collection-card" v-for="collection in this.collections" v-bind:key="collection.collectionId"
       v-bind:collection="collection" />
->>>>>>> 859f23e61dd2e017175d1b47877c67dbd4c9f752
   </div>
 </template>
 

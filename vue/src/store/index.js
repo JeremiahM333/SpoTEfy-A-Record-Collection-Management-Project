@@ -7,14 +7,9 @@ export function createStore(currentToken, currentUser) {
   let store = _createStore({
     state: {
       token: currentToken || '',
-<<<<<<< HEAD
-      user: currentUser || {},
-      notification: null
-=======
       user: currentUser || {
         userId: 0,
       }
->>>>>>> 859f23e61dd2e017175d1b47877c67dbd4c9f752
     },
     mutations: {
       SET_AUTH_TOKEN(state, token) {
@@ -34,18 +29,18 @@ export function createStore(currentToken, currentUser) {
         axios.defaults.headers.common = {};
       },
       SET_NOTIFICATION(state, notification) {
-        if(state.notification) {
+        if (state.notification) {
           this.commit('CLEAR_NOTIFICATION');
         }
-        if(typeof notification === 'string') {
+        if (typeof notification === 'string') {
           notification = {
             message: notification,
-            type: 'error', 
+            type: 'error',
             timeout: ALERT_TIMEOUT
-          } 
-          } else {
-            notification.type = notification.type || 'error';
-            notification.timeout = notification.timeout || ALERT_TIMEOUT;
+          }
+        } else {
+          notification.type = notification.type || 'error';
+          notification.timeout = notification.timeout || ALERT_TIMEOUT;
         }
 
         state.notification = notification;
@@ -53,15 +48,15 @@ export function createStore(currentToken, currentUser) {
         notification.timer = window.setTimeout(() => {
           this.commit('CLEAR_NOTIFICATION');
         }, notification.timeout);
-      }, 
+      },
       CLEAR_NOTIFICATION(state) {
-        if(state.notification && state.notification.timer) {
+        if (state.notification && state.notification.timer) {
           window.clearTimeout(state.notification.timer);
         }
         state.notification = null;
       },
     },
-    
+
   });
   return store;
 }

@@ -142,6 +142,7 @@ label {
 
 #main-page {
   background-image: url("../resources/vinyl-records_istock.jpg");
+  background-image: cover;
   height: 100vh;
 }
 

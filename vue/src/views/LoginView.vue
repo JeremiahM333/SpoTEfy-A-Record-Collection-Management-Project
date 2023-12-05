@@ -38,10 +38,7 @@
 
     <nav class="navbar navbar-dark bg-dark">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-          <img src="../resources/project-log.png" alt="" width="30" height="24" class="d-inline-block align-text-center ">
-          ΣpoTEfy
-        </a>
+
       </div>
     </nav>
     <div class="container" id="form-margin">

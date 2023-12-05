@@ -25,8 +25,6 @@
     "eslint-import-resolver-alias": "^1.1.2",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-vue": "^7.20.0",
-    "sass": "^1.69.5",
-    "vite": "^3.2.7",
     "vue-eslint-parser": "^9.3.0"
   },
   "description": "​ This is the Vue starter project for the final capstone. This document walks you through how to set up and run the project. It also explains the project's features, such as Vue Router, Vuex, and authentication. ​ ## Project setup ​ The first thing you'll need to do is to download any dependencies by running this command: ​ ``` npm install ``` ​ Next take a moment to review the `.env` file that's located in the root of the project. You can store environment variables that you want to use throughout your application in this file. When you open it, it'll look like this: ​ ``` VITE_REMOTE_API=http://localhost:9000 ``` ​ *Note:* The Java Spring Boot application is configured to run on port 9000 instead of 8080. ​ Start your Vue application with the following command: ​ ``` npm run dev ``` ​ ## Authentication ​ When you first run the project and visit the base URL, you're taken to a login page. This is because the home route `/` is secured by default. If you look in `src/router/index.js`, you'll see the following code: ​ ```js router.beforeEach((to) => {",

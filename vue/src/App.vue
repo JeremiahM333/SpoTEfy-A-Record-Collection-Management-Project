@@ -11,7 +11,11 @@
       </nav>
       <div class="header-piece">
         <button type="button" id="sign-up-btn" class="btn btn-primary btn-lg">Sign Up</button>
-        <button type="button" id="login-btn" class="btn btn-secondary btn-lg">Login</button>
+
+        <router-link :to="{ name: 'login' }"> <button type="button" id="login-btn"
+            class="btn btn-secondary btn-lg">Login</button> </router-link>
+
+
       </div>
     </nav>
 
@@ -56,6 +60,7 @@
               <use xlink:href="#people-circle"></use>
             </svg>
             Add Record
+
           </router-link>
         </li>
       </ul>
@@ -89,6 +94,7 @@
     <footer id="footer" class="bg-dark">
 
     </footer>
+
   </div>
 </template>
 

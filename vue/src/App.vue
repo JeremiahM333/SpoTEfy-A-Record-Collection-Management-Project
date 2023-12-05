@@ -31,7 +31,7 @@
             <svg class="bi me-2" width="16" height="16">
               <use xlink:href="#speedometer2"></use>
             </svg>
-            Dashboard
+            Personal Library
           </a>
         </li>
         <li>
@@ -39,7 +39,7 @@
             <svg class="bi me-2" width="16" height="16">
               <use xlink:href="#table"></use>
             </svg>
-            Orders
+            Public Collections
           </a>
         </li>
         <li>
@@ -47,7 +47,7 @@
             <svg class="bi me-2" width="16" height="16">
               <use xlink:href="#grid"></use>
             </svg>
-            Products
+            Add Collection
           </a>
         </li>
         <li>
@@ -55,7 +55,7 @@
             <svg class="bi me-2" width="16" height="16">
               <use xlink:href="#people-circle"></use>
             </svg>
-            Customers
+            Add Record
           </a>
         </li>
       </ul>
@@ -78,7 +78,7 @@
       </div> -->
     </div>
 
-    <div id="capstone-app">
+    <div id="router-view">
       <!-- <div id="nav">
         <router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
         <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
@@ -98,7 +98,7 @@
   grid-template-columns: 16% 84%;
   grid-template-areas:
     "header header"
-    "nav capstone-app"
+    "nav router-view"
     "footer footer"
   ;
   grid-template-rows: 80px auto 40px;
@@ -106,6 +106,11 @@
 }
 
 #header {
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  height: 80px;
+  overflow-x: hidden;
   display: flex;
   justify-content: space-between;
   grid-area: header;
@@ -137,11 +142,16 @@
   grid-area: nav;
 }
 
-#capstone-app {
-  grid-area: capstone-app;
+#router-view {
+  grid-area: router-view;
 }
 
 #footer {
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  height: 40px;
+  overflow-x: hidden;
   grid-area: footer;
 }
 </style>

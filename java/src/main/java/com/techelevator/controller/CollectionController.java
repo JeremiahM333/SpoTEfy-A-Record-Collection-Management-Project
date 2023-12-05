@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/collections")
@@ -23,23 +25,37 @@ public class CollectionController {
         this.userDao = userDao;
     }
 
-    @RequestMapping(path = "/{id}", method = RequestMethod.GET)
-    public Collection getCollection(@PathVariable int id,  Principal principal) {
+    @GetMapping("")
+    public List<Collection> getCollections() {
+        List<Collection> retreivedCollections = collectionDao.getCollections();
+        List<Collection> sortedCollections = new ArrayList<>();
 
-        Collection collection = collectionDao.getCollectionById(id);
-        if (collection == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Collection Not Found");
-        }
+        retreivedCollections.stream().filter(c -> c.isPublic()).forEach(c -> sortedCollections.add(c));
 
-        User loggedInUser = userDao.getUserByUsername(principal.getName());
-        if (!collection.isPublic() && !loggedInUser.getAuthorities().contains("ADMIN")) {
-            if (loggedInUser.getId() != collection.getUserId()) {
-                throw new ResponseStatusException(HttpStatus.FORBIDDEN, "The collection is private and you're not the owner");
-            }
-        }
-
-        return collection;
+        return sortedCollections;
     }
 
+    @GetMapping("/{userId}")
+    public List<Collection> getCollectionsByUserId(Principal principal) {
+        //TO DO
+        return null;
+    }
 
+//    @RequestMapping(path = "/{id}", method = RequestMethod.GET)
+//    public Collection getCollection(@PathVariable int id,  Principal principal) {
+//
+//        Collection collection = collectionDao.getCollectionById(id);
+//        if (collection == null) {
+//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Collection Not Found");
+//        }
+//
+//        User loggedInUser = userDao.getUserByUsername(principal.getName());
+//        if (!collection.isPublic() && !loggedInUser.getAuthorities().contains("ADMIN")) {
+//            if (loggedInUser.getId() != collection.getUserId()) {
+//                throw new ResponseStatusException(HttpStatus.FORBIDDEN, "The collection is private and you're not the owner");
+//            }
+//        }
+//
+//        return collection;
+//    }
 }

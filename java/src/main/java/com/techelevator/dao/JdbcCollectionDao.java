@@ -8,6 +8,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 public class JdbcCollectionDao implements CollectionDao {
 
@@ -16,6 +19,20 @@ public class JdbcCollectionDao implements CollectionDao {
 
     public JdbcCollectionDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
+    }
+
+    public List<Collection> getCollections() {
+        List<Collection> collections = new ArrayList<>();
+        String sql = "SELECT collection_id, user_id, collection_name, is_public, collection_cover FROM collections";
+        try {
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+            while (results.next()) {
+                collections.add(mapRowToCollection(results));
+            }
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        }
+        return collections;
     }
 
     @Override
@@ -58,6 +75,4 @@ public class JdbcCollectionDao implements CollectionDao {
         collection.setCollectionCover(rs.getString("collection_cover"));
         return collection;
     }
-
-
 }

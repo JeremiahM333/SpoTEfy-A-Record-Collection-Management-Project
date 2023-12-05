@@ -39,7 +39,7 @@ CREATE TABLE collections (
     ,user_id INT
     ,collection_name varchar(100) NOT NULL
     ,is_public boolean NOT NULL
-    ,collection_cover NULL
+    ,collection_cover varchar NULL
 
     ,CONSTRAINT PK_collections PRIMARY KEY (collection_id)
     ,CONSTRAINT FK_collections_users FOREIGN KEY (user_id) REFERENCES users(user_id)

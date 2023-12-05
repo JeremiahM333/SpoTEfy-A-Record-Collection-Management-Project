@@ -25,47 +25,47 @@
 
   <div v-if="isLoading" class="text-center">
     <div class="container justify-content-end">
-      <h1>SpoTEfy</h1>
+      <h1>ΣpoTEfy</h1>
       <div class="loading">
-        <img src="src\giphy.gif">
+        <img src="../resources/giphy.gif">
 
 
       </div>
     </div>
   </div>
 
-  <div v-else >
+  <div v-else id="main-page">
 
-    <nav class="navbar navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">
-      <img src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24" class="d-inline-block align-text-top">
-      SpoTEfy
-    </a>
-  </div>
-</nav>
-<div class="container border rounded">
-    <form @submit="showAlert = true">
-     
-      <h1 class="text-center log-in-class">Please Log In</h1>
-      <div v-show="showAlert" class=" alert alert-success" role="alert">
-        Successful login!
+    <nav class="navbar navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <img src="../resources/project-log.png" alt="" width="30" height="24" class="d-inline-block align-text-center ">
+          ΣpoTEfy
+        </a>
       </div>
-      <div class="alert alert-danger" role="alert">
-        Invalid username and password!
-      </div>
-      <div class="mb-3 row gy-2">
-        <label for="exampleInputEmail1" class="form-label">Email address</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-      </div>
-      <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Password</label>
-        <input type="password" class="form-control" id="exampleInputPassword1">
-      </div>
-      <button type="submit" class="btn btn-primary new-class">Sign in</button>
-    </form>
-  </div>
+    </nav>
+    <div class="container" id="form-margin">
+      <form @submit="showAlert = true">
+
+        <h1 class="text-center" id="form-header">Please Log In</h1>
+        <div v-show="showAlert" class=" alert alert-success" role="alert">
+          Successful login!
+        </div>
+        <div class="alert alert-danger" role="alert">
+          Invalid username and password!
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Email address</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input type="password" class="form-control" id="exampleInputPassword1">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
   </div>
 </template>
 
@@ -94,7 +94,7 @@ export default {
 
   methods: {
 
-  
+
     login() {
       authService
         .login(this.user)
@@ -130,22 +130,28 @@ label {
   margin-right: 0.5rem;
 }
 
-/* .form-container {
-background-color: black;
-opacity: 90%;
-}  */
 
-.new-class {
-  margin-bottom: 2rem;
-  margin-top: 1rem;
+#form-margin {
+  height: 50vh;
+  margin-top: 5rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border-radius: 1.5rem;
+  border: solid 1px gold;
 }
 
-.log-in-class {
-  margin-top: 1rem;
-  margin-bottom: 2rem;
+#main-page {
+  background-image: url("../resources/test-bg.jpg");
+  height: 100vh;
 }
 
+.form-text {
+  color: white;
+}
 
+#form-header {
+  color: white;
+  padding: 1rem;
 
-
+}
 </style>

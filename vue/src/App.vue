@@ -19,44 +19,44 @@
       <hr>
       <ul class="nav flex-column mb-auto">
         <li class="nav-item">
-          <a href="#" class="home-btn nav-link active" aria-current="page">
+          <router-link to="/" class="home-btn nav-link active" aria-current="page">
             <svg class="bi me-2" width="16" height="16">
               <use xlink:href="#home"></use>
             </svg>
             Home
-          </a>
+          </router-link>
         </li>
         <li>
-          <a href="#" class="nav-btn nav-link">
+          <router-link :to="{ name: 'library', params: { userId: getUserId() } }" class="nav-btn nav-link">
             <svg class="bi me-2" width="16" height="16">
               <use xlink:href="#speedometer2"></use>
             </svg>
             Personal Library
-          </a>
+          </router-link>
         </li>
         <li>
-          <a href="#" class="nav-btn nav-link">
+          <router-link :to="{ name: 'collections', params: { userId: getUserId() } }" class="nav-btn nav-link">
             <svg class="bi me-2" width="16" height="16">
               <use xlink:href="#table"></use>
             </svg>
-            Public Collections
-          </a>
+            Personal Collections
+          </router-link>
         </li>
         <li>
-          <a href="#" class="nav-btn nav-link">
+          <router-link to="/" class="nav-btn nav-link">
             <svg class="bi me-2" width="16" height="16">
               <use xlink:href="#grid"></use>
             </svg>
             Add Collection
-          </a>
+          </router-link>
         </li>
         <li>
-          <a href="#" class="nav-btn nav-link">
+          <router-link to="/" class="nav-btn nav-link">
             <svg class="bi me-2" width="16" height="16">
               <use xlink:href="#people-circle"></use>
             </svg>
             Add Record
-          </a>
+          </router-link>
         </li>
       </ul>
       <hr>
@@ -91,6 +91,19 @@
     </footer>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {};
+  },
+  methods: {
+    getUserId() {
+      return this.$store.state.user.userId;
+    }
+  }
+}
+</script>
 
 <style scoped>
 #home-page {

@@ -7,8 +7,14 @@ export function createStore(currentToken, currentUser) {
   let store = _createStore({
     state: {
       token: currentToken || '',
+<<<<<<< HEAD
       user: currentUser || {},
       notification: null
+=======
+      user: currentUser || {
+        userId: 0,
+      }
+>>>>>>> 859f23e61dd2e017175d1b47877c67dbd4c9f752
     },
     mutations: {
       SET_AUTH_TOKEN(state, token) {

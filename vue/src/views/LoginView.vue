@@ -105,7 +105,7 @@ export default {
             this.$router.push("/");
           }
           this.isLoading = false;
-
+          this.$router.push("/");
           // TODO set up submit form and loading gif.
 
         })

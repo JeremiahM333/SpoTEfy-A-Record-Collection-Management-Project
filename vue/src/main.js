@@ -6,21 +6,23 @@ import axios from 'axios';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap";
 
+
+// TODO: Double check set up cloudinary
 /* sets the base URL for server API communication with axios */
 axios.defaults.baseURL = import.meta.env.VITE_REMOTE_API;
 
 /* Cloudinary */
-import { v2 as cloudinary } from 'cloudinary';
+// import { v2 as cloudinary } from 'cloudinary';
 
-cloudinary.config({
-  cloud_name: 'your_cloud_name',  // Replace with your Cloudinary cloud name
-  api_key: 'your_api_key',        // Replace with your Cloudinary API key
-  api_secret: 'your_api_secret'    // Replace with your Cloudinary API secret
-});
+// cloudinary.config({
+//   cloud_name: 'your_cloud_name',  // Replace with your Cloudinary cloud name
+//   api_key: 'your_api_key',        // Replace with your Cloudinary API key
+//   api_secret: 'your_api_secret'    // Replace with your Cloudinary API secret
+// });
 
 // Optionally, you can attach the Cloudinary instance to the app for global access
 const app = createApp(CapstoneApp);
-app.config.globalProperties.$cloudinary = cloudinary;
+// app.config.globalProperties.$cloudinary = cloudinary;
 /* Cloudinary */
 
 /*

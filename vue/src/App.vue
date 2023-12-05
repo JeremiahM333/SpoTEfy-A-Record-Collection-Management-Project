@@ -10,10 +10,10 @@
         </form>
       </nav>
       <div class="header-piece">
-        <button type="button" id="sign-up-btn" class="btn btn-primary btn-lg">Sign Up</button>
+        <router-link type="button" id="sign-up-btn" class="btn btn-primary btn-lg" v-bind:to="{name: 'register'}" >Sign Up</router-link>
 
-        <router-link :to="{ name: 'login' }"> <button type="button" id="login-btn"
-            class="btn btn-secondary btn-lg">Login</button> </router-link>
+        <router-link :to="{ name: 'login' }" 
+            class="btn btn-secondary btn-lg">Login </router-link>
 
 
       </div>
@@ -223,10 +223,25 @@ export default {
 .nav-btn:hover {
   color: #E5B80B;
 }
+
+.btn-secondary {
+  background-color: #E5B80B;
+}
+
+.btn-secondary:hover {
+  background-color: #E5B80B;
+  border-color: white;
+}
+
+
 </style>
 
 <style>
 #app {
   height: 100vh;
 }
+
+
+
+
 </style>

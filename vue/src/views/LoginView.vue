@@ -51,9 +51,9 @@
         <div v-show="showAlert" class=" alert alert-success" role="alert">
           Successful login!
         </div>
-        <div class="alert alert-danger" role="alert">
+        <!-- <div class="alert alert-danger" role="alert">
           Invalid username and password!
-        </div>
+        </div> -->
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">Email address</label>
           <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -63,7 +63,7 @@
           <label for="exampleInputPassword1" class="form-label">Password</label>
           <input type="password" class="form-control" id="exampleInputPassword1">
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary" id="submit-btn">Submit</button>
       </form>
     </div>
   </div>
@@ -137,11 +137,11 @@ label {
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
   border-radius: 1.5rem;
-  border: solid 1px gold;
+
 }
 
 #main-page {
-  background-image: url("../resources/test-bg.jpg");
+  background-image: url("../resources/vinyl-records_istock.jpg");
   height: 100vh;
 }
 
@@ -152,6 +152,17 @@ label {
 #form-header {
   color: white;
   padding: 1rem;
+}
 
+
+#submit-btn {
+
+  background-color: #E5B80B;
+  border-color: #E5B80B;
+}
+
+#submit-btn:hover {
+  background-color: #C09B09;
+  border-color: white;
 }
 </style>

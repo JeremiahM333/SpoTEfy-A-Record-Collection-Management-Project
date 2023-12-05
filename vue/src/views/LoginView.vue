@@ -25,7 +25,7 @@
 
   <div v-if="isLoading" class="text-center">
     <div class="container justify-content-end">
-      <h1>ΣpoTEfy</h1>
+      <h1>SpoTEfy</h1>
       <div class="loading">
         <img src="../resources/giphy.gif">
 

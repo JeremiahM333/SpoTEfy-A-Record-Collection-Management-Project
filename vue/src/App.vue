@@ -2,7 +2,7 @@
   <div id="home-page">
     <!-- bootsstrap nav bar -->
     <nav id="header" class="navbar navbar-expand-lg navbar-light bg-dark">
-      <a id="page-title" class="header-piece navbar-brand text-white" href="#">ΣpoTEfy</a>
+      <a id="page-title" class="header-piece navbar-brand text-white" href="#">SpoTEfy</a>
       <nav class="header-piece navbar navbar-light">
         <form id="search-bar" class="form-inline">
           <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -14,8 +14,6 @@
 
         <router-link :to="{ name: 'login' }" 
             class="btn btn-secondary btn-lg">Login </router-link>
-
-
       </div>
     </nav>
 
@@ -91,8 +89,8 @@
       <router-view />
     </div>
 
-    <footer id="footer" class="bg-dark">
-
+    <footer id="footer" class="bg-dark footer">
+      <p>© SpoTEfy 2023</p>
     </footer>
 
   </div>
@@ -193,6 +191,7 @@ export default {
 
 #login-btn:hover {
   border-color: white;
+  background-color: #c09b09;
 }
 
 .search-btn {
@@ -229,11 +228,17 @@ export default {
 }
 
 .btn-secondary:hover {
-  background-color: #E5B80B;
+  background-color: #c09b09;
   border-color: white;
 }
 
-
+.footer {
+  color: white;
+  
+}
+ .footer p {
+  margin-left: 1rem;
+ }
 </style>
 
 <style>

@@ -1,10 +1,13 @@
 <template>
-    <div class="card">
-        <img :src="collection.collectionCover" class="card-img-top">
-        <div class="card-body">
-            <h1 class="card-text">{{ collection.collectionName }}</h1>
+    <div class="collection-card">
+        <div class="card">
+            <img :src="collection.collectionCover" class="card-img-top">
+            <div class="card-body">
+                <h1 class="card-text">{{ collection.collectionName }}</h1>
+            </div>
         </div>
     </div>
+
     <div>
 
 
@@ -18,8 +21,13 @@ export default {
 </script>
 
 <style scoped>
-.card {
-    width: 16.17%
+.collection-card {
+    margin: 5px 5px 5px 5px;
+    width: 16%;
+}
+
+.card-text {
+    text-align: center;
 }
 </style>
   

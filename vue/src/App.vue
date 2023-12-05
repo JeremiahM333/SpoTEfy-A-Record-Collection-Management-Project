@@ -6,7 +6,7 @@
       <nav class="header-piece navbar navbar-light">
         <form id="search-bar" class="form-inline">
           <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          <button class="search-btn btn my-2 my-sm-0" type="submit">Search</button>
         </form>
       </nav>
       <div class="header-piece">
@@ -17,9 +17,9 @@
 
     <div id="nav-bar" class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark">
       <hr>
-      <ul class="nav nav-pills flex-column mb-auto">
+      <ul class="nav flex-column mb-auto">
         <li class="nav-item">
-          <a href="#" class="nav-link active" aria-current="page">
+          <a href="#" class="home-btn nav-link active" aria-current="page">
             <svg class="bi me-2" width="16" height="16">
               <use xlink:href="#home"></use>
             </svg>
@@ -27,7 +27,7 @@
           </a>
         </li>
         <li>
-          <a href="#" class="nav-link text-white">
+          <a href="#" class="nav-btn nav-link">
             <svg class="bi me-2" width="16" height="16">
               <use xlink:href="#speedometer2"></use>
             </svg>
@@ -35,7 +35,7 @@
           </a>
         </li>
         <li>
-          <a href="#" class="nav-link text-white">
+          <a href="#" class="nav-btn nav-link">
             <svg class="bi me-2" width="16" height="16">
               <use xlink:href="#table"></use>
             </svg>
@@ -43,7 +43,7 @@
           </a>
         </li>
         <li>
-          <a href="#" class="nav-link text-white">
+          <a href="#" class="nav-btn nav-link">
             <svg class="bi me-2" width="16" height="16">
               <use xlink:href="#grid"></use>
             </svg>
@@ -51,7 +51,7 @@
           </a>
         </li>
         <li>
-          <a href="#" class="nav-link text-white">
+          <a href="#" class="nav-btn nav-link">
             <svg class="bi me-2" width="16" height="16">
               <use xlink:href="#people-circle"></use>
             </svg>
@@ -114,6 +114,7 @@
   display: flex;
   justify-content: space-between;
   grid-area: header;
+  z-index: 3;
 }
 
 #page-title {
@@ -138,8 +139,13 @@
 }
 
 #nav-bar {
-  width: 100%;
+  /* width: 100%; */
   grid-area: nav;
+  position: fixed;
+  width: 16%;
+  top: 80px;
+  bottom: 40px;
+  left: 0px;
 }
 
 #router-view {
@@ -153,6 +159,50 @@
   height: 40px;
   overflow-x: hidden;
   grid-area: footer;
+  z-index: 3;
+}
+
+#sign-up-btn {
+  background-color: #E5B80B;
+  border-color: #E5B80B;
+}
+
+#sign-up-btn:hover {
+  background-color: #c09b09;
+  border-color: white;
+}
+
+#login-btn:hover {
+  border-color: white;
+}
+
+.search-btn {
+  border-color: #E5B80B;
+  color: #E5B80B;
+}
+
+.search-btn:hover {
+  background-color: #E5B80B;
+  color: white;
+}
+
+.home-btn {
+  background-color: #E5B80B;
+  border-radius: 0.375rem;
+  color: white;
+}
+
+.home-btn:hover {
+  background-color: #c09b09;
+  color: white;
+}
+
+.nav-btn {
+  color: white;
+}
+
+.nav-btn:hover {
+  color: #E5B80B;
 }
 </style>
 

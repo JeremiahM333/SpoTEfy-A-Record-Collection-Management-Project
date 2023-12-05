@@ -1,5 +1,6 @@
 <template>
-  <div class="home">
+  <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%"
+    data-bs-smooth-scroll="true" class="home scrollspy-example bg-body-tertiary rounded-2" tabindex="0">
     <collection class="collection-card" v-for="collection in this.collections" v-bind:key="collection.collectionId"
       v-bind:collection="collection" />
   </div>
@@ -16,6 +17,38 @@ export default {
   data() {
     return {
       collections: [
+        {
+          collectionName: 'test',
+          collectionCover: 'https://static.tumblr.com/exbflx8/z13m20ek0/cover.png'
+        },
+        {
+          collectionName: 'test',
+          collectionCover: 'https://static.tumblr.com/exbflx8/z13m20ek0/cover.png'
+        },
+        {
+          collectionName: 'test',
+          collectionCover: 'https://static.tumblr.com/exbflx8/z13m20ek0/cover.png'
+        },
+        {
+          collectionName: 'test',
+          collectionCover: 'https://static.tumblr.com/exbflx8/z13m20ek0/cover.png'
+        },
+        {
+          collectionName: 'test',
+          collectionCover: 'https://static.tumblr.com/exbflx8/z13m20ek0/cover.png'
+        },
+        {
+          collectionName: 'test',
+          collectionCover: 'https://static.tumblr.com/exbflx8/z13m20ek0/cover.png'
+        },
+        {
+          collectionName: 'test',
+          collectionCover: 'https://static.tumblr.com/exbflx8/z13m20ek0/cover.png'
+        },
+        {
+          collectionName: 'test',
+          collectionCover: 'https://static.tumblr.com/exbflx8/z13m20ek0/cover.png'
+        },
         {
           collectionName: 'test',
           collectionCover: 'https://static.tumblr.com/exbflx8/z13m20ek0/cover.png'
@@ -74,18 +107,11 @@ export default {
 
 <style scoped>
 .home {
-  /* background-image: image(src="https://static.vecteezy.com/system/resources/previews/007/049/501/original/4-point-star-geometric-seamless-pattern-modern-vintage-random-red-green-color-design-on-cream-background-use-for-fabric-textile-interior-decoration-elements-upholstery-wrapping-free-vector.jpg"); */
-  position: relative;
-  top: 0px;
-  width: 100%;
-  height: 100%;
-  z-index: -2;
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
   align-content: flex-start;
-  padding: 10px 0px 0px 10px;
-  column-gap: 5px;
-  row-gap: 10px;
+  padding: 5px 0px 0px 5px;
+  z-index: -3;
 }
 </style>

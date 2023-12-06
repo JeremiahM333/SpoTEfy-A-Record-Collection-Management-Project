@@ -62,54 +62,17 @@ export default {
           collectionName: 'test',
           collectionCover: 'https://static.tumblr.com/exbflx8/z13m20ek0/cover.png'
         },
-        // {
-        //   collectionName: 'test',
-        //   collectionCover: 'https://static.tumblr.com/exbflx8/z13m20ek0/cover.png'
-        // },
-        // {
-        //   collectionName: 'test',
-        //   collectionCover: 'https://static.tumblr.com/exbflx8/z13m20ek0/cover.png'
-        // },
-        // {
-        //   collectionName: 'test',
-        //   collectionCover: 'https://static.tumblr.com/exbflx8/z13m20ek0/cover.png'
-        // },
-        // {
-        //   collectionName: 'test',
-        //   collectionCover: 'https://static.tumblr.com/exbflx8/z13m20ek0/cover.png'
-        // },
-        // {
-        //   collectionName: 'test',
-        //   collectionCover: 'https://static.tumblr.com/exbflx8/z13m20ek0/cover.png'
-        // },
-        // {
-        //   collectionName: 'test',
-        //   collectionCover: 'https://static.tumblr.com/exbflx8/z13m20ek0/cover.png'
-        // },
-        // {
-        //   collectionName: 'test',
-        //   collectionCover: 'https://static.tumblr.com/exbflx8/z13m20ek0/cover.png'
-        // },
-        // {
-        //   collectionName: 'test',
-        //   collectionCover: 'https://static.tumblr.com/exbflx8/z13m20ek0/cover.png'
-        // },
-        // {
-        //   collectionName: 'test',
-        //   collectionCover: 'https://static.tumblr.com/exbflx8/z13m20ek0/cover.png'
-        // },
-
       ],
-      isLoading: true
+      // isLoading: true
     }
   },
-  // created() {
-  //   CollectionsService.getCollections()
-  //     .then(response => {
-  //       this.collections = response.date;
-  //       this.isLoading = false;
-  //     })
-  // }
+  created() {
+    CollectionsService.getCollections()
+      .then(response => {
+        this.collections = response.date;
+        // this.isLoading = false;
+      })
+  }
 };
 
 </script>

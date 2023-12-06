@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface RecordDao {
 
-    List<Record> getRecordsByCollectionId();
+    List<Record> getRecordsByCollectionId(int id);
 
-    List<Record> getRecordsByUserId(int id);
+    List<Record> getRecordsByUserId(int userId);
 
 
 }

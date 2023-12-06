@@ -13,7 +13,7 @@ DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
 	user_id SERIAL
-	,display_name varchar(50) NOT NULL
+	,username varchar(50) NOT NULL
 	,password_hash varchar(200) NOT NULL
 	,email_address varchar(150) NOT NULL
 	,role varchar(50) NOT NULL

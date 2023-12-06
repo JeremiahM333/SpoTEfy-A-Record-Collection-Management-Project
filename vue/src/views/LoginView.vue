@@ -54,7 +54,7 @@
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">Email address</label>
           <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-          <div id="emailHelp" class="form-text">We'll share your email with anyone else.</div>
+          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
         </div>
         <div class="mb-3">
           <label for="exampleInputPassword1" class="form-label">Password</label>
@@ -134,7 +134,7 @@ label {
 
 
 #form-margin {
-  height: 50vh;
+  
   margin-top: 5rem;
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
@@ -159,9 +159,10 @@ label {
 
 
 #submit-btn {
-
+  margin-top: 1rem;
   background-color: #E5B80B;
   border-color: #E5B80B;
+  margin-bottom: 2rem;
 }
 
 #submit-btn:hover {
@@ -172,9 +173,13 @@ label {
 .acct-btn {
   color: white;
 }
+/* // Need an account? Sign up link color text needs to be separate (for some reason) */
 
 .new-acct-link{
-  padding-top: 7rem;
+  margin-top: 1rem;
+  text-align: center;
+  padding-bottom: 1rem;
 }
+/* // Need an account? Sign up link additional CSS styling */
 
 </style>

@@ -134,7 +134,7 @@ label {
 
 
 #form-margin {
-  height: 50vh;
+  height: 35vh;
   margin-top: 5rem;
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
@@ -159,7 +159,7 @@ label {
 
 
 #submit-btn {
-
+  margin-top: 1rem;
   background-color: #E5B80B;
   border-color: #E5B80B;
 }
@@ -174,7 +174,8 @@ label {
 }
 
 .new-acct-link{
-  padding-top: 7rem;
+  margin-top: 1rem;
+  text-align: center;
 }
 
 </style>

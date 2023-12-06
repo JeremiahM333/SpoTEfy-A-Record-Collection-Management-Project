@@ -51,6 +51,10 @@
           Invalid username and password!
         </div> -->
         <div class="mb-3">
+          <label for="displayName" class="form-label">Display Name</label>
+          <input type="text" class="form-control" id="displayName" aria-describedby="displayName" v-model="user.username" required autofocus >
+        </div>
+        <div class="mb-3">
           <label for="userEmail" class="form-label">Email address</label>
           <input type="email" class="form-control" id="userEmail" aria-describedby="emailHelp" v-model="user.username" required autofocus>
           <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>

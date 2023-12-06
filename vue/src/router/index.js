@@ -33,7 +33,7 @@ const routes = [
     name: 'collections',
     component: CollectionsView,
     meta: {
-      requiresAuth: true
+      requiresAuth: false //set to true later
     }
   },
   {
@@ -41,7 +41,7 @@ const routes = [
     name: 'library',
     component: LibraryView,
     meta: {
-      requiresAuth: true
+      requiresAuth: false //set to true later
     }
   },
   {

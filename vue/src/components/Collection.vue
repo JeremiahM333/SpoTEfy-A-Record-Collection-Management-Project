@@ -16,7 +16,10 @@
   
 <script>
 export default {
-    props: ['collection']
+    props: ['collection'],
+    data() {
+        return {}
+    }
 };
 </script>
 

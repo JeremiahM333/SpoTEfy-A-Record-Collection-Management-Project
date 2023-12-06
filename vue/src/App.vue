@@ -2,7 +2,7 @@
   <div id="home-page">
     <!-- bootsstrap nav bar -->
     <nav id="header" class="navbar navbar-expand-lg navbar-light bg-dark">
-      <a id="page-title" class="header-piece navbar-brand text-white" href="#">ΣpoTEfy</a>
+      <a id="page-title" class="header-piece navbar-brand text-white" href="#">SpoTEfy</a>
       <nav class="header-piece navbar navbar-light">
         <form id="search-bar" class="form-inline">
           <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -10,8 +10,10 @@
         </form>
       </nav>
       <div class="header-piece">
-        <button type="button" id="sign-up-btn" class="btn btn-primary btn-lg">Sign Up</button>
-        <button type="button" id="login-btn" class="btn btn-secondary btn-lg">Login</button>
+        <router-link type="button" id="sign-up-btn" class="btn btn-primary btn-lg" v-bind:to="{name: 'register'}" >Sign Up</router-link>
+
+        <router-link :to="{ name: 'login' }" 
+            class="btn btn-secondary btn-lg">Login </router-link>
       </div>
     </nav>
 
@@ -56,6 +58,7 @@
               <use xlink:href="#people-circle"></use>
             </svg>
             Add Record
+
           </router-link>
         </li>
       </ul>
@@ -86,9 +89,10 @@
       <router-view />
     </div>
 
-    <footer id="footer" class="bg-dark">
-
+    <footer id="footer" class="bg-dark footer">
+      <p>© SpoTEfy 2023</p>
     </footer>
+
   </div>
 </template>
 
@@ -187,6 +191,7 @@ export default {
 
 #login-btn:hover {
   border-color: white;
+  background-color: #c09b09;
 }
 
 .search-btn {
@@ -217,10 +222,31 @@ export default {
 .nav-btn:hover {
   color: #E5B80B;
 }
+
+.btn-secondary {
+  background-color: #E5B80B;
+}
+
+.btn-secondary:hover {
+  background-color: #c09b09;
+  border-color: white;
+}
+
+.footer {
+  color: white;
+  
+}
+ .footer p {
+  margin-left: 1rem;
+ }
 </style>
 
 <style>
 #app {
   height: 100vh;
 }
+
+
+
+
 </style>

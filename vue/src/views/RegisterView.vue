@@ -22,7 +22,7 @@
     </form>
   </div> -->
 
-  <div v-if="isLoading" class="text-center">
+  <!-- <div v-if="isLoading" class="text-center">
     <div class="container justify-content-end">
       <h1>SpoTEfy</h1>
       <div class="loading">
@@ -31,9 +31,9 @@
 
       </div>
     </div>
-  </div>
+  </div> -->
 
-  <div v-else id="main-page">
+  <div id="main-page">
 
     <nav class="navbar navbar-dark bg-dark">
       <div class="container-fluid">
@@ -41,29 +41,29 @@
       </div>
     </nav>
     <div class="container" id="form-margin">
-      <form @submit="showAlert = true">
+      <form :on-submit.prevent="regist">
 
         <h1 class="text-center" id="form-header">Create Account</h1>
-        <div v-show="showAlert" class=" alert alert-success" role="alert">
-          Successful login!
+        <div class="alert alert-danger" role="alert" v-if="registrationErrors">
+          {{ registrationErrorMsg }}
         </div>
         <!-- <div class="alert alert-danger" role="alert">
           Invalid username and password!
         </div> -->
         <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Email address</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+          <label for="userEmail" class="form-label">Email address</label>
+          <input type="email" class="form-control" id="userEmail" aria-describedby="emailHelp" v-model="user.username" required autofocus>
           <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
         </div>
         <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">Password</label>
-          <input type="password" class="form-control" id="exampleInputPassword1">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" class="form-control" id="password" v-model="user.password" required  >
         </div>
         <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">Confirm Password</label>
-          <input type="password" class="form-control" id="exampleInputPassword1">
+          <label for="confirmPassword" class="form-label">Confirm Password</label>
+          <input type="password" class="form-control" id="confirmPassword"  v-model="user.confirmPassword" required>
         </div>
-        <button type="submit" class="btn btn-primary" id="submit-btn">Submit</button>
+        <button type="submit" class="btn btn-primary" id="submit-btn">Create Account</button>
 
        
 

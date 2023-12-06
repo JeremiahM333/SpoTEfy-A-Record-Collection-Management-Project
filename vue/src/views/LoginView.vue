@@ -23,7 +23,7 @@
   </div>
    -->
 
-  <div v-if="isLoading" class="text-center">
+  <!-- <div v-if="isLoading" class="text-center">
     <div class="container justify-content-end">
       <h1>SpoTEfy</h1>
       <div class="loading">
@@ -32,9 +32,9 @@
 
       </div>
     </div>
-  </div>
+  </div> -->
 
-  <div v-else id="main-page">
+  <div  id="main-page">
 
     <nav class="navbar navbar-dark bg-dark">
       <div class="container-fluid">
@@ -42,23 +42,21 @@
       </div>
     </nav>
     <div class="container" id="form-margin">
-      <form @submit="showAlert = true">
+      <form :on-submit.prevent="login">
 
         <h1 class="text-center" id="form-header">Please Log In</h1>
-        <div v-show="showAlert" class=" alert alert-success" role="alert">
-          Successful login!
-        </div>
-        <!-- <div class="alert alert-danger" role="alert">
+       
+        <div class="alert alert-danger" role="alert" v-if="invalidCredentials">
           Invalid username or password!
-        </div> -->
+        </div>
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">Email address</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+          <input type="email" class="form-control" id="useremail" aria-describedby="emailHelp" v-model="user.username" required autofocus >
           <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
         </div>
         <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">Password</label>
-          <input type="password" class="form-control" id="exampleInputPassword1">
+          <label for="inputPassword" class="form-label">Password</label>
+          <input type="password" class="form-control" id="inputPassword" v-model="user.password" required>
         </div>
         <button type="submit" class="btn btn-primary" id="submit-btn">Submit</button>
 
@@ -108,7 +106,7 @@ export default {
           }
           this.isLoading = false;
           this.$router.push("/");
-          // TODO set up submit form and loading gif.
+          
 
         })
         .catch(error => {

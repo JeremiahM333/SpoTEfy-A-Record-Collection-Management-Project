@@ -1,11 +1,13 @@
 <template>
     <div class="collection-card">
-        <div class="card">
-            <img :src="collection.collectionCover" class="card-img-top">
-            <div class="card-body">
-                <h1 class="card-text">{{ collection.collectionName }}</h1>
+        <router-link :to="{ name: 'records', params: { collectionId: collection.collectionId } }">
+            <div class="card">
+                <img :src="collection.collectionCover" class="card-img-top">
+                <div class="card-body">
+                    <h1 class="card-text">{{ collection.collectionName }}</h1>
+                </div>
             </div>
-        </div>
+        </router-link>
     </div>
 
     <div>
@@ -31,6 +33,8 @@ export default {
 
 .card-text {
     text-align: center;
+    text-decoration: none;
+    text-transform: none;
 }
 </style>
   

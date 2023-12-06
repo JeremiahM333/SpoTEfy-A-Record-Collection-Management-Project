@@ -66,13 +66,13 @@ export default {
       // isLoading: true
     }
   },
-  created() {
-    CollectionsService.getCollections()
-      .then(response => {
-        this.collections = response.date;
-        // this.isLoading = false;
-      })
-  }
+  // created() {
+  //   CollectionsService.getCollections()
+  //     .then(response => {
+  //       this.collections = response.date;
+  //       // this.isLoading = false;
+  //     })
+  // }
 };
 
 </script>

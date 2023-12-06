@@ -34,7 +34,7 @@
     </div>
   </div> -->
 
-  <div  id="main-page">
+  <div id="main-page">
 
     <nav class="navbar navbar-dark bg-dark">
       <div class="container-fluid">
@@ -42,17 +42,18 @@
       </div>
     </nav>
     <div class="container" id="form-margin">
-      <form :on-submit.prevent="login">
+      <form @submit.prevent="login">
 
         <h1 class="text-center" id="form-header">Please Log In</h1>
-       
+
         <div class="alert alert-danger" role="alert" v-if="invalidCredentials">
           Invalid username or password!
         </div>
-        
+
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">Email address</label>
-          <input type="email" class="form-control" id="useremail" aria-describedby="emailHelp" v-model="user.emailAddress" required autofocus >
+          <input type="email" class="form-control" id="useremail" aria-describedby="emailHelp" v-model="user.emailAddress"
+            required autofocus>
           <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
         </div>
         <div class="mb-3">
@@ -62,7 +63,7 @@
         <button type="submit" class="btn btn-primary" id="submit-btn">Submit</button>
 
         <div class="new-acct-link">
-          <router-link class="acct-btn" v-bind:to="{ name: 'register' } ">Need an account? Sign up.</router-link>
+          <router-link class="acct-btn" v-bind:to="{ name: 'register' }">Need an account? Sign up.</router-link>
         </div>
 
       </form>
@@ -107,7 +108,7 @@ export default {
           }
           this.isLoading = false;
           this.$router.push("/");
-          
+
 
         })
         .catch(error => {
@@ -133,7 +134,7 @@ label {
 
 
 #form-margin {
-  
+
   margin-top: 5rem;
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
@@ -172,13 +173,13 @@ label {
 .acct-btn {
   color: white;
 }
+
 /* // Need an account? Sign up link color text needs to be separate (for some reason) */
 
-.new-acct-link{
+.new-acct-link {
   margin-top: 1rem;
   text-align: center;
   padding-bottom: 1rem;
 }
-/* // Need an account? Sign up link additional CSS styling */
 
-</style>
+/* // Need an account? Sign up link additional CSS styling */</style>

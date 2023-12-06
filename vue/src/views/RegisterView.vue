@@ -41,7 +41,11 @@
       </div>
     </nav>
     <div class="container" id="form-margin">
+<<<<<<< HEAD
       <form :on-submit.prevent="register">
+=======
+      <form @submit.prevent="register">
+>>>>>>> a51949a48b47705a8c4d93041e3d0f60049328d2
 
         <h1 class="text-center" id="form-header">Create Account</h1>
         <div class="alert alert-danger" role="alert" v-if="registrationErrors">
@@ -52,32 +56,34 @@
         </div> -->
         <div class="mb-3">
           <label for="displayName" class="form-label">Display Name</label>
-          <input type="text" class="form-control" id="displayName" aria-describedby="displayName" v-model="user.username" required autofocus >
+          <input type="text" class="form-control" id="displayName" aria-describedby="displayName" v-model="user.username"
+            required autofocus>
         </div>
         <div class="mb-3">
           <label for="userEmail" class="form-label">Email address</label>
-          <input type="email" class="form-control" id="userEmail" aria-describedby="emailHelp" v-model="user.emailAddress" required autofocus>
+          <input type="email" class="form-control" id="userEmail" aria-describedby="emailHelp" v-model="user.emailAddress"
+            required autofocus>
           <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
         </div>
         <div class="mb-3">
           <label for="password" class="form-label">Password</label>
-          <input type="password" class="form-control" id="password" v-model="user.password" required  >
+          <input type="password" class="form-control" id="password" v-model="user.password" required>
         </div>
         <div class="mb-3">
           <label for="confirmPassword" class="form-label">Confirm Password</label>
-          <input type="password" class="form-control" id="confirmPassword"  v-model="user.confirmPassword" required>
+          <input type="password" class="form-control" id="confirmPassword" v-model="user.confirmPassword" required>
         </div>
         <div class="mb-3">
-        <select class="form-select" aria-label="Membership Tier" v-model="user.membershipTier">
+          <select class="form-select" aria-label="Membership Tier" v-model="user.membershipTier">
             <option selected>Membership Tier</option>
             <option value="basic">Basic</option>
             <option value="premium">Premium</option>
-      </select>
-    </div>
-      
+          </select>
+        </div>
+
         <button type="submit" class="btn btn-primary" id="submit-btn">Create Account</button>
 
-       
+
 
       </form>
     </div>
@@ -137,9 +143,8 @@ export default {
 </script>
 
 <style scoped>
-
 #form-margin {
-  
+
   margin-top: 5rem;
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
@@ -167,7 +172,7 @@ export default {
 }
 
 .form-text {
-  color:white;
+  color: white;
 }
 
 #form-header {
@@ -178,13 +183,11 @@ export default {
   margin-bottom: 2rem;
   background-color: #E5B80B;
   border-color: #E5B80B;
-  
+
 }
 
 #submit-btn:hover {
   background-color: #c09b09;
   border-color: white;
 }
-
-
 </style>

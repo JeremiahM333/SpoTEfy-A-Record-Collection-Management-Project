@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div id="register" class="text-center">
     <form v-on:submit.prevent="register">
       <h1>Create Account</h1>
@@ -20,6 +20,52 @@
       <button type="submit">Create Account</button>
       <p><router-link v-bind:to="{ name: 'login' }">Already have an account? Log in.</router-link></p>
     </form>
+  </div>
+</template> -->
+
+
+<template>
+
+  <div v-if="isLoading" class="text-center">
+    <div class="container justify-content-end">
+      <!-- <h1>SpoTEfy</h1> -->
+      <div class="loading">
+        <img src="../resources/giphy.gif">
+
+      </div>
+    </div>
+  </div>
+
+  <div v-else id="main-page">
+
+    <nav class="navbar navbar-dark bg-dark">
+      <div class="container-fluid">
+
+      </div>
+    </nav>
+    <div class="container" id="form-margin">
+      <form @submit="showAlert = true">
+
+        <h1 class="text-center" id="form-header">Please Sign Up</h1>
+        <div v-show="showAlert" class=" alert alert-success" role="alert">
+          Successful sign up!
+        </div>
+
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Email address</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+          <div id="emailHelp" class="form-text">We'll share your email with anyone else.</div>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input type="password" class="form-control" id="exampleInputPassword1">
+        </div>
+        <button type="submit" class="btn btn-primary" id="submit-btn">Submit</button>
+
+
+
+      </form>
+    </div>
   </div>
 </template>
 
@@ -73,10 +119,46 @@ export default {
 </script>
 
 <style scoped>
+
+#form-margin {
+  height: 50vh;
+  margin-top: 5rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border-radius: 1.5rem;
+}
+
+#main-page {
+  background-image: url("../resources/pexels-miguel-á-padriñán-5764283.jpg");
+  background-size: cover;
+  height: 100vh
+}
+
 .form-input-group {
   margin-bottom: 1rem;
 }
 label {
   margin-right: 0.5rem;
 }
+
+.form-text {
+  color:white;
+}
+
+#form-header {
+  padding: 1rem;
+}
+
+#submit-btn {
+  background-color: #E5B80B;
+  border-color: #E5B80B;
+  
+}
+
+#submit-btn:hover {
+  background-color: #c09b09;
+  border-color: white;
+}
+
+
 </style>

@@ -49,7 +49,7 @@
           Successful login!
         </div>
         <!-- <div class="alert alert-danger" role="alert">
-          Invalid username and password!
+          Invalid username or password!
         </div> -->
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">Email address</label>

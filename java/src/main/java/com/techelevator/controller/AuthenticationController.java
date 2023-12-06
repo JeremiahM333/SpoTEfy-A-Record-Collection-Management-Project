@@ -18,6 +18,9 @@ import com.techelevator.dao.UserDao;
 import com.techelevator.security.jwt.JWTFilter;
 import com.techelevator.security.jwt.TokenProvider;
 
+import java.security.Principal;
+import java.util.List;
+
 @RestController
 @CrossOrigin
 public class AuthenticationController {
@@ -67,5 +70,15 @@ public class AuthenticationController {
         }
     }
 
+    @GetMapping("/users")
+    public List<User> getUsers() {
+        return userDao.getUsers();
+    }
+
+    @GetMapping("/users/currentUser")
+    public String user(Principal principal) {
+        String emailAddress = principal.getName();
+        return emailAddress;
+    }
 }
 

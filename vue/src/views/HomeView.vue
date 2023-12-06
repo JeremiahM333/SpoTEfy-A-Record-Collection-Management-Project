@@ -16,61 +16,15 @@ export default {
   },
   data() {
     return {
-      collections: [
-        {
-          collectionId: 1,
-          collectionName: 'test',
-          collectionCover: 'https://static.tumblr.com/exbflx8/z13m20ek0/cover.png'
-        },
-        {
-          collectionId: 2,
-          collectionName: 'test',
-          collectionCover: 'https://static.tumblr.com/exbflx8/z13m20ek0/cover.png'
-        },
-        {
-          collectionId: 3,
-          collectionName: 'test',
-          collectionCover: 'https://static.tumblr.com/exbflx8/z13m20ek0/cover.png'
-        },
-        {
-          collectionId: 4,
-          collectionName: 'test',
-          collectionCover: 'https://static.tumblr.com/exbflx8/z13m20ek0/cover.png'
-        },
-        {
-          collectionId: 5,
-          collectionName: 'test',
-          collectionCover: 'https://static.tumblr.com/exbflx8/z13m20ek0/cover.png'
-        },
-        {
-          collectionId: 6,
-          collectionName: 'test',
-          collectionCover: 'https://static.tumblr.com/exbflx8/z13m20ek0/cover.png'
-        },
-        {
-          collectionId: 7,
-          collectionName: 'test',
-          collectionCover: 'https://static.tumblr.com/exbflx8/z13m20ek0/cover.png'
-        },
-        {
-          collectionId: 8,
-          collectionName: 'test',
-          collectionCover: 'https://static.tumblr.com/exbflx8/z13m20ek0/cover.png'
-        },
-        {
-          collectionId: 9,
-          collectionName: 'test',
-          collectionCover: 'https://static.tumblr.com/exbflx8/z13m20ek0/cover.png'
-        },
-      ],
-      // isLoading: true
+      collections: [],
+      isLoading: true
     }
   },
   created() {
     CollectionsService.getCollections()
       .then(response => {
         this.collections = response.data;
-        // this.isLoading = false;
+        this.isLoading = false;
       })
   }
 };

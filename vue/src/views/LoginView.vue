@@ -49,10 +49,7 @@
         <div class="alert alert-danger" role="alert" v-if="invalidCredentials">
           Invalid username or password!
         </div>
-        <div class="mb-3">
-          <label for="displayName" class="form-label">Display Name</label>
-          <input type="text" class="form-control" id="useremail" aria-describedby="displayName" v-model="user.username" required autofocus >
-        </div>
+        
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">Email address</label>
           <input type="email" class="form-control" id="useremail" aria-describedby="emailHelp" v-model="user.emailAddress" required autofocus >

@@ -17,7 +17,7 @@ VALUES
 INSERT INTO collections (user_id, collection_cover, collection_name, is_public)
 VALUES
   (1, null, 'My Collection', true),
-  (2, null, 'Admin Collection', flase);
+  (2, null, 'Admin Collection', false);
 -- Insert sample data into artists table
 INSERT INTO artists (artist_name)
 VALUES

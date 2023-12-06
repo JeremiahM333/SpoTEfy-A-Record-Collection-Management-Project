@@ -15,7 +15,7 @@ CREATE TABLE users (
 	user_id SERIAL
 	,username varchar(50) NOT NULL
 	,password_hash varchar(200) NOT NULL
-	,email_address varchar(150) NOT NULL
+	,email_address varchar(150) UNIQUE NOT NULL
 	,role varchar(50) NOT NULL
 	,membership_tier varchar(50) NOT NULL
 

@@ -7,15 +7,15 @@ package com.techelevator.model;
  */
 public class LoginDto {
 
-   private String username;
+   private String emailAddress;
    private String password;
 
-   public String getUsername() {
-      return username;
+   public String getEmailAddress() {
+      return emailAddress;
    }
 
-   public void setUsername(String username) {
-      this.username = username;
+   public void setEmailAddress(String emailAddress) {
+      this.emailAddress = emailAddress;
    }
 
    public String getPassword() {
@@ -29,7 +29,7 @@ public class LoginDto {
    @Override
    public String toString() {
       return "LoginDTO{" +
-              "username='" + username + '\'' +
+              "emailAddress='" + emailAddress + '\'' +
               ", password='" + password + '\'' +
               '}';
    }

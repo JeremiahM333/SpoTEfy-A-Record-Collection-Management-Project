@@ -12,6 +12,10 @@ public class User {
    private String username;
    @JsonIgnore
    private String password;
+
+   private String emailAddress;
+
+   private String membershipTier;
    @JsonIgnore
    private boolean activated;
    private Set<Authority> authorities = new HashSet<>();
@@ -72,6 +76,22 @@ public class User {
          String authority = role.contains("ROLE_") ? role : "ROLE_" + role;
          this.authorities.add(new Authority(authority));
       }
+   }
+
+   public String getEmailAddress() {
+      return emailAddress;
+   }
+
+   public void setEmailAddress(String emailAddress) {
+      this.emailAddress = emailAddress;
+   }
+
+   public String getMembershipTier() {
+      return membershipTier;
+   }
+
+   public void setMembershipTier(String membershipTier) {
+      this.membershipTier = membershipTier;
    }
 
    @Override

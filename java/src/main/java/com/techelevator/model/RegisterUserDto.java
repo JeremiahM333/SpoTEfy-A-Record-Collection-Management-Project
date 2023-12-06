@@ -18,6 +18,10 @@ public class RegisterUserDto {
     @NotEmpty(message = "Please select a role for this user.")
     private String role;
 
+    private String emailAddress;
+
+    private String membershipTier;
+
     public String getUsername() {
         return username;
     }
@@ -48,5 +52,21 @@ public class RegisterUserDto {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
+    }
+
+    public String getMembershipTier() {
+        return membershipTier;
+    }
+
+    public void setMembershipTier(String membershipTier) {
+        this.membershipTier = membershipTier;
     }
 }

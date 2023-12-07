@@ -1,6 +1,7 @@
 <template>
     <div class="collection-card">
-        <router-link :to="{ name: 'records', params: { collectionId: collection.collectionId } }">
+        <router-link :to="{ name: 'records', params: { collectionId: collection.collectionId } }"
+            @click="setCurrentCollectionId(collection.collectionId)">
             <div class="card">
                 <img :src="collection.collectionCover" class="card-img-top">
                 <div class="card-body">
@@ -21,6 +22,11 @@ export default {
     props: ['collection'],
     data() {
         return {}
+    },
+    methods: {
+        setCurrentCollectionId(collectionId) {
+            this.$store.commit("SET_CURRENT_COLLECTION", collectionId);
+        }
     }
 };
 </script>

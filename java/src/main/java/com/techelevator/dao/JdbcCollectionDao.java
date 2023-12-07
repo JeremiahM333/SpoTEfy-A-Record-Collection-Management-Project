@@ -54,7 +54,7 @@ public class JdbcCollectionDao implements CollectionDao {
 
     public Collection getCollectionById(int collectionId) {
         Collection collection = null;
-        String sql = "SELECT collection_id, user_id, collection_name, is_public, collection_cover FROM collections WHERE collections_id = ?";
+        String sql = "SELECT collection_id, user_id, collection_name, is_public, collection_cover FROM collections WHERE collection_id = ?";
         try {
             SqlRowSet result = jdbcTemplate.queryForRowSet(sql, collectionId);
             if (result.next()) {

@@ -1,7 +1,9 @@
 package com.techelevator.controller;
 
+import com.techelevator.dao.CollectionDao;
 import com.techelevator.dao.RecordDao;
 import com.techelevator.dao.UserDao;
+import com.techelevator.model.Collection;
 import com.techelevator.model.Record;
 import com.techelevator.model.User;
 import org.springframework.http.HttpStatus;
@@ -20,9 +22,12 @@ public class RecordController {
 
     private UserDao userDao;
 
-    public RecordController(RecordDao recordDao, UserDao userDao) {
+    private CollectionDao collectionDao;
+
+    public RecordController(RecordDao recordDao, UserDao userDao, CollectionDao collectionDao) {
         this.recordDao = recordDao;
         this.userDao = userDao;
+        this.collectionDao = collectionDao;
     }
 
     @GetMapping("records/{userId}")
@@ -35,6 +40,27 @@ public class RecordController {
 
         if (loggedInUser.getId() != userId && !loggedInUser.getAuthorities().contains("ROLE_ADMIN")) {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, "You're not the owner of those records");
+        }
+
+        return records;
+    }
+
+    @GetMapping("collections/{collectionId}/records")
+    public List<Record> getRecordByCollectionId(@PathVariable int collectionId, Principal principal) {
+
+        Collection collection = collectionDao.getCollectionById(collectionId);
+
+        if (!collection.isPublic()) {
+            User loggedInUser = userDao.getUserByEmailAddress(principal.getName());
+
+            if (loggedInUser.getId() != collection.getUserId() || !loggedInUser.getAuthorities().contains("ROLE_ADMIN")) {
+                throw new ResponseStatusException(HttpStatus.FORBIDDEN, "That collection id private and you are not the owner");
+            }
+        }
+
+        List<Record> records = recordDao.getRecordsByCollectionId(collectionId);
+        if (records == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Records Not Found");
         }
 
         return records;

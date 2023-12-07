@@ -106,9 +106,6 @@ export default {
             this.$store.commit("SET_USER", response.data.user);
             this.$router.push("/");
           }
-          this.isLoading = false;
-          this.$router.push("/");
-
 
         })
         .catch(error => {
@@ -187,4 +184,5 @@ label {
   padding-bottom: 1rem;
 }
 
-/* // Need an account? Sign up link additional CSS styling */</style>
+/* // Need an account? Sign up link additional CSS styling */
+</style>

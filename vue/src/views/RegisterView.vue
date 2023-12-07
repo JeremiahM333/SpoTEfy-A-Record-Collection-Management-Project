@@ -41,6 +41,7 @@
       </div>
     </nav>
     <div class="container" id="form-margin">
+
       <form @submit.prevent="register">
 
         <h1 class="text-center" id="form-header">Create Account</h1>
@@ -98,7 +99,7 @@ export default {
         confirmPassword: '',
         emailAddress: '',
         role: 'user',
-        membershipTier: 'basic',
+        membershipTier: '',
       },
       registrationErrors: false,
       registrationErrorMsg: 'There were problems registering this user.',
@@ -119,6 +120,7 @@ export default {
                 query: { registration: 'success' },
               });
             }
+            console.log('Registration successful');
           })
           .catch((error) => {
             const response = error.response;

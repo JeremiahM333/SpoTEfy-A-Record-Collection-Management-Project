@@ -6,6 +6,6 @@ export default {
     },
 
     getRecordsByUserId(userId) {
-        return axios.get('/records/' + userId);
+        return axios.get('/users/' + userId + '/records');
     }
 }

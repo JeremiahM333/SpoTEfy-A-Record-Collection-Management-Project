@@ -43,8 +43,8 @@ public class RecordController {
         return records;
     }
 
-    @GetMapping("records/{userId}")
-    public List<Record> getRecordByUserId(@PathVariable int userId, Principal principal) {
+    @GetMapping("users/{userId}/records")
+    public List<Record> getRecordsByUserId(@PathVariable int userId, Principal principal) {
         User loggedInUser = userDao.getUserByEmailAddress(principal.getName());
 
         List<Record> records = recordDao.getRecordsByUserId(userId);

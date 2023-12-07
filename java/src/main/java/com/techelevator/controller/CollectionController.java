@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/collections")
 @CrossOrigin
 public class CollectionController {
 
@@ -25,7 +24,7 @@ public class CollectionController {
         this.userDao = userDao;
     }
 
-    @GetMapping("")
+    @GetMapping("/collections")
     public List<Collection> getCollections() {
         List<Collection> retreivedCollections = collectionDao.getCollections();
         List<Collection> sortedCollections = new ArrayList<>();
@@ -35,7 +34,7 @@ public class CollectionController {
         return sortedCollections;
     }
 
-    @GetMapping("/{userId}")
+    @GetMapping("/users/{userId}/collections")
     public List<Collection> getCollectionsByUserId(Principal principal) {
         //TO DO
         return null;

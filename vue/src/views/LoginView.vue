@@ -124,6 +124,11 @@ export default {
 </script>
 
 <style scoped>
+
+.container {
+  width: 35%;
+}
+
 .form-input-group {
   margin-bottom: 1rem;
 }

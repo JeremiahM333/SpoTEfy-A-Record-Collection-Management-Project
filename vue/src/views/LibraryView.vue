@@ -2,15 +2,18 @@
     <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%"
         data-bs-smooth-scroll="true" class="library scrollspy-example bg-body-tertiary rounded-2" tabindex="0">
         <record class="record-card" v-for="record in this.records" v-bind:key="record.recordId" v-bind:record="record" />
+        <library-service/>
     </div>
 </template>
   
 <script>
 import Record from '../components/Record.vue'
+import LibraryService from '../services/LibraryService';
 
 export default {
     components: {
-        Record
+        Record, 
+        LibraryService
     },
     data() {
         return {
@@ -30,9 +33,11 @@ export default {
             ]
         }
     },
+
     // created() {
 
     // }
+
 };
 </script>
 

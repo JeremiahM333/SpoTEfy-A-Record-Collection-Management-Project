@@ -138,6 +138,12 @@ export default {
 </script>
 
 <style scoped>
+
+.container {
+  width: 35%;
+}
+
+
 #form-margin {
 
   margin-top: 5rem;

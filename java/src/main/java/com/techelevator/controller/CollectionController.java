@@ -58,4 +58,10 @@ public class CollectionController {
 //
 //        return collection;
 //    }
+
+    @RequestMapping(path = "/users")
+    public String user(Principal principal) {
+        String username = principal.getName();
+        return username;
+    }
 }

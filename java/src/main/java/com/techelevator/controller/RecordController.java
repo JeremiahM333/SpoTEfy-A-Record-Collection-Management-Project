@@ -12,7 +12,7 @@ import java.security.Principal;
 import java.util.List;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/records")
 @CrossOrigin
 public class RecordController {
 

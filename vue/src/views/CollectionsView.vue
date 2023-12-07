@@ -1,8 +1,7 @@
 <template>
     <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%"
         data-bs-smooth-scroll="true" class="collections scrollspy-example bg-body-tertiary rounded-2" tabindex="0">
-        <collection class="collection-card" v-for="collection in this.collections" v-bind:key="collection.collectionId"
-            v-bind:collection="collection" />
+        <collection v-for="collection in collections" v-bind:key="collection.collectionId" v-bind:collection="collection" />
     </div>
 </template>
   

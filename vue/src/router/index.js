@@ -45,7 +45,7 @@ const routes = [
     }
   },
   {
-    path: '/collections/:collectionId',
+    path: '/collections/:collectionId/records',
     name: 'records',
     component: RecordsView,
     meta: {

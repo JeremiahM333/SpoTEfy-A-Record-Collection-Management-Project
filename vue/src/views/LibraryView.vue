@@ -6,11 +6,13 @@
 </template>
   
 <script>
-import Record from '../components/Record.vue'
+import Record from '../components/Record.vue'; 
+import RecordService from '../services/RecordService.js';
+
 
 export default {
     components: {
-        Record
+        Record,       
     },
     data() {
         return {
@@ -30,9 +32,15 @@ export default {
             ]
         }
     },
-    // created() {
 
-    // }
+    created() {
+        RecordService.getRecordsByUserId(this.$store.state.user.userId)
+        .then(response => {
+            this.records = response.data;
+        })
+    }
+
+
 };
 </script>
 

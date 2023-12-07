@@ -10,10 +10,12 @@
         </form>
       </nav>
       <div class="header-piece">
-        <router-link type="button" id="sign-up-btn" class="btn btn-primary btn-lg" v-bind:to="{name: 'register'}" >Sign Up</router-link>
+        <router-link type="button" id="sign-up-btn" class="btn btn-primary btn-lg" v-bind:to="{ name: 'register' }">Sign
+          Up</router-link>
 
-        <router-link :to="{ name: 'login' }" 
-            class="btn btn-secondary btn-lg">Login </router-link>
+        <router-link v-if="!isAuthenticated" :to="{ name: 'login' }" class="btn btn-secondary btn-lg">Login </router-link>
+        <router-link v-if="isAuthenticated" :to="{ name: 'logout' }" class="btn btn-secondary btn-lg">Log Out
+        </router-link>
       </div>
     </nav>
 
@@ -28,7 +30,7 @@
             Home
           </router-link>
         </li>
-        <li>
+        <li v-if="isAuthenticated">
           <router-link :to="{ name: 'library', params: { userId: getUserId() } }" class="nav-btn nav-link">
             <svg class="bi me-2" width="16" height="16">
               <use xlink:href="#speedometer2"></use>
@@ -36,7 +38,7 @@
             Personal Library
           </router-link>
         </li>
-        <li>
+        <li v-if="isAuthenticated">
           <router-link :to="{ name: 'collections', params: { userId: getUserId() } }" class="nav-btn nav-link">
             <svg class="bi me-2" width="16" height="16">
               <use xlink:href="#table"></use>
@@ -44,7 +46,7 @@
             Personal Collections
           </router-link>
         </li>
-        <li>
+        <li v-if="isAuthenticated">
           <router-link to="/" class="nav-btn nav-link">
             <svg class="bi me-2" width="16" height="16">
               <use xlink:href="#grid"></use>
@@ -52,13 +54,12 @@
             Add Collection
           </router-link>
         </li>
-        <li>
+        <li v-if="isAuthenticated">
           <router-link to="/" class="nav-btn nav-link">
             <svg class="bi me-2" width="16" height="16">
               <use xlink:href="#people-circle"></use>
             </svg>
             Add Record
-
           </router-link>
         </li>
       </ul>
@@ -101,9 +102,17 @@ export default {
   data() {
     return {};
   },
+  computed: {
+    isAuthenticated() {
+      return this.$store.state.token !== '';
+    }
+  },
   methods: {
     getUserId() {
-      return this.$store.state.user.userId;
+      return this.$store.state.user.id;
+    },
+    logOut() {
+      this.$store.commit('LOGOUT');
     }
   }
 }
@@ -234,19 +243,16 @@ export default {
 
 .footer {
   color: white;
-  
+
 }
- .footer p {
+
+.footer p {
   margin-left: 1rem;
- }
+}
 </style>
 
 <style>
 #app {
   height: 100vh;
 }
-
-
-
-
 </style>

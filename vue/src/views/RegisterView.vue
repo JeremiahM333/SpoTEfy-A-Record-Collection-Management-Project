@@ -41,11 +41,8 @@
       </div>
     </nav>
     <div class="container" id="form-margin">
-<<<<<<< HEAD
-      <form :on-submit.prevent="register">
-=======
+
       <form @submit.prevent="register">
->>>>>>> a51949a48b47705a8c4d93041e3d0f60049328d2
 
         <h1 class="text-center" id="form-header">Create Account</h1>
         <div class="alert alert-danger" role="alert" v-if="registrationErrors">
@@ -143,6 +140,12 @@ export default {
 </script>
 
 <style scoped>
+
+.container {
+  width: 35%;
+}
+
+
 #form-margin {
 
   margin-top: 5rem;

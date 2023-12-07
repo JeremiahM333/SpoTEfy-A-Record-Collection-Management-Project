@@ -21,9 +21,12 @@ public class JdbcRecordDao implements RecordDao{
 
     public List<Record> getRecordsByCollectionId(int id) {
         List<Record> records = new ArrayList<>();
-        String sql = "SELECT record_id, user_id, album_name, album_cover, release_date, media_type FROM record r JOIN collection_records c ON r.record_id = c.record_id WHERE collection_id = ?";
+        String sql = "SELECT r.record_id, user_id, album_name, album_cover, release_date, media_type " +
+                     "FROM records r " +
+                     "JOIN collections_records cr ON r.record_id = cr.record_id " +
+                     "WHERE collection_id = ?";
         try {
-            SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
             while (results.next()) {
                 records.add(mapRowToRecord(results));
             }
@@ -35,7 +38,7 @@ public class JdbcRecordDao implements RecordDao{
 
     public List<Record> getRecordsByUserId(int userId) {
         List<Record> records = new ArrayList<>();
-        String sql = "SELECT record_id, user_id, album_name, album_cover, release_date, media_type FROM record WHERE user_id = ?";
+        String sql = "SELECT record_id, user_id, album_name, album_cover, release_date, media_type FROM records WHERE user_id = ?";
         try {
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
             while (results.next()) {

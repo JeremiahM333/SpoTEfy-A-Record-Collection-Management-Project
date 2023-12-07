@@ -13,7 +13,10 @@ public class User {
    @JsonIgnore
    private String password;
 
+
+
    private String emailAddress;
+
 
    private String membershipTier;
    @JsonIgnore
@@ -22,12 +25,15 @@ public class User {
 
    public User() { }
 
-   public User(int id, String username, String password, String authorities) {
+   public User(int id, String username, String password, String authorities, String emailAddress, String membershipTier) {
       this.id = id;
       this.username = username;
       this.password = password;
       if (authorities != null) this.setAuthorities(authorities);
       this.activated = true;
+      this.emailAddress = emailAddress;
+      this.membershipTier = membershipTier;
+
    }
 
    public int getId() {

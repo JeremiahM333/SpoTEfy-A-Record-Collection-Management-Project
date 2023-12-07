@@ -7,6 +7,7 @@
   
 <script>
 import Record from '../components/Record.vue'
+import RecordService from '../services/RecordService';
 
 export default {
     components: {
@@ -27,12 +28,17 @@ export default {
                     albumCover: 'https://static.tumblr.com/exbflx8/z13m20ek0/cover.png',
                     releaseDate: 'January 3, 2003'
                 }
-            ]
+            ],
+            isLoading: true
         }
     },
-    // created() {
-
-    // }
+    created() {
+        RecordService.getRecordsByCollectionId(this.$store.state.currentCollection)
+            .then(response => {
+                this.records = response.data;
+                this.isLoading = false;
+            })
+    }
 };
 </script>
 

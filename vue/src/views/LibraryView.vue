@@ -17,7 +17,7 @@ export default {
     data() {
         return {
             records: [
-                {
+            {
                     recordId: 1,
                     albumName: 'test',
                     albumCover: 'https://static.tumblr.com/exbflx8/z13m20ek0/cover.png',

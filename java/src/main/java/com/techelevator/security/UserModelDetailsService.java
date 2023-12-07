@@ -47,7 +47,7 @@ public class UserModelDetailsService implements UserDetailsService {
             grantedAuthorities.add(new SimpleGrantedAuthority(authority.getName()));
         }
 
-        return new org.springframework.security.core.userdetails.User(user.getUsername(),
+        return new org.springframework.security.core.userdetails.User(user.getEmailAddress(),
                 user.getPassword(),
                 grantedAuthorities);
     }

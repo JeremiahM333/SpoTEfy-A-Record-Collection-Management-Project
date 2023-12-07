@@ -7,9 +7,7 @@ export function createStore(currentToken, currentUser) {
   let store = _createStore({
     state: {
       token: currentToken || '',
-      user: currentUser || {
-        userId: 0,
-      },
+      user: currentUser,
       currentCollection: 0
     },
     mutations: {

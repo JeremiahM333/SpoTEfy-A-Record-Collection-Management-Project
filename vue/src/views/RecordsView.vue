@@ -15,20 +15,7 @@ export default {
     },
     data() {
         return {
-            records: [
-                {
-                    recordId: 1,
-                    albumName: 'test',
-                    albumCover: 'https://static.tumblr.com/exbflx8/z13m20ek0/cover.png',
-                    releaseDate: 'April 22, 2001'
-                },
-                {
-                    recordId: 2,
-                    albumName: 'test',
-                    albumCover: 'https://static.tumblr.com/exbflx8/z13m20ek0/cover.png',
-                    releaseDate: 'January 3, 2003'
-                }
-            ],
+            records: [],
             isLoading: true
         }
     },

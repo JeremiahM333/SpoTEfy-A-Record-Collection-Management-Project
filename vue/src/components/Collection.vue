@@ -3,7 +3,7 @@
         <router-link :to="{ name: 'records', params: { collectionId: collection.collectionId } }"
             @click="setCurrentCollectionId(collection.collectionId)">
             <div class="card">
-                <img :src="collection.collectionCover" class="card-img-top">
+                <img :src="collectionCover" class="card-img-top" @error="replaceWithDefault()">
                 <div class="card-body">
                     <h1 class="card-text">{{ collection.collectionName }}</h1>
                 </div>
@@ -21,11 +21,22 @@
 export default {
     props: ['collection'],
     data() {
-        return {}
+        return {
+            defaultCoverArt: 'https://cdn3.iconfinder.com/data/icons/ios-edge-glyph-1/25/Album-Collection-512.png',
+            useDefaultCoverArt: false
+        }
+    },
+    computed: {
+        collectionCover() {
+            return this.collection.collectionCover === null || this.useDefaultCoverArt ? this.defaultCoverArt : this.collection.collectionCover;
+        },
     },
     methods: {
         setCurrentCollectionId(collectionId) {
             this.$store.commit("SET_CURRENT_COLLECTION", collectionId);
+        },
+        replaceWithDefault() {
+            this.useDefaultCoverArt = true;
         }
     }
 };

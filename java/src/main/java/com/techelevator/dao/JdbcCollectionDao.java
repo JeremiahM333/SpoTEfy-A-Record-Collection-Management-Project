@@ -21,11 +21,25 @@ public class JdbcCollectionDao implements CollectionDao {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public List<Collection> getCollections() {
+    public List<Collection> getPublicCollections() {
         List<Collection> collections = new ArrayList<>();
-        String sql = "SELECT collection_id, user_id, collection_name, is_public, collection_cover FROM collections";
+        String sql = "SELECT collection_id, user_id, collection_name, is_public, collection_cover FROM collections WHERE is_public";
         try {
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+            while (results.next()) {
+                collections.add(mapRowToCollection(results));
+            }
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        }
+        return collections;
+    }
+
+    public List<Collection> getCollectionsByUserId(int userId) {
+        List<Collection> collections = new ArrayList<>();
+        String sql = "SELECT collection_id, user_id, collection_name, is_public, collection_cover FROM collections WHERE user_id = ?";
+        try {
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
             while (results.next()) {
                 collections.add(mapRowToCollection(results));
             }

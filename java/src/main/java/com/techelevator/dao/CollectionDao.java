@@ -7,7 +7,9 @@ import java.util.List;
 public interface CollectionDao {
 
 
-     List<Collection> getCollections();
+     List<Collection> getPublicCollections();
+
+     List<Collection> getCollectionsByUserId(int userId);
 
      Collection createCollection(Collection collection);
 

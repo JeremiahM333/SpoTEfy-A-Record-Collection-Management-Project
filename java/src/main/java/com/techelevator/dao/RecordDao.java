@@ -10,5 +10,9 @@ public interface RecordDao {
 
     List<Record> getRecordsByUserId(int userId);
 
+    Record getRecordById(int recordId);
+
+    Record createRecord(Record record);
+
 
 }

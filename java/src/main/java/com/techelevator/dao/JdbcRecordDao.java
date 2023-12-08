@@ -2,6 +2,7 @@ package com.techelevator.dao;
 
 import com.techelevator.exception.DaoException;
 import com.techelevator.model.Record;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -48,6 +49,39 @@ public class JdbcRecordDao implements RecordDao{
             throw new DaoException("Unable to connect to server or database", e);
         }
         return records;
+    }
+
+    public Record getRecordById(int recordId) {
+        Record record = null;
+        String recordIdSQL = "SELECT record_id, user_id, album_name, album_cover, release_date, media_type\n" +
+                "FROM records\n" +
+                "WHERE record_id = ?;";
+        try {
+            SqlRowSet results = jdbcTemplate.queryForRowSet(recordIdSQL, recordId);
+            if (results.next()) {
+                record = mapRowToRecord(results);
+            }
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        }
+        return record;
+    }
+    public Record createRecord(Record record) {
+        Record newRecord;
+
+        String createRecordSQL = "INSERT INTO records(\n" +
+                "\tuser_id, album_name, album_cover, release_date, media_type)\n" +
+                "\tVALUES (?, ?, ?, ?, ?);";
+        try {
+            int newRecordId = jdbcTemplate.update(createRecordSQL, record.getUserId(),
+                    record.getAlbumName(), record.getAlbumCover(), record.getReleaseDate(), record.getMediaType());
+            newRecord = getRecordById(newRecordId);
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        } catch (DataIntegrityViolationException e) {
+            throw new DaoException("Data integrity violation", e);
+        }
+        return newRecord;
     }
 
     private Record mapRowToRecord(SqlRowSet rs) {

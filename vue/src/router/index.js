@@ -9,6 +9,7 @@ import RegisterView from '../views/RegisterView.vue';
 import CollectionsView from '../views/CollectionsView.vue';
 import LibraryView from '../views/LibraryView.vue';
 import RecordsView from '../views/RecordsView.vue';
+import AddRecordsView from '../views/AddRecordView.vue'
 
 
 /**
@@ -74,6 +75,14 @@ const routes = [
     component: RegisterView,
     meta: {
       requiresAuth: false
+    }
+  },
+  {
+    path: "/addrecord",
+    name: "addrecord",
+    component: AddRecordsView,
+    meta: {
+      requiresAuth: true
     }
   }
 ];

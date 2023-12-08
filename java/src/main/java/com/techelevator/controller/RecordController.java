@@ -10,11 +10,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.validation.constraints.Positive;
+import java.math.BigDecimal;
 import java.security.Principal;
 import java.util.List;
 
 @RestController
-@RequestMapping("/records")
+@RequestMapping("/")
 @CrossOrigin
 public class RecordController {
 
@@ -78,6 +80,21 @@ public class RecordController {
         }
 
         return records;
+    }
+
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @RequestMapping(path = "record", method = RequestMethod.POST)
+    public void createRecord( @RequestBody Record newRecord, Principal principal) {
+        User loggedInUser = userDao.getUserByEmailAddress(principal.getName());
+        if (loggedInUser.getId() != newRecord.getUserId()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Record could not be added");
+        }
+        Record dbRecord = recordDao.createRecord(newRecord);
+        if (dbRecord == null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Failed to create record");
+        }
+
     }
 
 }

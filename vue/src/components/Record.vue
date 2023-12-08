@@ -3,7 +3,7 @@
 <template>
     <div class="record-card card-deck">
         <div class="card">
-            <img class="card-img-top" :src="record.albumCover" alt="Card image cap">
+            <img class="card-img-top" :src="recordCover" @error="replaceWithDefault()">
             <div class="card-body">
                 <h5 class="card-title">{{ record.albumName }}</h5>
                 <!-- <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
@@ -20,7 +20,20 @@
 export default {
     props: ['record'],
     data() {
-        return {}
+        return {
+            defaultCoverArt: 'https://static.tumblr.com/exbflx8/z13m20ek0/cover.png',
+            useDefaultCoverArt: false
+        }
+    },
+    computed: {
+        recordCover() {
+            return this.record.albumCover === null || this.useDefaultCoverArt ? this.defaultCoverArt : this.record.albumCover;
+        }
+    },
+    methods: {
+        replaceWithDefault() {
+            this.useDefaultCoverArt = true;
+        }
     }
 };
 </script>

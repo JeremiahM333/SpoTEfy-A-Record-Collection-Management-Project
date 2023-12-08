@@ -2,6 +2,7 @@ package com.techelevator.controller;
 
 import com.techelevator.dao.CollectionDao;
 import com.techelevator.dao.UserDao;
+import com.techelevator.exception.DaoException;
 import com.techelevator.model.Collection;
 import com.techelevator.model.User;
 import org.springframework.http.HttpStatus;
@@ -25,42 +26,36 @@ public class CollectionController {
     }
 
     @GetMapping("/collections")
-    public List<Collection> getCollections() {
-        List<Collection> retreivedCollections = collectionDao.getCollections();
-        List<Collection> sortedCollections = new ArrayList<>();
-
-        retreivedCollections.stream().filter(c -> c.isPublic()).forEach(c -> sortedCollections.add(c));
-
-        return sortedCollections;
+    public List<Collection> getPublicCollections() {
+        return collectionDao.getPublicCollections();
     }
 
     @GetMapping("/users/{userId}/collections")
-    public List<Collection> getCollectionsByUserId(Principal principal) {
-        //TO DO
-        return null;
+    public List<Collection> getCollectionsByUserId(@PathVariable int userId,  Principal principal) {
+        User loggedInUser = userDao.getUserByEmailAddress(principal.getName());
+
+        if (loggedInUser.getId() != userId && !loggedInUser.getAuthorities().contains("ROLE_ADMIN")) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "You're not the owner of those collections");
+        }
+
+        return collectionDao.getCollectionsByUserId(userId);
     }
 
-//    @RequestMapping(path = "/{id}", method = RequestMethod.GET)
-//    public Collection getCollection(@PathVariable int id,  Principal principal) {
-//
-//        Collection collection = collectionDao.getCollectionById(id);
-//        if (collection == null) {
-//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Collection Not Found");
-//        }
-//
-//        User loggedInUser = userDao.getUserByUsername(principal.getName());
-//        if (!collection.isPublic() && !loggedInUser.getAuthorities().contains("ADMIN")) {
-//            if (loggedInUser.getId() != collection.getUserId()) {
-//                throw new ResponseStatusException(HttpStatus.FORBIDDEN, "The collection is private and you're not the owner");
-//            }
-//        }
-//
-//        return collection;
-//    }
 
-    @RequestMapping(path = "/users")
-    public String user(Principal principal) {
-        String username = principal.getName();
-        return username;
+    
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping("/collections")
+    public Collection createCollection(@RequestBody Collection collection) {
+
+            Collection newCollection;
+        try {
+            newCollection = collectionDao.createCollection(collection);
+            if (collection == null) {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User registration failed.");
+            }
+        } catch (DaoException e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "User registration failed.");
+        }
+        return newCollection;
     }
 }

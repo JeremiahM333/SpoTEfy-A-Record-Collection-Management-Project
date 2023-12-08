@@ -10,6 +10,7 @@ import CollectionsView from '../views/CollectionsView.vue';
 import LibraryView from '../views/LibraryView.vue';
 import RecordsView from '../views/RecordsView.vue';
 import AddRecordsView from '../views/AddRecordView.vue'
+import AddCollectionView from '../views/AddCollectionView.vue';
 
 
 /**
@@ -30,7 +31,7 @@ const routes = [
     }
   },
   {
-    path: '/collections/:userId',
+    path: '/users/{userId}/collections',
     name: 'collections',
     component: CollectionsView,
     meta: {
@@ -38,7 +39,7 @@ const routes = [
     }
   },
   {
-    path: '/library/:userId',
+    path: '/users/{userId}/records',
     name: 'library',
     component: LibraryView,
     meta: {
@@ -81,10 +82,16 @@ const routes = [
     path: "/addrecord",
     name: "addrecord",
     component: AddRecordsView,
+  },
+  {
+    path: "/add/collection",
+    name: "addCollection",
+    component: AddCollectionView,
     meta: {
       requiresAuth: true
     }
   }
+
 ];
 
 // Create the router

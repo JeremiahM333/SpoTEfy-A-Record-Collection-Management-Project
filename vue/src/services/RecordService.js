@@ -11,7 +11,7 @@ export default {
 
     createRecord(newRecord) {
         return axios.post('/record', newRecord);
+    },
+
+
     }
-
-
-}

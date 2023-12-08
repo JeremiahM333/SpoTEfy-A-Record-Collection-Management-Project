@@ -20,7 +20,7 @@ export default {
     }
   },
   created() {
-    CollectionsService.getCollections()
+    CollectionsService.getPublicCollections()
       .then(response => {
         this.collections = response.data;
         this.isLoading = false;
@@ -36,7 +36,7 @@ export default {
   flex-wrap: wrap;
   align-items: flex-start;
   align-content: flex-start;
-  padding: 5px 0px 0px 5px;
+  padding: 5px 0px 45px 5px;
   z-index: -3;
 }
 </style>

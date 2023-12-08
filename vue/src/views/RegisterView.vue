@@ -72,7 +72,7 @@
         </div>
         <div class="mb-3">
           <select class="form-select" aria-label="Membership Tier" v-model="user.membershipTier">
-            <option selected>Membership Tier</option>
+            <option value="MemTier">Membership Tier</option>
             <option value="basic">Basic</option>
             <option value="premium">Premium</option>
           </select>
@@ -99,7 +99,7 @@ export default {
         confirmPassword: '',
         emailAddress: '',
         role: 'user',
-        membershipTier: '',
+        membershipTier: 'MemTier',
       },
       registrationErrors: false,
       registrationErrorMsg: 'There were problems registering this user.',
@@ -110,6 +110,9 @@ export default {
       if (this.user.password != this.user.confirmPassword) {
         this.registrationErrors = true;
         this.registrationErrorMsg = 'Password & Confirm Password do not match.';
+      } else if (this.membershipTier === 'MemTier') {
+        this.registrationErrors = true;
+        this.registrationErrorMsg = 'Must pick a Membership Tier.';
       } else {
         authService
           .register(this.user)

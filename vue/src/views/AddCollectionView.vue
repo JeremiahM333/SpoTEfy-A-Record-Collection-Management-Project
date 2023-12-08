@@ -4,28 +4,34 @@
         <collection v-for="collection in collections" v-bind:key="collection.collectionId" v-bind:collection="collection" />
     </div> -->
 
-  <form class="container border " @submit.prevent="addCollection">
+  <form class="container border">
+    <div class="alert alert-danger" role="alert" v-if="createCollectionErrors">
+      {{ createCollectionErrorMsg }}
+    </div>
+
     <div>
       <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label">Collection Title</label>
-        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Collection Title">
+        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Collection Title"
+          v-model="newCollection.collectionName">
       </div>
 
       <div>
         <label for="formFileLg" class="form-label">Upload Collection Cover</label>
         <input class="form-control form-control-lg" id="formFileLg" type="file" accept="image/jpeg" @change=uploadImage>
-        <img :src="previewImage" class="uploading-image" />
+        <img :src="previewImage" id="previewImage" class="uploading-image" />
       </div>
 
       <div class="mb-3">
         <label for="visibilityInput" class="form-label">Choose Visibility</label>
-        <select class="form-select" id="visibilityInput" aria-label="" v-model="newCollection.isPublic">
+        <select class="form-select" id="visibilityInput" aria-label="" v-model="newCollection.public">
           <option value="true">Public</option>
           <option value="false">Private</option>
         </select>
       </div>
 
-      <button type="submit" class="btn btn-primary" id="submit-btn">Create Collection</button>
+      <button type="submit" class="btn btn-primary" id="submit-btn" v-on:click.prevent="addCollection">Create
+        Collection</button>
 
     </div>
   </form>
@@ -45,11 +51,12 @@ export default {
         collectionId: 0,
         collectionName: '',
         collectionCover: '',
-        isPublic: true,
+        public: true,
       },
+      disappear: false,
       previewImage: 'https://cdn3.iconfinder.com/data/icons/ios-edge-glyph-1/25/Album-Collection-512.png',
-      addCollectionErrors: false,
-      addCollectionErrorMsg: 'There were problems submitting the collection.',
+      createCollectionErrors: false,
+      createCollectionErrorMsg: 'There were problems submitting the collection.',
     }
   },
   methods: {
@@ -65,13 +72,15 @@ export default {
     },
     addCollection() {
       if (this.newCollection.collectionName === '') {
-        this.addCollectionErrors = true;
-        this.addCollectionErrorMsg = 'You need a title for the collection.';
+        this.createCollectionErrors = true;
+        this.createCollectionErrorMsg = 'You need a title for the collection.';
       } else {
         this.newCollection.userId = this.$store.state.user.id;
 
+        console.log(this.newCollection.userId);
+
         CollectionsService
-          .addCollection(this.newCollection)
+          .createCollection(this.newCollection)
           .then((response) => {
             if (response.status == 201) {
               this.$router.push({
@@ -79,13 +88,13 @@ export default {
                 // query: { registration: 'success' },
               });
             }
-            console.log('Collection creation successful');
+            // console.log('Collection creation successful');
           })
           .catch((error) => {
             const response = error.response;
-            this.registrationErrors = true;
+            this.createCollectionErrors = true;
             if (response.status === 400) {
-              this.registrationErrorMsg = 'Bad Request: Validation Errors';
+              this.createCollectionErrorMsg = 'Bad Request: Validation Errors';
             }
           });
       }
@@ -98,4 +107,8 @@ export default {
 
 
 
-<style scoped></style>
+<style scoped>
+#previewImage {
+  height: 40vh;
+}
+</style>

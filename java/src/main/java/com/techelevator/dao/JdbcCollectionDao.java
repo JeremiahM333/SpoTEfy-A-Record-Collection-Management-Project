@@ -42,7 +42,7 @@ public class JdbcCollectionDao implements CollectionDao {
                                "VALUES (?, ?, ?, ?) RETURNING collection_id;";
         try {
             int newCollectionId = jdbcTemplate.queryForObject(insert, int.class,
-                    collection.getCollectionId(), collection.getUserId(), collection.isPublic(), collection.getCollectionCover());
+                    collection.getCollectionName(), collection.getUserId(), collection.isPublic(), collection.getCollectionCover());
             newColletion = getCollectionById(newCollectionId);
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);

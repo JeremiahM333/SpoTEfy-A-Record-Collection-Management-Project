@@ -41,6 +41,7 @@ public class CollectionController {
         return null;
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/collections")
     public Collection createCollection(@RequestBody Collection collection) {
 

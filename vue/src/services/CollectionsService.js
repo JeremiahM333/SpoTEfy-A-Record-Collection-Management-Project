@@ -2,8 +2,15 @@ import axios from 'axios';
 
 export default {
 
-    getCollections() {
+    getPublicCollections() {
         return axios.get('/collections');
-    }
+    },
 
+    getCollectionsByUserId(userId) {
+        return axios.get('/users/' + userId + '/collections');
+    },
+
+    createCollection(collection) {
+        return axios.post('/collections', collection);
+    }
 }

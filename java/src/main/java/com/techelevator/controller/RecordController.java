@@ -30,7 +30,6 @@ public class RecordController {
         this.collectionDao = collectionDao;
     }
 
-
     @GetMapping("records")
     public List<Record> getCurrentUserRecords(Principal principal) {
         User loggedInUser = userDao.getUserByEmailAddress(principal.getName());

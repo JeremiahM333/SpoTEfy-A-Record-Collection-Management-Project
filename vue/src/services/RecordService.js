@@ -5,7 +5,7 @@ export default {
         return axios.get('/collections/' + collectionId + '/records');
     },
 
-    getRecordsByUserId(userId) {
-        return axios.get('/users/' + userId + '/records');
+    getRecordsByUserId(id) {
+        return axios.get('/users/' + id + '/records');
     }
 }

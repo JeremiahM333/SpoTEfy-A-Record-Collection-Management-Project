@@ -6,8 +6,26 @@
 </template>
   
 <script>
-export default {
+import Collection from '../components/Collection.vue';
+import CollectionsService from '../services/CollectionsService';
 
+export default {
+  components: {
+    Collection
+  },
+  data() {
+    return {
+      collections: [],
+      isLoading: true
+    }
+  },
+  created() {
+    CollectionsService.getCollectionsByUserId(this.$store.state.user.id)
+      .then(response => {
+        this.collections = response.data;
+        this.isLoading = false;
+      })
+  }
 };
 </script>
 
@@ -17,7 +35,7 @@ export default {
     flex-wrap: wrap;
     align-items: flex-start;
     align-content: flex-start;
-    padding: 5px 0px 0px 5px;
+    padding: 5px 0px 45px 5px;
     z-index: -3;
 }
 </style>

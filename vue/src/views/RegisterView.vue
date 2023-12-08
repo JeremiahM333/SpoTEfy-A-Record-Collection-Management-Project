@@ -71,16 +71,15 @@
           <input type="password" class="form-control" id="confirmPassword" v-model="user.confirmPassword" required>
         </div>
         <div class="mb-3">
-          <select class="form-select" aria-label="Membership Tier" v-model="user.membershipTier">
-            <option selected>Membership Tier</option>
+          <label for="MemTier" class="form-label">Select Membership</label>
+          <select class="form-select" id="MemTier" aria-label="Membership Tier" v-model="user.membershipTier">
+            <!-- <option selected>Membership Tier</option> -->
             <option value="basic">Basic</option>
             <option value="premium">Premium</option>
           </select>
         </div>
 
         <button type="submit" class="btn btn-primary" id="submit-btn">Create Account</button>
-
-
 
       </form>
     </div>
@@ -99,7 +98,7 @@ export default {
         confirmPassword: '',
         emailAddress: '',
         role: 'user',
-        membershipTier: '',
+        membershipTier: 'basic',
       },
       registrationErrors: false,
       registrationErrorMsg: 'There were problems registering this user.',
@@ -110,7 +109,12 @@ export default {
       if (this.user.password != this.user.confirmPassword) {
         this.registrationErrors = true;
         this.registrationErrorMsg = 'Password & Confirm Password do not match.';
-      } else {
+      }
+      // else if (this.membershipTier == 'MemTier') {
+      //   this.registrationErrors = true;
+      //   this.registrationErrorMsg = 'Must pick a Membership Tier.';
+      // } 
+      else {
         authService
           .register(this.user)
           .then((response) => {
@@ -140,7 +144,6 @@ export default {
 </script>
 
 <style scoped>
-
 .container {
   width: 35%;
 }

@@ -47,7 +47,7 @@
           </router-link>
         </li>
         <li v-if="isAuthenticated">
-          <router-link to="/" class="nav-btn nav-link">
+          <router-link :to="{name: 'addCollection'}" class="nav-btn nav-link">
             <svg class="bi me-2" width="16" height="16">
               <use xlink:href="#grid"></use>
             </svg>

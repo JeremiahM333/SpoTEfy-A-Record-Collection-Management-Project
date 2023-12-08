@@ -16,31 +16,16 @@ export default {
     },
     data() {
         return {
-            records: [
-            {
-                    recordId: 1,
-                    albumName: 'test',
-                    albumCover: 'https://static.tumblr.com/exbflx8/z13m20ek0/cover.png',
-                    releaseDate: 'April 22, 2001'
-                },
-                {
-                    recordId: 2,
-                    albumName: 'test2',
-                    albumCover: 'https://static.tumblr.com/exbflx8/z13m20ek0/cover.png',
-                    releaseDate: 'January 3, 2003'
-                }
-            ]
+            records: []
         }
     },
 
     created() {
-        RecordService.getRecordsByUserId(this.$store.state.user.userId)
+        RecordService.getRecordsByUserId(this.$store.state.user.id)
             .then(response => {
                 this.records = response.data;
             })
     }
-
-
 };
 </script>
 
@@ -50,7 +35,7 @@ export default {
     flex-wrap: wrap;
     align-items: flex-start;
     align-content: flex-start;
-    padding: 5px 0px 0px 5px;
+    padding: 5px 0px 45px 5px;
     z-index: -3;
 }
 </style>

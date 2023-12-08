@@ -7,5 +7,11 @@ export default {
 
     getRecordsByUserId(userId) {
         return axios.get('/users/' + userId + '/records');
+    },
+
+    createRecord(newRecord) {
+        return axios.post('/record', newRecord);
     }
+
+
 }

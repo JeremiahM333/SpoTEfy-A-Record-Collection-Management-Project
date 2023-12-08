@@ -17,8 +17,7 @@ export default {
     data() {
         return {
             records: [
-            {
-                    recordId: 1,
+            {       recordId: 1,
                     albumName: 'test',
                     albumCover: 'https://static.tumblr.com/exbflx8/z13m20ek0/cover.png',
                     releaseDate: 'April 22, 2001'
@@ -34,7 +33,7 @@ export default {
     },
 
     created() {
-        RecordService.getRecordsByUserId(this.$store.state.user.userId)
+        RecordService.getRecordsByUserId(this.$store.state.user.id)
             .then(response => {
                 this.records = response.data;
             })

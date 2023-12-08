@@ -23,7 +23,7 @@
       </div>
 
       <div class="mb-3">
-        <label for="visibilityInput" class="form-label">Choose Visibility</label>
+        <label for="visibilityInput" class="form-label">Choose Collection Visibility</label>
         <select class="form-select" id="visibilityInput" aria-label="" v-model="newCollection.public">
           <option value="true">Public</option>
           <option value="false">Private</option>
@@ -37,7 +37,6 @@
   </form>
 </template>
   
-
 
 
 <script>
@@ -66,6 +65,9 @@ export default {
       reader.readAsDataURL(image);
       reader.onload = e => {
         this.newCollection.collectionCover = e.target.result;
+
+        console.log(e.target.result);
+
         this.previewImage = e.target.result;
         console.log(this.newCollection.collectionCover);
       };
@@ -108,7 +110,24 @@ export default {
 
 
 <style scoped>
+
 #previewImage {
   height: 40vh;
 }
+
+.container {
+  width: 45%;
+}
+
+#submit-btn {
+  background-color: #E5B80B;
+  border-color: #E5B80B;
+}
+
+#submit-btn:hover {
+  background-color: #c09b09;
+  border-color: white;
+}
+
+
 </style>

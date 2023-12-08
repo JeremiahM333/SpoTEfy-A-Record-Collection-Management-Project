@@ -4,39 +4,42 @@
         <collection v-for="collection in collections" v-bind:key="collection.collectionId" v-bind:collection="collection" />
     </div> -->
 
-  <form class="container border">
-    <div class="alert alert-danger" role="alert" v-if="createCollectionErrors">
-      {{ createCollectionErrorMsg }}
-    </div>
+  <div class="add-collection-pg">
 
-    <div>
-      <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label">Collection Title</label>
-        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Collection Title"
-          v-model="newCollection.collectionName">
+    <form class="container ">
+      <div class="alert alert-danger" role="alert" v-if="createCollectionErrors">
+        {{ createCollectionErrorMsg }}
       </div>
 
       <div>
-        <label for="formFileLg" class="form-label">Upload Collection Cover</label>
-        <input class="form-control form-control-lg" id="formFileLg" type="file" accept="image/jpeg" @change=uploadImage>
-        <img :src="previewImage" id="previewImage" class="uploading-image" />
+        <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label"></label>
+          <input type="text" class="form-control form-control-lg" id="exampleFormControlInput1"
+            placeholder="Enter Collection Title Here" v-model="newCollection.collectionName">
+        </div>
+
+        <div>
+          <label for="formFileLg" class="form-label">Upload Collection Cover</label>
+          <input class="form-control form-control-lg" id="formFileLg" type="file" accept="image/jpeg" @change=uploadImage>
+          <img :src="previewImage" id="previewImage" class="uploading-image" />
+        </div>
+
+        <div class="mb-3">
+          <label for="visibilityInput" class="form-label">Choose Collection Visibility</label>
+          <select class="form-select form-select-lg" id="visibilityInput" aria-label="" v-model="newCollection.public">
+            <option value="true">Public</option>
+            <option value="false">Private</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary" id="submit-btn" v-on:click.prevent="addCollection">Create
+          Collection</button>
+
       </div>
+    </form>
 
-      <div class="mb-3">
-        <label for="visibilityInput" class="form-label">Choose Collection Visibility</label>
-        <select class="form-select" id="visibilityInput" aria-label="" v-model="newCollection.public">
-          <option value="true">Public</option>
-          <option value="false">Private</option>
-        </select>
-      </div>
-
-      <button type="submit" class="btn btn-primary" id="submit-btn" v-on:click.prevent="addCollection">Create
-        Collection</button>
-
-    </div>
-  </form>
+  </div>
 </template>
-  
 
 
 <script>
@@ -110,18 +113,36 @@ export default {
 
 
 <style scoped>
+.add-collection-pg {
+  align-self: center;
+  background-image: url(../resources/s-l1600.jpg);
+  background-size: cover;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  height: 100%;
+}
+
 
 #previewImage {
-  height: 40vh;
+  display: flex;
+  justify-self: center;
+  height: 30vh;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  margin-left: 11rem;
 }
 
 .container {
   width: 45%;
+  background-color: black;
+  opacity: 90%;
+  border-radius: 1.5rem;
 }
 
 #submit-btn {
   background-color: #E5B80B;
   border-color: #E5B80B;
+  margin-bottom: 2rem;
 }
 
 #submit-btn:hover {
@@ -129,5 +150,12 @@ export default {
   border-color: white;
 }
 
+.form-label {
+  color: white;
+}
+
+.alert {
+  
+}
 
 </style>

@@ -33,7 +33,6 @@ public class User {
       this.activated = true;
       this.emailAddress = emailAddress;
       this.membershipTier = membershipTier;
-
    }
 
    public int getId() {

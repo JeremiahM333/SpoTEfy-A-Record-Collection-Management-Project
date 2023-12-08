@@ -2,6 +2,7 @@ package com.techelevator.controller;
 
 import com.techelevator.dao.CollectionDao;
 import com.techelevator.dao.UserDao;
+import com.techelevator.exception.DaoException;
 import com.techelevator.model.Collection;
 import com.techelevator.model.User;
 import org.springframework.http.HttpStatus;
@@ -39,6 +40,22 @@ public class CollectionController {
         //TO DO
         return null;
     }
+
+    @PostMapping("/collections")
+    public Collection createCollection(@RequestBody Collection collection) {
+
+            Collection newCollection;
+        try {
+            newCollection = collectionDao.createCollection(collection);
+            if (collection == null) {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User registration failed.");
+            }
+        } catch (DaoException e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "User registration failed.");
+        }
+        return newCollection;
+    }
+
 
 //    @RequestMapping(path = "/{id}", method = RequestMethod.GET)
 //    public Collection getCollection(@PathVariable int id,  Principal principal) {

@@ -9,6 +9,7 @@ import RegisterView from '../views/RegisterView.vue';
 import CollectionsView from '../views/CollectionsView.vue';
 import LibraryView from '../views/LibraryView.vue';
 import RecordsView from '../views/RecordsView.vue';
+import AddCollectionView from '../views/AddCollectionView.vue';
 
 
 /**
@@ -75,7 +76,17 @@ const routes = [
     meta: {
       requiresAuth: false
     }
+  },
+
+  {
+  path: "/add/collection",
+  name: "addCollection", 
+  component: AddCollectionView,
+  meta: {
+    requiresAuth: true
   }
+  }
+
 ];
 
 // Create the router

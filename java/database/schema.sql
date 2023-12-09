@@ -29,6 +29,7 @@ CREATE TABLE records (
     ,album_cover varchar(300) NULL
     ,release_date DATE NULL
     ,media_type varchar(50) NOT NULL
+    ,record_notes varchar(1000) NULL
 
     ,CONSTRAINT PK_records PRIMARY KEY (record_id)
     ,CONSTRAINT FK_records_users FOREIGN KEY (user_id) REFERENCES users(user_id)

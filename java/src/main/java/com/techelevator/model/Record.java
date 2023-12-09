@@ -19,14 +19,17 @@ public class Record {
 
     private String mediaType;
 
+    private String recordNotes;
 
-    public Record(int recordId, int userId, String albumName, String albumCover, LocalDate releaseDate, String mediaType) {
+
+    public Record(int recordId, int userId, String albumName, String albumCover, LocalDate releaseDate, String mediaType, String recordNotes) {
         this.recordId = recordId;
         this.userId = userId;
         this.albumName = albumName;
         this.albumCover = albumCover;
         this.releaseDate = releaseDate;
         this.mediaType = mediaType;
+        this.recordNotes = recordNotes;
     }
 
     public Record() {
@@ -78,5 +81,13 @@ public class Record {
 
     public void setMediaType(String mediaType) {
         this.mediaType = mediaType;
+    }
+
+    public String getRecordNotes() {
+        return recordNotes;
+    }
+
+    public void setRecordNotes(String recordNotes) {
+        this.recordNotes = recordNotes;
     }
 }

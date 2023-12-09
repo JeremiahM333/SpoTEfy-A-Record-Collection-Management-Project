@@ -154,8 +154,5 @@ export default {
   color: white;
 }
 
-.alert {
-  
-}
 
 </style>

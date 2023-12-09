@@ -76,9 +76,9 @@ export default {
           .createRecord(this.record)
           .then((response) => {
             if (response.status == 201) {
-              this.$router.push({
-                path: '/users/' + this.$store.state.user.id + '/records',
-              });
+              this.$router.push(
+                { name: "library", params: { userId: this.$store.state.user.id } }
+              );
             }
           })
       }

@@ -49,23 +49,6 @@ public class JdbcCollectionDao implements CollectionDao {
         return collections;
     }
 
-    @Override
-    public Collection createCollection(Collection collection) {
-        Collection newColletion = null;
-        String insert = "INSERT INTO collections (collection_name, user_id, is_public, collection_cover) " +
-                               "VALUES (?, ?, ?, ?) RETURNING collection_id;";
-        try {
-            int newCollectionId = jdbcTemplate.queryForObject(insert, int.class,
-                    collection.getCollectionName(), collection.getUserId(), collection.isPublic(), collection.getCollectionCover());
-            newColletion = getCollectionById(newCollectionId);
-        } catch (CannotGetJdbcConnectionException e) {
-            throw new DaoException("Unable to connect to server or database", e);
-        } catch (DataIntegrityViolationException e) {
-            throw new DaoException("Data integrity violation", e);
-        }
-        return newColletion;
-    }
-
     public Collection getCollectionById(int collectionId) {
         Collection collection = null;
         String sql = "SELECT collection_id, user_id, collection_name, is_public, collection_cover FROM collections WHERE collection_id = ?";
@@ -78,6 +61,37 @@ public class JdbcCollectionDao implements CollectionDao {
             throw new DaoException("Unable to connect to server or database", e);
         }
         return collection;
+    }
+
+    public int getNumOfCollectionsByUserId(int userId) {
+        String sql = "SELECT COUNT(collection_id) AS num_of_collections FROM collections WHERE user_id = ? GROUP BY user_id";
+        int numOfCollections = -1;
+        try {
+            SqlRowSet result = jdbcTemplate.queryForRowSet(sql, userId);
+            if (result.next()) {
+                numOfCollections = result.getInt("num_of_collections");
+            }
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        }
+        return numOfCollections;
+    }
+
+    @Override
+    public Collection createCollection(Collection collection) {
+        Collection newColletion = null;
+        String insert = "INSERT INTO collections (collection_name, user_id, is_public, collection_cover) " +
+                "VALUES (?, ?, ?, ?) RETURNING collection_id;";
+        try {
+            int newCollectionId = jdbcTemplate.queryForObject(insert, int.class,
+                    collection.getCollectionName(), collection.getUserId(), collection.isPublic(), collection.getCollectionCover());
+            newColletion = getCollectionById(newCollectionId);
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        } catch (DataIntegrityViolationException e) {
+            throw new DaoException("Data integrity violation", e);
+        }
+        return newColletion;
     }
 
     private Collection mapRowToCollection(SqlRowSet rs) {

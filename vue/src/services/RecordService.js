@@ -13,5 +13,7 @@ export default {
         return axios.post('/record', newRecord);
     },
 
-
+    getNumOfRecordsByUserId(userId) {
+        return axios.get(`/users/${userId}/records/amount`);
     }
+}

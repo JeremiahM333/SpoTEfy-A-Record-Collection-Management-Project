@@ -51,7 +51,8 @@
           </router-link>
         </li>
         <li v-if="isAuthenticated">
-          <router-link :to="{ name: 'addCollection' }" class="nav-btn nav-link">
+          <router-link :to="{ name: 'addCollection' }" class="nav-btn nav-link"
+            :class="{ disactive: !canAddMoreCollections }">
             <svg class="bi me-2" width="16" height="16">
               <use xlink:href="#grid"></use>
             </svg>
@@ -59,7 +60,7 @@
           </router-link>
         </li>
         <li v-if="isAuthenticated">
-          <router-link :to="{ name: 'addrecord' }" class="nav-btn nav-link">
+          <router-link :to="{ name: 'addrecord' }" class="nav-btn nav-link" :class="{ disactive: !canAddMoreRecords }">
             <svg class="bi me-2" width="16" height="16">
               <use xlink:href="#people-circle"></use>
             </svg>
@@ -98,14 +99,27 @@
 </template>
 
 <script>
+import CollectionsService from './services/CollectionsService';
+import RecordService from './services/RecordService';
+
 export default {
   data() {
-    return {};
+    return {
+      numOfCollections: -1,
+      numOfRecords: -1
+    };
   },
   computed: {
     isAuthenticated() {
       return this.$store.state.token !== '';
-    }
+    },
+    canAddMoreCollections() {
+      return (this.$store.state.user.membershipTier === 'premium' || this.getNumOfCollections() < 1);
+    },
+    canAddMoreRecords() {
+      return (this.$store.state.user.membershipTier === 'premium' || this.getNumOfRecords() < 25);
+
+    },
   },
   methods: {
     getUserId() {
@@ -113,6 +127,14 @@ export default {
     },
     logOut() {
       this.$store.commit('LOGOUT');
+    },
+    getNumOfCollections() {
+      CollectionsService.getNumOfCollectionsByUserId(this.getUserId()).then(r => { this.numOfCollections = r.data });
+      return this.numOfCollections;
+    },
+    getNumOfRecords() {
+      RecordService.getNumOfRecordsByUserId(this.getUserId()).then(r => { this.numOfRecords = r.data });
+      return this.numOfRecords;
     }
   }
 }
@@ -265,5 +287,10 @@ export default {
 
 .logout {
   margin-left: 45%;
+}
+
+.disactive {
+  pointer-events: none;
+  opacity: 40%;
 }
 </style>

@@ -11,8 +11,10 @@ public interface CollectionDao {
 
      List<Collection> getCollectionsByUserId(int userId);
 
-     Collection createCollection(Collection collection);
-
      Collection getCollectionById(int collectionId);
+
+     int getNumOfCollectionsByUserId(int userId);
+
+     Collection createCollection(Collection collection);
 
 }

@@ -60,6 +60,11 @@ public class RecordController {
         return records;
     }
 
+    @GetMapping("/users/{userId}/records/amount")
+    public int getNumOfRecordsByUserId(@PathVariable int userId) {
+        return recordDao.getNumOfRecordsByUserId(userId);
+    }
+
     @GetMapping("collections/{collectionId}/records")
     public List<Record> getRecordByCollectionId(@PathVariable int collectionId, Principal principal) {
 

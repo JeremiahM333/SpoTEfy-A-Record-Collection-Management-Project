@@ -40,6 +40,11 @@ public class CollectionController {
 
         return collectionDao.getCollectionsByUserId(userId);
     }
+
+    @GetMapping("/users/{userId}/collections/amount")
+    public int getNumOfCollectionsByUserId(@PathVariable int userId) {
+        return collectionDao.getNumOfCollectionsByUserId(userId);
+    }
     
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/collections")
@@ -56,4 +61,6 @@ public class CollectionController {
         }
         return newCollection;
     }
+
+
 }

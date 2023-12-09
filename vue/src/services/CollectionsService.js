@@ -12,5 +12,9 @@ export default {
 
     createCollection(collection) {
         return axios.post('/collections', collection);
+    },
+
+    getNumOfCollectionsByUserId(userId) {
+        return axios.get(`/users/${userId}/collections/amount`);
     }
 }

@@ -66,6 +66,21 @@ public class JdbcRecordDao implements RecordDao{
         }
         return record;
     }
+
+    public int getNumOfRecordsByUserId(int userId) {
+        String sql = "SELECT COUNT(record_id) AS num_of_records FROM records WHERE user_id = ? GROUP BY user_id";
+        int numOfRecords = -1;
+        try {
+            SqlRowSet result = jdbcTemplate.queryForRowSet(sql, userId);
+            if (result.next()) {
+                numOfRecords = result.getInt("num_of_records");
+            }
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        }
+        return numOfRecords;
+    }
+
     public Record createRecord(Record record) {
         Record newRecord;
 

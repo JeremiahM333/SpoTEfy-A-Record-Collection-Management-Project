@@ -59,6 +59,7 @@ export default {
         albumCover: '',
         releaseDate: '',
         mediaType: 'Vinyl',
+        recordNotes: null
       }, 
       previewImage: 'https://static.tumblr.com/exbflx8/z13m20ek0/cover.png',
       createRecordError: false,

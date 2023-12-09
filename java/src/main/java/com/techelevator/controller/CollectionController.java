@@ -40,8 +40,6 @@ public class CollectionController {
 
         return collectionDao.getCollectionsByUserId(userId);
     }
-
-
     
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/collections")

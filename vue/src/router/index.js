@@ -79,12 +79,12 @@ const routes = [
     }
   },
   {
-    path: "/addrecord",
+    path: "/addRecord",
     name: "addrecord",
     component: AddRecordsView,
   },
   {
-    path: "/add/collection",
+    path: "/addCollection",
     name: "addCollection",
     component: AddCollectionView,
     meta: {

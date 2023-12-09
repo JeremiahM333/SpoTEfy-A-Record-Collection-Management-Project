@@ -6,25 +6,26 @@
 
   <div class="add-collection-pg">
 
-    <form class="container ">
-      <div class="alert alert-danger" role="alert" v-if="createCollectionErrors">
-        {{ createCollectionErrorMsg }}
-      </div>
+    <form class="container">
+      <div id="collectionForm">
 
-      <div>
-        <div class="mb-3">
+
+        <div class="firstInput formInput mb-3">
+          <div class="alert alert-danger" role="alert" v-if="createCollectionErrors">
+            {{ createCollectionErrorMsg }}
+          </div>
           <label for="exampleFormControlInput1" class="form-label"></label>
           <input type="text" class="form-control form-control-lg" id="exampleFormControlInput1"
             placeholder="Enter Collection Title Here" v-model="newCollection.collectionName">
         </div>
 
-        <div>
+        <div class="formInput pictureInput">
           <label for="formFileLg" class="form-label">Upload Collection Cover</label>
           <input class="form-control form-control-lg" id="formFileLg" type="file" accept="image/jpeg" @change=uploadImage>
           <img :src="previewImage" id="previewImage" class="uploading-image" />
         </div>
 
-        <div class="mb-3">
+        <div class="formInput mb-3">
           <label for="visibilityInput" class="form-label">Choose Collection Visibility</label>
           <select class="form-select form-select-lg" id="visibilityInput" aria-label="" v-model="newCollection.public">
             <option value="true">Public</option>
@@ -55,7 +56,6 @@ export default {
         collectionCover: '',
         public: true,
       },
-      disappear: false,
       previewImage: 'https://cdn3.iconfinder.com/data/icons/ios-edge-glyph-1/25/Album-Collection-512.png',
       createCollectionErrors: false,
       createCollectionErrorMsg: 'There were problems submitting the collection.',
@@ -122,14 +122,17 @@ export default {
   height: 100%;
 }
 
+#collectionForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
 #previewImage {
-  display: flex;
-  justify-self: center;
   height: 30vh;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-  margin-left: 11rem;
+  align-self: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .container {
@@ -142,7 +145,8 @@ export default {
 #submit-btn {
   background-color: #E5B80B;
   border-color: #E5B80B;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
+  align-self: flex-start;
 }
 
 #submit-btn:hover {
@@ -155,7 +159,18 @@ export default {
 }
 
 .alert {
-  
+  margin-bottom: 0px;
+  margin-top: 1.5rem;
+  width: 100%;
 }
 
+.formInput {
+  align-self: stretch;
+  width: 100%;
+}
+
+.pictureInput {
+  display: flex;
+  flex-direction: column;
+}
 </style>

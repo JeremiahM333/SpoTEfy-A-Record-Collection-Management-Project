@@ -12,6 +12,8 @@ public interface RecordDao {
 
     Record getRecordById(int recordId);
 
+    int getNumOfRecordsByUserId(int userId);
+
     Record createRecord(Record record);
 
 

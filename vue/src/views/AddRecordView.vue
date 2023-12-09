@@ -1,24 +1,29 @@
 <template>
   <div class="picture-container">
-    <form @submit.prevent="createRecord" class="container">
+    <form @submit.prevent="addRecord" class="container">
       <!-- <h1 class="text-center" id="form-header">Add Record</h1> -->
-      <div>
-
+     
         <div class="mb-3">
           <label for="recordName" class="form-label"></label>
           <input type="text" class="form-control form-control-lg" id="recordName" placeholder="Enter Record Name Here"
             aria-describedby="recordName" v-model="record.albumName">
         </div>
 
-        <!-- <div class="mb-3">
+        <div class="mb-3">
           <label for="recordCover" class="form-label">Record Cover</label>
           <input type="text" class="form-control" id="recordCover" aria-describedby="recordCover" v-model="record.albumCover">
-        </div> -->
-        <div>
+        </div> 
+        <div class="firstInput formInput mb-3">
+          <div class="alert alert-danger" role="alert" v-if="createRecordError">
+            {{ createRecordErrorMsg }}
+          </div>
+        <!-- <div>
           <label for="formFileLg" class="form-label">Upload Record Cover</label>
           <input class="form-control form-control-lg" id="formFileLg" type="file" accept="image/jpeg" @change=uploadImage>
+          <div class="container" id="preview-image">
           <img :src="previewImage" id="previewImage" class="uploading-image" />
         </div>
+        </div> -->
 
         <div class="mb-3">
           <label for="releaseDate" class="form-label">Release Date</label>
@@ -56,25 +61,28 @@ export default {
         mediaType: 'Vinyl',
       }, 
       previewImage: 'https://static.tumblr.com/exbflx8/z13m20ek0/cover.png',
+      createRecordError: false,
+      createRecordErrorMsg: 'There was a problem submitting the record.',
     };
 
   }, methods: {
     addRecord() {
         if (this.record.albumName === '') {
-          this.createRecordErrors = true;
+          this.createRecordError = true;
           this.createRecordErrorMsg = 'You need a title.';
         } else {
           this.record.userId = this.$store.state.user.id;
         }
-    
-      RecordService.createRecord(this.record)
+      RecordService
+      .createRecord(this.record)
         .then((response) => {
           if (response.status == 201) {
             this.$router.push({
-              path: '/library/' + this.$store.state.user.id,
+              path: '/users/' + this.$store.state.user.id + '/records',
             });
           }
         })
+
       //       .catch((error) => {
       //         const response = error.response;
       //         if (response.status === 400) {
@@ -113,7 +121,7 @@ export default {
 .container {
   width: 45%;
   background-color: black;
-  opacity: 80%;
+  opacity: 85%;
   border-radius: 1.5rem;
 }
 
@@ -144,4 +152,11 @@ export default {
   background-color: #c09b09;
   border-color: white;
 }
+
+#preview-image {
+  align-self: center;
+  margin-left: 3rem;
+  padding-right: 6rem;
+}
+
 </style>

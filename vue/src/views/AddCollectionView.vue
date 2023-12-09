@@ -75,6 +75,7 @@ export default {
         console.log(this.newCollection.collectionCover);
       };
     },
+    
     addCollection() {
       if (this.newCollection.collectionName === '') {
         this.createCollectionErrors = true;

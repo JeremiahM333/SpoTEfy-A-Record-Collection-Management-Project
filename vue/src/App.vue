@@ -3,18 +3,22 @@
     <!-- bootsstrap nav bar -->
     <nav id="header" class="navbar navbar-expand-lg navbar-light bg-dark">
       <a id="page-title" class="header-piece navbar-brand text-white" href="#">SpoTEfy</a>
+
       <nav class="header-piece navbar navbar-light">
         <form id="search-bar" class="form-inline">
           <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
           <button class="search-btn btn my-2 my-sm-0" type="submit">Search</button>
         </form>
       </nav>
+
       <div class="header-piece">
-        <router-link type="button" id="sign-up-btn" class="btn btn-primary btn-lg" v-bind:to="{ name: 'register' }">Sign
+        <router-link v-show="!isAuthenticated" type="button" id="sign-up-btn" class="btn btn-primary btn-lg"
+          v-bind:to="{ name: 'register' }">Sign
           Up</router-link>
+        <h2 id="displayName">{{ $store.state.user.username }}</h2>
 
         <router-link v-if="!isAuthenticated" :to="{ name: 'login' }" class="btn btn-secondary btn-lg">Login </router-link>
-        <router-link v-if="isAuthenticated" :to="{ name: 'logout' }" class="btn btn-secondary btn-lg">Log Out
+        <router-link v-if="isAuthenticated" :to="{ name: 'logout' }" class="logout btn btn-secondary btn-lg">Log Out
         </router-link>
       </div>
     </nav>
@@ -47,7 +51,7 @@
           </router-link>
         </li>
         <li v-if="isAuthenticated">
-          <router-link :to="{name: 'addCollection'}" class="nav-btn nav-link">
+          <router-link :to="{ name: 'addCollection' }" class="nav-btn nav-link">
             <svg class="bi me-2" width="16" height="16">
               <use xlink:href="#grid"></use>
             </svg>
@@ -55,7 +59,7 @@
           </router-link>
         </li>
         <li v-if="isAuthenticated">
-          <router-link :to="{ name: 'addrecord'}" class="nav-btn nav-link">
+          <router-link :to="{ name: 'addrecord' }" class="nav-btn nav-link">
             <svg class="bi me-2" width="16" height="16">
               <use xlink:href="#people-circle"></use>
             </svg>
@@ -250,5 +254,16 @@ export default {
 <style>
 #app {
   height: 100vh;
+}
+
+#displayName {
+  color: white;
+  position: fixed;
+  top: 20px;
+  right: 10.5%;
+}
+
+.logout {
+  margin-left: 45%;
 }
 </style>

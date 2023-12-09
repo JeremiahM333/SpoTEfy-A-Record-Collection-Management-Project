@@ -45,6 +45,19 @@ public class CollectionController {
     public int getNumOfCollectionsByUserId(@PathVariable int userId) {
         return collectionDao.getNumOfCollectionsByUserId(userId);
     }
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping("/collections/{collectionId}/records")
+    public int addRecordToCollection(@PathVariable int collectionId,  Principal principal) {
+        User loggedInUser = userDao.getUserByEmailAddress(principal.getName());
+        Collection collection = collectionDao.getCollectionById(collectionId);
+
+        if (loggedInUser.getId() != collection.getUserId() && !loggedInUser.getAuthorities().contains("ROLE_ADMIN")) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "You're not the owner of this collections");
+        }
+
+        return collectionDao.addRecordToCollection(collectionId);
+    }
     
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/collections")

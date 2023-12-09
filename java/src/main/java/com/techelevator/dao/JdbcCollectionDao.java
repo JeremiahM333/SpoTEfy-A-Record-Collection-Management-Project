@@ -94,6 +94,25 @@ public class JdbcCollectionDao implements CollectionDao {
         return newColletion;
     }
 
+    @Override
+    public int addRecordToCollection(int collectionId) {
+        int rowsAffected = 0;
+        String insert = "INSERT INTO collections_records (collection_id, record_id) " +
+                "VALUES (?, ?)";
+        try {
+            rowsAffected = jdbcTemplate.update(insert);
+
+            if (rowsAffected == 0) {
+                throw new DaoException("Expected one row to be affect, but none were");
+            }
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        } catch (DataIntegrityViolationException e) {
+            throw new DaoException("Data integrity violation", e);
+        }
+        return rowsAffected;
+    }
+
     private Collection mapRowToCollection(SqlRowSet rs) {
         Collection collection = new Collection();
         collection.setCollectionId(rs.getInt("collection_id"));

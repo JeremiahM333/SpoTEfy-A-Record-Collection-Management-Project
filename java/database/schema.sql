@@ -26,7 +26,7 @@ CREATE TABLE records (
     record_id SERIAL
     ,user_id INT NOT NULL
     ,album_name varchar(100) NOT NULL
-    ,album_cover varchar(300) NULL
+    ,album_cover varchar(65535) NULL
     ,release_date DATE NULL
     ,media_type varchar(50) NOT NULL
 

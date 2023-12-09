@@ -9,21 +9,21 @@
             aria-describedby="recordName" v-model="record.albumName">
         </div>
 
-        <div class="mb-3">
+        <!-- <div class="mb-3">
           <label for="recordCover" class="form-label">Record Cover</label>
           <input type="text" class="form-control" id="recordCover" aria-describedby="recordCover" v-model="record.albumCover">
-        </div> 
+        </div>  -->
         <div class="firstInput formInput mb-3">
           <div class="alert alert-danger" role="alert" v-if="createRecordError">
             {{ createRecordErrorMsg }}
           </div>
-        <!-- <div>
+        <div>
           <label for="formFileLg" class="form-label">Upload Record Cover</label>
-          <input class="form-control form-control-lg" id="formFileLg" type="file" accept="image/jpeg" @change=uploadImage>
+          <input class="form-control form-control-lg" id="formFileLg" type="file" accept="image/jpeg"  @change=uploadImage  >
           <div class="container" id="preview-image">
           <img :src="previewImage" id="previewImage" class="uploading-image" />
         </div>
-        </div> -->
+        </div>
 
         <div class="mb-3">
           <label for="releaseDate" class="form-label">Release Date</label>
@@ -78,7 +78,7 @@ export default {
         .then((response) => {
           if (response.status == 201) {
             this.$router.push({
-              path: '/users/' + this.$store.state.user.id + '/records',
+              path: '/',      
             });
           }
         })
@@ -98,10 +98,10 @@ export default {
       reader.onload = e => {
         this.record.albumCover = e.target.result;
 
-        console.log(e.target.result);
+        console.log("This is line 101" + e.target.result);
 
         this.previewImage = e.target.result;
-        console.log(this.record.albumCover);
+       
       };
     },
 

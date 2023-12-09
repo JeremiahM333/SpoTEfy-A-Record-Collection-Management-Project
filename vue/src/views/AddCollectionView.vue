@@ -9,11 +9,11 @@
     <form class="container">
       <div id="collectionForm">
 
-
         <div class="firstInput formInput mb-3">
           <div class="alert alert-danger" role="alert" v-if="createCollectionErrors">
             {{ createCollectionErrorMsg }}
           </div>
+
           <label for="exampleFormControlInput1" class="form-label"></label>
           <input type="text" class="form-control form-control-lg" id="exampleFormControlInput1"
             placeholder="Enter Collection Title Here" v-model="newCollection.collectionName">
@@ -75,7 +75,7 @@ export default {
         console.log(this.newCollection.collectionCover);
       };
     },
-    
+
     addCollection() {
       if (this.newCollection.collectionName === '') {
         this.createCollectionErrors = true;

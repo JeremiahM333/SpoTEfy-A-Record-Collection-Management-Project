@@ -105,7 +105,9 @@ public class JdbcRecordDao implements RecordDao{
         record.setUserId(rs.getInt("user_id"));
         record.setAlbumName(rs.getString("album_name"));
         record.setAlbumCover(rs.getString("album_cover"));
-        record.setReleaseDate(rs.getDate("release_date").toLocalDate());
+        if (rs.getDate("release_date") != null) {
+            record.setReleaseDate(rs.getDate("release_date").toLocalDate());
+        }
         record.setMediaType(rs.getString("media_type"));
         record.setRecordNotes(rs.getString("record_notes"));
         return record;

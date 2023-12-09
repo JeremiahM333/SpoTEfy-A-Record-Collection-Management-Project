@@ -31,7 +31,7 @@ const routes = [
     }
   },
   {
-    path: '/users/{userId}/collections',
+    path: '/users/:userId/collections',
     name: 'collections',
     component: CollectionsView,
     meta: {
@@ -39,7 +39,7 @@ const routes = [
     }
   },
   {
-    path: '/users/{userId}/records',
+    path: '/users/:userId/records',
     name: 'library',
     component: LibraryView,
     meta: {

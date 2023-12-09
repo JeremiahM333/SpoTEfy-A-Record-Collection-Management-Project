@@ -1,28 +1,24 @@
 <template>
   <div class="picture-container">
     <form @submit.prevent="addRecord" class="container">
-      <!-- <h1 class="text-center" id="form-header">Add Record</h1> -->
-     
-        <div class="mb-3">
+
+      <div id="collectionForm">
+
+
+        <div class="firstInput formInput mb-3">
+          <div class="alert alert-danger" role="alert" v-if="createRecordError">
+            {{ createRecordErrorMsg }}
+          </div>
+
           <label for="recordName" class="form-label"></label>
           <input type="text" class="form-control form-control-lg" id="recordName" placeholder="Enter Record Name Here"
             aria-describedby="recordName" v-model="record.albumName">
         </div>
 
-        <!-- <div class="mb-3">
-          <label for="recordCover" class="form-label">Record Cover</label>
-          <input type="text" class="form-control" id="recordCover" aria-describedby="recordCover" v-model="record.albumCover">
-        </div>  -->
-        <div class="firstInput formInput mb-3">
-          <div class="alert alert-danger" role="alert" v-if="createRecordError">
-            {{ createRecordErrorMsg }}
-          </div>
-        <div>
+        <div id="pictureInput">
           <label for="formFileLg" class="form-label">Upload Record Cover</label>
-          <input class="form-control form-control-lg" id="formFileLg" type="file" accept="image/jpeg"  @change=uploadImage  >
-          <div class="container" id="preview-image">
+          <input class="form-control form-control-lg" id="formFileLg" type="file" accept="image/jpeg" @change=uploadImage>
           <img :src="previewImage" id="previewImage" class="uploading-image" />
-        </div>
         </div>
 
         <div class="mb-3">
@@ -42,7 +38,9 @@
         </div>
 
         <button type="submit" class="btn btn-primary" id="submit-btn">Add Record</button>
+
       </div>
+
     </form>
   </div>
 </template>
@@ -60,7 +58,7 @@ export default {
         releaseDate: '',
         mediaType: 'Vinyl',
         recordNotes: null
-      }, 
+      },
       previewImage: 'https://static.tumblr.com/exbflx8/z13m20ek0/cover.png',
       createRecordError: false,
       createRecordErrorMsg: 'There was a problem submitting the record.',
@@ -68,29 +66,23 @@ export default {
 
   }, methods: {
     addRecord() {
-        if (this.record.albumName === '') {
-          this.createRecordError = true;
-          this.createRecordErrorMsg = 'You need a title.';
-        } else {
-          this.record.userId = this.$store.state.user.id;
-        }
-      RecordService
-      .createRecord(this.record)
-        .then((response) => {
-          if (response.status == 201) {
-            this.$router.push({
-              path: '/',      
-            });
-          }
-        })
+      if (this.record.albumName === '') {
+        this.createRecordError = true;
+        this.createRecordErrorMsg = 'You need a title.';
+      } else {
+        this.record.userId = this.$store.state.user.id;
 
-      //       .catch((error) => {
-      //         const response = error.response;
-      //         if (response.status === 400) {
-
-      //         }
-      //       });
-      }, 
+        RecordService
+          .createRecord(this.record)
+          .then((response) => {
+            if (response.status == 201) {
+              this.$router.push({
+                path: '/users/' + this.$store.state.user.id + '/records',
+              });
+            }
+          })
+      }
+    },
 
     uploadImage(e) {
       const image = e.target.files[0];
@@ -102,7 +94,7 @@ export default {
         console.log("This is line 101" + e.target.result);
 
         this.previewImage = e.target.result;
-       
+
       };
     },
 
@@ -115,7 +107,7 @@ export default {
   background-image: url(../resources/5-reasons-create-cds-of-your-releases.jpg);
   background-size: cover;
   padding-top: 30px;
-  padding-bottom: 40px;
+  padding-bottom: 70px;
   height: 100%;
 }
 
@@ -126,14 +118,14 @@ export default {
   border-radius: 1.5rem;
 }
 
-#previewImage {
+/* #previewImage {
   display: flex;
   justify-self: center;
   height: 30vh;
   margin-top: 2rem;
   margin-bottom: 1rem;
   margin-left: 11rem;
-}
+} */
 
 #form-header {
   color: white;
@@ -146,7 +138,8 @@ export default {
 #submit-btn {
   background-color: #E5B80B;
   border-color: #E5B80B;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
+  align-self: flex-start;
 }
 
 #submit-btn:hover {
@@ -154,10 +147,26 @@ export default {
   border-color: white;
 }
 
-#preview-image {
+#previewImage {
+  height: 30vh;
   align-self: center;
-  margin-left: 3rem;
-  padding-right: 6rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
+.alert {
+  margin-bottom: 0px;
+  margin-top: 1.5rem;
+  width: 100%;
+}
+
+#collectionForm {
+  display: flex;
+  flex-direction: column;
+}
+
+#pictureInput {
+  display: flex;
+  flex-direction: column;
+}
 </style>

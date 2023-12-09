@@ -260,7 +260,7 @@ export default {
   color: white;
   position: fixed;
   top: 20px;
-  right: 200px;
+  right: 10.5%;
 }
 
 .logout {

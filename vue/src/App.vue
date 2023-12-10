@@ -25,9 +25,11 @@
 
     <div id="nav-bar" class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark">
       <hr>
+      <h2 id="locationName">{{ currentLocation }}</h2>
+      <hr>
       <ul class="nav flex-column mb-auto">
         <li class="nav-item">
-          <router-link to="/" class="home-btn nav-link active" aria-current="page">
+          <router-link to="/" class="home-btn nav-link active" aria-current="page" @click="changeLocation('Home')">
             <svg class="bi me-2" width="16" height="16">
               <use xlink:href="#home"></use>
             </svg>
@@ -35,7 +37,8 @@
           </router-link>
         </li>
         <li v-if="isAuthenticated">
-          <router-link :to="{ name: 'library', params: { userId: getUserId() } }" class="nav-btn nav-link">
+          <router-link :to="{ name: 'library', params: { userId: getUserId() } }" class="nav-btn nav-link"
+            v-on:click="changeLocation('Personal Library')">
             <svg class="bi me-2" width="16" height="16">
               <use xlink:href="#speedometer2"></use>
             </svg>
@@ -43,7 +46,8 @@
           </router-link>
         </li>
         <li v-if="isAuthenticated">
-          <router-link :to="{ name: 'collections', params: { userId: getUserId() } }" class="nav-btn nav-link">
+          <router-link :to="{ name: 'collections', params: { userId: getUserId() } }" class="nav-btn nav-link"
+            @click="changeLocation('Personal Collections')">
             <svg class="bi me-2" width="16" height="16">
               <use xlink:href="#table"></use>
             </svg>
@@ -52,7 +56,7 @@
         </li>
         <li v-if="isAuthenticated">
           <router-link :to="{ name: 'addCollection' }" class="nav-btn nav-link"
-            :class="{ disactive: !canAddMoreCollections }">
+            :class="{ disactive: !canAddMoreCollections }" @click="changeLocation('Add Collection')">
             <svg class="bi me-2" width="16" height="16">
               <use xlink:href="#grid"></use>
             </svg>
@@ -60,7 +64,8 @@
           </router-link>
         </li>
         <li v-if="isAuthenticated">
-          <router-link :to="{ name: 'addrecord' }" class="nav-btn nav-link" :class="{ disactive: !canAddMoreRecords }">
+          <router-link :to="{ name: 'addrecord' }" class="nav-btn nav-link" :class="{ disactive: !canAddMoreRecords }"
+            @click="changeLocation('Add Record')">
             <svg class="bi me-2" width="16" height="16">
               <use xlink:href="#people-circle"></use>
             </svg>
@@ -118,8 +123,10 @@ export default {
     },
     canAddMoreRecords() {
       return (this.$store.state.user.membershipTier === 'premium' || this.getNumOfRecords() < 25);
-
     },
+    currentLocation() {
+      return this.$store.state.location;
+    }
   },
   methods: {
     getUserId() {
@@ -135,6 +142,9 @@ export default {
     getNumOfRecords() {
       RecordService.getNumOfRecordsByUserId(this.getUserId()).then(r => { this.numOfRecords = r.data });
       return this.numOfRecords;
+    },
+    changeLocation(location) {
+      this.$store.commit("SET_LOCATION", location);
     }
   }
 }
@@ -292,5 +302,10 @@ export default {
 .disactive {
   pointer-events: none;
   opacity: 40%;
+}
+
+#locationName {
+  text-align: center;
+  font-size: 30px;
 }
 </style>

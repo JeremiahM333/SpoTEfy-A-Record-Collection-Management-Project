@@ -44,6 +44,17 @@ public class RecordController {
         return records;
     }
 
+    @GetMapping("records/{recordId}")
+    public Record getRecordByRecordId(@PathVariable int recordId) {
+
+        Record record = recordDao.getRecordById(recordId);
+        if (record == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Record Details Not Found");
+        }
+        return record;
+    }
+
+
     @GetMapping("users/{userId}/records")
     public List<Record> getRecordsByUserId(@PathVariable int userId, Principal principal) {
         User loggedInUser = userDao.getUserByEmailAddress(principal.getName());

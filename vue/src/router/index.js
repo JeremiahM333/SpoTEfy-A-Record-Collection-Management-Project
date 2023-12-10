@@ -11,6 +11,7 @@ import LibraryView from '../views/LibraryView.vue';
 import RecordsView from '../views/RecordsView.vue';
 import AddRecordsView from '../views/AddRecordView.vue'
 import AddCollectionView from '../views/AddCollectionView.vue';
+import RecordDetailViewVue from '../views/RecordDetailView.vue';
 
 
 /**
@@ -87,6 +88,14 @@ const routes = [
     path: "/addCollection",
     name: "addCollection",
     component: AddCollectionView,
+    meta: {
+      requiresAuth: true
+    }
+  }, 
+  {
+    path: "/record/:recordId/detail",
+    name: "recordDetail",
+    component: RecordDetailViewVue,
     meta: {
       requiresAuth: true
     }

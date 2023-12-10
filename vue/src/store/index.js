@@ -8,7 +8,8 @@ export function createStore(currentToken, currentUser) {
     state: {
       token: currentToken || '',
       user: currentUser,
-      currentCollection: 0,
+      currentCollection: 0, 
+      currentRecord: 0,
       location: 'Home'
     },
     mutations: {
@@ -57,6 +58,9 @@ export function createStore(currentToken, currentUser) {
       },
       SET_CURRENT_COLLECTION(state, collectionId) {
         state.currentCollection = collectionId;
+      },
+      SET_CURRENT_RECORD(state, recordId) {
+        state.currentRecord = recordId;
       },
       SET_LOCATION(state, location) {
         state.location = location;

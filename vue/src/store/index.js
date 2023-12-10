@@ -7,8 +7,11 @@ export function createStore(currentToken, currentUser) {
   let store = _createStore({
     state: {
       token: currentToken || '',
-      user: currentUser,
-      currentCollection: 0, 
+      user: {
+        id: 0,
+        username: 'Anonymous'
+      },
+      currentCollection: 0,
       currentRecord: 0,
       location: 'Home'
     },

@@ -1,9 +1,7 @@
 package com.techelevator.controller;
 
 import com.techelevator.dao.ArtistDao;
-import com.techelevator.dao.GenreDao;
 import com.techelevator.model.Artist;
-import com.techelevator.model.Genre;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

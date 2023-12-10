@@ -15,7 +15,7 @@
         <router-link v-show="!isAuthenticated" type="button" id="sign-up-btn" class="btn btn-primary btn-lg"
           v-bind:to="{ name: 'register' }">Sign
           Up</router-link>
-        <h2 id="displayName">{{ $store.state.user.username }}</h2>
+        <h2 v-if="isAuthenticated" id="displayName">{{ $store.state.user.username }}</h2>
 
         <router-link v-if="!isAuthenticated" :to="{ name: 'login' }" class="btn btn-secondary btn-lg">Login </router-link>
         <router-link v-if="isAuthenticated" :to="{ name: 'logout' }" class="logout btn btn-secondary btn-lg">Log Out

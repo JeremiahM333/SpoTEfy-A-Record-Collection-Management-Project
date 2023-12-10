@@ -1,11 +1,7 @@
 package com.techelevator.controller;
 
-import com.techelevator.dao.CollectionDao;
 import com.techelevator.dao.GenreDao;
-import com.techelevator.dao.RecordDao;
-import com.techelevator.dao.UserDao;
 import com.techelevator.model.Genre;
-import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

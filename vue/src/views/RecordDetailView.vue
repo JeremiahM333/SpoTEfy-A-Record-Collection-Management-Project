@@ -1,69 +1,35 @@
 <template>
-    <!-- <div>
-        <h1>{{ record.albumName }}</h1>
-    </div>
-    <div>
-        <img src={{ record.albumCover }} />
-    </div>
-    <div>
-        <p>{{ record.releaseDate }}</p>
-    </div>
-    <div>
-        <h2>{{ record.mediaType }}</h2>
-    </div> -->
-    <!-- <div>
-        <h2>{{ }}</h2>
-    </div>
-    // artist in the div above
-    <div>
-        <h3>{{ }}</h3>
-    </div>
-    // genre is the div above
-    <div>
-        <p></p>
-    </div>
-    // add notes div for record detail (this is a separate card) -->
+   
 
-    <div class="container">
 
-        <!-- <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">{{ record.albumName }}</h5>
-            </div>
-            <img class="card-img-top" :src="record.albumCover" @error="replaceWithDefault()">
-            <div class="card-footer">
-                <small class="text-muted">{{ record.releaseDate }}</small>
-            </div>
-        </div> -->
+    <div class="background" id="main-page">
 
-        <div class="card" style="width: 18rem;">
-            <img class="card-img-top" :src="record.albumCover" @error="replaceWithDefault()">
-            <div class="card-body">
-                <h5 class="card-title">{{ record.albumName }}</h5>
+        <div class="container" id="form-margin">
+            <div class="detail-body">
+                <img id="image" :src="record.albumCover" @error="replaceWithDefault()">
+                <h3 id="title">{{ record.albumName }}</h3>
+
+                <div id="artist">
+                    <h2 class="heading">Artists</h2>
+                    <h4 v-for="artist in artists" v-bind:key="artist.artistId">{{ artist.artistName }}</h4>
+                </div>
+                <div id="genre">
+                    <h2 class="heading">Genres</h2>
+                    <h5 v-for="genre in genres" v-bind:key="genre.genreId">{{ genre.genreName }}</h5>
+                </div>
+                <div id="notes">
+                    <h2 class="heading">Notes</h2>
+                    <p>This is a wider card with supporting text below as a natural lead-in to
+                    additional This is a wider card with supporting text below as a natural lead-in to
+                    additional This is a wider card with supporting text below as a natural lead-in to
+                    additional
+                    content. This content is a little bit longer.</p></div>
+                <div id="date">{{ record.releaseDate }}</div>
+                <div id="mediaType">{{ record.mediaType }}</div>
+                <div id="buttons">
+                    <button type="button" class="btn btn-secondary btn-lg">Add to Collection</button>
+                </div>
             </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">Artist</li>
-                <li class="list-group-item">Genre</li>
-                <li class="list-group-item">{{ record.releaseDate }}</li>
-                <p class="card-text">This will be the notes section for the card.</p>
-            </ul>
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
-                    data-bs-toggle="dropdown" aria-expanded="false">
-                    Choose Collection
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="#">Collection1</a></li>
-                    <li><a class="dropdown-item" href="#">Collection2</a></li>
-                    <li><a class="dropdown-item" href="#">Collection3</a></li>
-                </ul>
-            </div>
-            <div class="card-body">
-                <button type="button" class="btn btn-secondary btn-lg" disabled>Add to Collection</button>
-                <button type="button" class="btn btn-secondary btn-lg" disabled>Edit Record Notes</button>
-                <button type="button" class="btn btn-secondary btn-lg" disabled>Exit Detail View</button>
-            </div>
-            
         </div>
 
     </div>
@@ -73,25 +39,117 @@
 <script>
 
 import RecordService from '../services/RecordService';
+import ArtistsService from '../services/ArtistsService';
+import GenresService from '../services/GenresService';
 
 export default {
     data() {
         return {
             record: [],
+            artists: [],
+            genres: []
         }
     },
     created() {
         RecordService.getRecordByRecordId(this.$store.state.currentRecord)
             .then(response => {
                 this.record = response.data;
+            });
+        ArtistsService.getArtistsByRecordId(this.$store.state.currentRecord)
+            .then(response => {
+                this.artists = response.data;
+            });
+        GenresService.getGenresByRecordId(this.$store.state.currentRecord)
+            .then(response => {
+                this.genres = response.data;
             })
     }
 
-
 }
-
 </script>
 
 
 
-<style scoped></style>
+<style scoped>
+.background {
+    background-image: url(../resources/ezgif.com-gif-maker-10-.jpg);
+    background-size: cover;
+    height: 100%;
+    padding-top:3rem;
+    padding-bottom:5rem;
+}
+
+
+#form-margin {
+background-color: rgba(0, 0, 0, 0.5);
+color: white;
+border-radius: 1.5rem;
+
+}
+
+.detail-body {
+    height: 70%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+        "image     artist"
+        "image     genre"
+        "image     notes"
+        "title    date"
+        "title     mediaType"
+        "buttons    buttons"
+    ;
+    padding: 0%;
+}
+
+#image {
+    grid-area: image;
+    min-height: 30rem;
+    min-width: 30rem;
+    max-height: 30rem;
+    max-width: 30rem;
+
+    padding-top: 3rem;
+    padding-left: 3rem;
+    padding-bottom: 1.5rem;
+
+}
+
+#title {
+    grid-area: title;
+    padding-bottom: 10rem;
+    text-align: center;
+    padding-right: 8rem;
+}
+
+#artist {
+    grid-area: artist;
+}
+
+#genre {
+    grid-area: genre;
+}
+
+#date {
+    grid-area: date;
+}
+
+#mediaType {
+    grid-area: mediaType;
+}
+
+#notes {
+    grid-area: notes;
+}
+
+#buttons {
+    grid-area: buttons;
+    padding-bottom: 2rem;
+}
+
+.heading {
+font-weight: bold;
+
+}
+
+</style>

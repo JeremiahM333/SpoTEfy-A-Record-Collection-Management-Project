@@ -1,6 +1,7 @@
 
 
 <template>
+    
     <div class="record-card card-deck">
         <router-link :to="{name: 'recordDetail', params: {recordId: record.recordId} }"
             @click="setCurrentRecordId(record.recordId)">
@@ -50,6 +51,7 @@ export default {
 .record-card {
     margin: 5px 5px 5px 5px;
     width: 16%;
+    background-color: rgba(255, 255, 255, .5);
 }
 
 .card-title {

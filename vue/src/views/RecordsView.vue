@@ -37,5 +37,8 @@ export default {
     align-content: flex-start;
     padding: 5px 0px 45px 5px;
     z-index: -3;
+    height: 100%;
+    background-image: url(../resources/ezgif.com-gif-maker-10-.jpg);
+    background-size: cover;
 }
 </style>

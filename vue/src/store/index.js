@@ -9,7 +9,8 @@ export function createStore(currentToken, currentUser) {
       token: currentToken || '',
       user: currentUser,
       currentCollection: 0, 
-      currentRecord: 0
+      currentRecord: 0,
+      location: 'Home'
     },
     mutations: {
       SET_AUTH_TOKEN(state, token) {
@@ -60,6 +61,9 @@ export function createStore(currentToken, currentUser) {
       },
       SET_CURRENT_RECORD(state, recordId) {
         state.currentRecord = recordId;
+      },
+      SET_LOCATION(state, location) {
+        state.location = location;
       }
     },
 

@@ -1,7 +1,7 @@
 <template>
     <div class="collection-card">
         <router-link :to="{ name: 'records', params: { collectionId: collection.collectionId } }"
-            @click="setCurrentCollectionId(collection.collectionId)">
+            @click="setCurrentCollectionId(collection.collectionId), changeLocation('Collection Details')">
             <div class="card">
                 <img :src="collectionCover" class="card-img-top" @error="replaceWithDefault()">
                 <div class="card-body">
@@ -29,7 +29,7 @@ export default {
     computed: {
         collectionCover() {
             return this.collection.collectionCover === null || this.useDefaultCoverArt ? this.defaultCoverArt : this.collection.collectionCover;
-        },
+        }
     },
     methods: {
         setCurrentCollectionId(collectionId) {
@@ -37,6 +37,9 @@ export default {
         },
         replaceWithDefault() {
             this.useDefaultCoverArt = true;
+        },
+        changeLocation(location) {
+            this.$store.commit("SET_LOCATION", location);
         }
     }
 };

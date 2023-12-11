@@ -27,15 +27,17 @@
                 <div class="btn-group dropup">
                     <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
-                        Add To Collection
+                        Collections
                     </button>
                     <ul class="dropdown-menu">
                         <li class="dropdown-item" v-for="collection in collections" v-bind:key="collection.collectionId">
                             {{ collection.collectionName }}
                             <input class="form-check-input" type="checkbox" id="checkboxNoLabel"
                                v-bind:value="collection.collectionId" v-model="collectionCheckbox">
+                               <!-- // filter collections shown if record is already in that collection -->
                         </li>
                     </ul>
+                    <button class="btn btn-primary" type="submit" v-on:click.prevent="addRecordToCollection">Add</button>
                 </div>
 
             </div>
@@ -86,7 +88,8 @@ export default {
 
     methods: {
         addRecordToCollection() {
-
+            CollectionsService
+            .addRecordToCollection(this.record.recordId, this.collectionCheckbox)
         }
     }
 

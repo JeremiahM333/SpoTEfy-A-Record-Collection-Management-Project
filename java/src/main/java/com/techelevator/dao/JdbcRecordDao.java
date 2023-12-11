@@ -99,6 +99,7 @@ public class JdbcRecordDao implements RecordDao{
         return newRecord;
     }
 
+
     private Record mapRowToRecord(SqlRowSet rs) {
         Record record = new Record();
         record.setRecordId(rs.getInt("record_id"));

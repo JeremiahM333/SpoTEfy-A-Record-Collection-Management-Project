@@ -17,5 +17,5 @@ public interface CollectionDao {
 
      Collection createCollection(Collection collection);
 
-     int addRecordToCollection(int collectionId);
+     int addRecordToCollection(Integer collectionId, int recordId);
 }

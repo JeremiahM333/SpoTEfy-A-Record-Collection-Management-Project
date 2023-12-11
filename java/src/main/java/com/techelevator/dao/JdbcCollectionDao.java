@@ -95,12 +95,12 @@ public class JdbcCollectionDao implements CollectionDao {
     }
 
     @Override
-    public int addRecordToCollection(int collectionId) {
+    public int addRecordToCollection(Integer collectionId, int recordId) {
         int rowsAffected = 0;
         String insert = "INSERT INTO collections_records (collection_id, record_id) " +
                 "VALUES (?, ?)";
         try {
-            rowsAffected = jdbcTemplate.update(insert);
+            rowsAffected = jdbcTemplate.update(insert, collectionId, recordId);
 
             if (rowsAffected == 0) {
                 throw new DaoException("Expected one row to be affect, but none were");

@@ -24,9 +24,19 @@
                 </div>
                 <div id="date">{{ record.releaseDate }}</div>
                 <div id="mediaType">{{ record.mediaType }}</div>
-                <div id="buttons">
-                    <button type="button" class="btn btn-secondary btn-lg">Add to Collection</button>
+
+                <div class="btn-group dropup">
+                    <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Add To Collection
+                    </button>
+                    <ul class="dropdown-menu">
+                            <li class="dropdown-item"  v-for="collection in collections"  v-bind:key="collection.collectionId"> 
+                                {{ collection.collectionName }}
+                            </li>
+                    </ul>
                 </div>
+
             </div>
         </div>
 
@@ -39,13 +49,17 @@
 import RecordService from '../services/RecordService';
 import ArtistsService from '../services/ArtistsService';
 import GenresService from '../services/GenresService';
+// import Collection from '../components/Collection.vue';
+import CollectionsService from '../services/CollectionsService';
+
 
 export default {
     data() {
         return {
             record: [],
             artists: [],
-            genres: []
+            genres: [],
+            collections: []
         }
     },
     created() {
@@ -60,10 +74,15 @@ export default {
         GenresService.getGenresByRecordId(this.$store.state.currentRecord)
             .then(response => {
                 this.genres = response.data;
-            })
+            });
+        CollectionsService.getCollectionsByUserId(this.$store.state.user.id)
+            .then(response => {
+                this.collections = response.data;
+            });
     }
-
 }
+
+
 </script>
 
 

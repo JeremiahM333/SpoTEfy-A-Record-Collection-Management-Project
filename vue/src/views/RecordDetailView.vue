@@ -19,8 +19,7 @@
                     <p>This is a wider card with supporting text below as a natural lead-in to
                         additional This is a wider card with supporting text below as a natural lead-in to
                         additional This is a wider card with supporting text below as a natural lead-in to
-                        additional
-                        content. This content is a little bit longer.</p>
+                        additional content. This content is a little bit longer.</p>
                 </div>
                 <div id="date">{{ record.releaseDate }}</div>
                 <div id="mediaType">{{ record.mediaType }}</div>
@@ -31,9 +30,12 @@
                         Add To Collection
                     </button>
                     <ul class="dropdown-menu">
-                            <li class="dropdown-item"  v-for="collection in collections"  v-bind:key="collection.collectionId"> 
-                                {{ collection.collectionName }}
-                            </li>
+                        <li class="dropdown-item" v-for="collection in collections" v-bind:key="collection.collectionId">
+                            {{ collection.collectionName }}
+                            <input class="form-check-input" type="checkbox" id="checkboxNoLabel"
+                                value="collection.collectionName">
+
+                        </li>
                     </ul>
                 </div>
 
@@ -62,6 +64,7 @@ export default {
             collections: []
         }
     },
+
     created() {
         RecordService.getRecordByRecordId(this.$store.state.currentRecord)
             .then(response => {
@@ -166,6 +169,15 @@ export default {
 
 .heading {
     font-weight: bold;
+}
 
+.btn {
+    background-color: #E5B80B;
+    border-color: #E5B80B;
+}
+
+.btn:hover {
+  background-color: #C09B09;
+  border-color: white;
 }
 </style>

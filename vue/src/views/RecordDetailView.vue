@@ -19,14 +19,25 @@
                     <p>This is a wider card with supporting text below as a natural lead-in to
                         additional This is a wider card with supporting text below as a natural lead-in to
                         additional This is a wider card with supporting text below as a natural lead-in to
-                        additional
-                        content. This content is a little bit longer.</p>
+                        additional content. This content is a little bit longer.</p>
                 </div>
                 <div id="date">{{ record.releaseDate }}</div>
                 <div id="mediaType">{{ record.mediaType }}</div>
-                <div id="buttons">
-                    <button type="button" class="btn btn-secondary btn-lg">Add to Collection</button>
+
+                <div class="btn-group dropup">
+                    <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Add To Collection
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-item" v-for="collection in collections" v-bind:key="collection.collectionId">
+                            {{ collection.collectionName }}
+                            <input class="form-check-input" type="checkbox" id="checkboxNoLabel"
+                               v-bind:value="collection.collectionId" v-model="collectionCheckbox">
+                        </li>
+                    </ul>
                 </div>
+
             </div>
         </div>
 
@@ -39,15 +50,20 @@
 import RecordService from '../services/RecordService';
 import ArtistsService from '../services/ArtistsService';
 import GenresService from '../services/GenresService';
+import CollectionsService from '../services/CollectionsService';
+
 
 export default {
     data() {
         return {
             record: [],
             artists: [],
-            genres: []
+            genres: [],
+            collections: [],
+            collectionCheckbox: []
         }
     },
+
     created() {
         RecordService.getRecordByRecordId(this.$store.state.currentRecord)
             .then(response => {
@@ -60,10 +76,23 @@ export default {
         GenresService.getGenresByRecordId(this.$store.state.currentRecord)
             .then(response => {
                 this.genres = response.data;
-            })
+            });
+        CollectionsService.getCollectionsByUserId(this.$store.state.user.id)
+            .then(response => {
+                this.collections = response.data;
+            });
+    },
+
+
+    methods: {
+        addRecordToCollection() {
+
+        }
     }
 
 }
+
+
 </script>
 
 
@@ -147,6 +176,15 @@ export default {
 
 .heading {
     font-weight: bold;
+}
 
+.btn {
+    background-color: #E5B80B;
+    border-color: #E5B80B;
+}
+
+.btn:hover {
+  background-color: #C09B09;
+  border-color: white;
 }
 </style>

@@ -33,8 +33,7 @@
                         <li class="dropdown-item" v-for="collection in collections" v-bind:key="collection.collectionId">
                             {{ collection.collectionName }}
                             <input class="form-check-input" type="checkbox" id="checkboxNoLabel"
-                                value="collection.collectionName">
-
+                               v-bind:value="collection.collectionId" v-model="collectionCheckbox">
                         </li>
                     </ul>
                 </div>
@@ -51,7 +50,6 @@
 import RecordService from '../services/RecordService';
 import ArtistsService from '../services/ArtistsService';
 import GenresService from '../services/GenresService';
-// import Collection from '../components/Collection.vue';
 import CollectionsService from '../services/CollectionsService';
 
 
@@ -61,7 +59,8 @@ export default {
             record: [],
             artists: [],
             genres: [],
-            collections: []
+            collections: [],
+            collectionCheckbox: []
         }
     },
 
@@ -82,7 +81,15 @@ export default {
             .then(response => {
                 this.collections = response.data;
             });
+    },
+
+
+    methods: {
+        addRecordToCollection() {
+
+        }
     }
+
 }
 
 

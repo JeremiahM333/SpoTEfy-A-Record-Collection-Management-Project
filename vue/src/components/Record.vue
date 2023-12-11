@@ -53,6 +53,7 @@ export default {
     width: 16%;
     background-color: rgba(255, 255, 255, .5);
     opacity: 90%;
+    border-radius: 1.5rem;
 }
 
 .card-title {

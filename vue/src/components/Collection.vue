@@ -50,6 +50,7 @@ export default {
     margin: 5px 5px 5px 5px;
     width: 16%;
     opacity: 90%;
+    border-radius: 1.5rem;
 }
 
 .card-text {

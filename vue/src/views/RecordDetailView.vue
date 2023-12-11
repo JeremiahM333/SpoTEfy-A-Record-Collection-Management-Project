@@ -3,7 +3,8 @@
 
         <div class="container" id="form-margin">
             <div class="detail-body">
-                <img id="image" :src="record.albumCover" @error="replaceWithDefault()">
+                <img id="image" :src="useDefaultCoverArt ? defaultCoverArt : record.albumCover"
+                    @error="replaceWithDefault()">
                 <h3 id="title">{{ record.albumName }}</h3>
 
                 <div id="artist">
@@ -33,8 +34,8 @@
                         <li class="dropdown-item" v-for="collection in collections" v-bind:key="collection.collectionId">
                             {{ collection.collectionName }}
                             <input class="form-check-input" type="checkbox" id="checkboxNoLabel"
-                               v-bind:value="collection.collectionId" v-model="collectionCheckbox">
-                               <!-- // filter collections shown if record is already in that collection -->
+                                v-bind:value="collection.collectionId" v-model="collectionCheckbox">
+                            <!-- // filter collections shown if record is already in that collection -->
                         </li>
                     </ul>
                     <button class="btn btn-primary" type="submit" v-on:click.prevent="addRecordToCollection">Add</button>
@@ -58,11 +59,13 @@ import CollectionsService from '../services/CollectionsService';
 export default {
     data() {
         return {
-            record: [],
+            record: {},
             artists: [],
             genres: [],
             collections: [],
-            collectionCheckbox: []
+            collectionCheckbox: [],
+            defaultCoverArt: 'https://static.tumblr.com/exbflx8/z13m20ek0/cover.png',
+            useDefaultCoverArt: false
         }
     },
 
@@ -89,7 +92,10 @@ export default {
     methods: {
         addRecordToCollection() {
             CollectionsService
-            .addRecordToCollection(this.record.recordId, this.collectionCheckbox)
+                .addRecordToCollection(this.record.recordId, this.collectionCheckbox)
+        },
+        replaceWithDefault() {
+            this.useDefaultCoverArt = true;
         }
     }
 
@@ -187,7 +193,7 @@ export default {
 }
 
 .btn:hover {
-  background-color: #C09B09;
-  border-color: white;
+    background-color: #C09B09;
+    border-color: white;
 }
 </style>

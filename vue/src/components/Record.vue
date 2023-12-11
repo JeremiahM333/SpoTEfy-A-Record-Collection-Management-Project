@@ -52,9 +52,14 @@ export default {
     margin: 5px 5px 5px 5px;
     width: 16%;
     background-color: rgba(255, 255, 255, .5);
+    opacity: 90%;
 }
 
 .card-title {
     text-align: center;
 }
+
+
+
+
 </style>

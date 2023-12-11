@@ -49,6 +49,7 @@ export default {
 .collection-card {
     margin: 5px 5px 5px 5px;
     width: 16%;
+    opacity: 90%;
 }
 
 .card-text {

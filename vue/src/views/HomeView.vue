@@ -19,6 +19,13 @@ export default {
       isLoading: true
     }
   },
+  computed: {
+    filteredCollections() {
+      // TO DO 
+      // MAKE DAOS
+      return null;
+    }
+  },
   created() {
     CollectionsService.getPublicCollections()
       .then(response => {

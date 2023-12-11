@@ -12,7 +12,9 @@ export function createStore(currentToken, currentUser) {
       },
       currentCollection: 0,
       currentRecord: 0,
-      location: 'Home'
+      location: 'Home',
+      searchCriteria: 'Name',
+      searchRequest: ''
     },
     mutations: {
       SET_AUTH_TOKEN(state, token) {
@@ -66,6 +68,12 @@ export function createStore(currentToken, currentUser) {
       },
       SET_LOCATION(state, location) {
         state.location = location;
+      },
+      SET_SEARCH_CRITERIA(state, searchCriteria) {
+        state.searchCriteria = searchCriteria;
+      },
+      SET_SEARCH_REQUEST(state, searchRequest) {
+        state.searchRequest = searchRequest;
       }
     },
 

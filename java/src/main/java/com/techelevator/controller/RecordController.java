@@ -98,7 +98,7 @@ public class RecordController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "record", method = RequestMethod.POST)
-    public void createRecord( @RequestBody Record newRecord, Principal principal) {
+    public Record createRecord( @RequestBody Record newRecord, Principal principal) {
         User loggedInUser = userDao.getUserByEmailAddress(principal.getName());
         if (loggedInUser.getId() != newRecord.getUserId()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Record could not be added");
@@ -108,6 +108,7 @@ public class RecordController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Failed to create record");
         }
 
+        return dbRecord;
     }
 
 }

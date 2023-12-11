@@ -86,9 +86,9 @@ public class JdbcRecordDao implements RecordDao{
 
         String createRecordSQL = "INSERT INTO records(\n" +
                 "\tuser_id, album_name, album_cover, release_date, media_type)\n" +
-                "\tVALUES (?, ?, ?, ?, ?);";
+                "\tVALUES (?, ?, ?, ?, ?) RETURNING record_id;";
         try {
-            int newRecordId = jdbcTemplate.update(createRecordSQL, record.getUserId(),
+            int newRecordId = jdbcTemplate.queryForObject(createRecordSQL, int.class, record.getUserId(),
                     record.getAlbumName(), record.getAlbumCover(), record.getReleaseDate(), record.getMediaType());
             newRecord = getRecordById(newRecordId);
         } catch (CannotGetJdbcConnectionException e) {

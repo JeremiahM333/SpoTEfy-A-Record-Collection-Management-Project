@@ -16,7 +16,7 @@
                     <h5 v-for="genre in genres" v-bind:key="genre.genreId">{{ genre.genreName }}</h5>
                 </div>
                 <div id="notes">
-                    <h2 class="heading">Notes</h2>
+                    <h2 class="heading">Notes <button type="button" class="btn btn-primary btn-sm">Edit Notes</button></h2>
                     <p>This is a wider card with supporting text below as a natural lead-in to
                         additional This is a wider card with supporting text below as a natural lead-in to
                         additional This is a wider card with supporting text below as a natural lead-in to

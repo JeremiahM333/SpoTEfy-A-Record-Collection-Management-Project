@@ -37,6 +37,8 @@ export default {
     align-content: flex-start;
     padding: 5px 0px 45px 5px;
     z-index: -3;
-    
+    background-image: url(../resources/Screenshot-2023-04-12-at-20.54.52.png);
+    background-size: cover;
+    height: 100%;
 }
 </style>

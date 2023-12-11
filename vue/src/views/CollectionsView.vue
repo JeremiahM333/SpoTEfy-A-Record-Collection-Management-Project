@@ -1,8 +1,8 @@
 <template>
-    <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%"
-        data-bs-smooth-scroll="true" class="collections scrollspy-example bg-body-tertiary rounded-2" tabindex="0">
-        <collection v-for="collection in collections" v-bind:key="collection.collectionId" v-bind:collection="collection" />
-    </div>
+  <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%"
+    data-bs-smooth-scroll="true" class="collections scrollspy-example bg-body-tertiary" tabindex="0">
+    <collection v-for="collection in collections" v-bind:key="collection.collectionId" v-bind:collection="collection" />
+  </div>
 </template>
   
 <script>
@@ -31,14 +31,14 @@ export default {
 
 <style scoped>
 .collections {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    align-content: flex-start;
-    padding: 5px 0px 45px 5px;
-    z-index: -3;
-    background-image: url(../resources/Screenshot-2023-04-12-at-20.54.52.png);
-    background-size: cover;
-    height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  align-content: flex-start;
+  padding: 5px 0px 45px 5px;
+  z-index: -3;
+  background-image: url(../resources/Screenshot-2023-04-12-at-20.54.52.png);
+  background-size: cover;
+  height: 100%;
 }
 </style>

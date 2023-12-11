@@ -1,7 +1,4 @@
 <template>
-   
-
-
     <div class="background" id="main-page">
 
         <div class="container" id="form-margin">
@@ -20,10 +17,11 @@
                 <div id="notes">
                     <h2 class="heading">Notes</h2>
                     <p>This is a wider card with supporting text below as a natural lead-in to
-                    additional This is a wider card with supporting text below as a natural lead-in to
-                    additional This is a wider card with supporting text below as a natural lead-in to
-                    additional
-                    content. This content is a little bit longer.</p></div>
+                        additional This is a wider card with supporting text below as a natural lead-in to
+                        additional This is a wider card with supporting text below as a natural lead-in to
+                        additional
+                        content. This content is a little bit longer.</p>
+                </div>
                 <div id="date">{{ record.releaseDate }}</div>
                 <div id="mediaType">{{ record.mediaType }}</div>
                 <div id="buttons">
@@ -75,15 +73,15 @@ export default {
     background-image: url(../resources/ezgif.com-gif-maker-10-.jpg);
     background-size: cover;
     height: 100%;
-    padding-top:3rem;
-    padding-bottom:5rem;
+    padding-top: 3rem;
+    padding-bottom: 5rem;
 }
 
 
 #form-margin {
-background-color: rgba(0, 0, 0, 0.5);
-color: white;
-border-radius: 1.5rem;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border-radius: 1.5rem;
 
 }
 
@@ -148,8 +146,7 @@ border-radius: 1.5rem;
 }
 
 .heading {
-font-weight: bold;
+    font-weight: bold;
 
 }
-
 </style>

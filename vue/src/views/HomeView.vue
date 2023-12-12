@@ -67,14 +67,6 @@ export default {
       return filteredCollections;
     }
   },
-  methods: {
-    getFilteredCollections(search) {
-      let filteredCollections = [];
-      CollectionsService.getPublicCollectionsBySearch(search)
-        .then(r => { filteredCollections = r.data });
-      return filteredCollections = [];
-    }
-  },
   created() {
     CollectionsService.getPublicCollections()
       .then(response => {

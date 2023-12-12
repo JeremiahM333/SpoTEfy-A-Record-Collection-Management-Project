@@ -19,5 +19,9 @@ export default {
 
     getRecordByRecordId(recordId) {
         return axios.get(`/records/${recordId}`);
+    }, 
+
+    updateRecordByRecordId(recordId, record) {
+        return axios.put(`records/${recordId}`, record);
     }
 }

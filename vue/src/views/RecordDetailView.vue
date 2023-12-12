@@ -15,38 +15,43 @@
                     <h2 class="heading">Genres</h2>
                     <h5 v-for="genre in genres" v-bind:key="genre.genreId">{{ genre.genreName }}</h5>
                 </div>
+
                 <div id="notes">
-                    <h2 class="heading">Notes <button type="button" class="btn btn-primary btn-sm edit-btn">Edit
+                    <h2 class="heading">Notes <button v-if="!isEditing" @click="toggleToEditNotes()" type="button" class="btn btn-primary btn-sm edit-btn">Edit
                             Notes</button></h2>
-                    <p>This is a wider card with supporting text below as a natural lead-in to
-                        additional This is a wider card with supporting text below as a natural lead-in to
-                        additional This is a wider card with supporting text below as a natural lead-in to
-                        additional content. This content is a little bit longer.</p>
+                    <p v-if="!isEditing" > {{ record.recordNotes }} </p>
+                    <form v-else v-on:submit.prevent="addUpdatedNotes">
+                        <textarea class="form-control" id="exampleFormControlTextarea1" v-model="previewNotes" rows="3"></textarea>
+                        <div class= "submit-cancel-btn">
+                        <input type="submit" @submit.prevent="addUpdatedNotes()" value= "Save" />
+                        <button type="button" @click="cancelEdit">Cancel</button>
+                        </div>
+                        </form>
                 </div>
+
                 <div id="date">{{ record.releaseDate }}</div>
                 <div id="mediaType">{{ record.mediaType }}</div>
 
-                
-                    <div class="btn-group dropup button-container buttons" id="buttons">
-                        <button class="btn btn-secondary dropdown-toggle collection-btn" type="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Collections
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li class="dropdown-item" v-for="collection in collections"
-                                v-bind:key="collection.collectionId">
-                                {{ collection.collectionName }}
-                                <input class="form-check-input" type="checkbox" id="checkboxNoLabel"
-                                    v-bind:value="collection.collectionId" v-model="collectionCheckbox">
-                                <!-- // filter collections shown if record is already in that collection -->
-                            </li>
-                        </ul>
-                
+
+                <div class="btn-group dropup button-container buttons" id="buttons">
+                    <button class="btn btn-secondary dropdown-toggle collection-btn" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Collections
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-item" v-for="collection in collections" v-bind:key="collection.collectionId">
+                            {{ collection.collectionName }}
+                            <input class="form-check-input" type="checkbox" id="checkboxNoLabel"
+                                v-bind:value="collection.collectionId" v-model="collectionCheckbox">
+                            <!-- // filter collections shown if record is already in that collection -->
+                        </li>
+                    </ul>
+
                     <div>
                         <button class="btn btn-primary add-btn" type="submit"
                             v-on:click.prevent="addRecordToCollection">Add</button>
                     </div>
-                    </div>
+                </div>
             </div>
         </div>
 
@@ -72,7 +77,8 @@ export default {
             collectionCheckbox: [],
             defaultCoverArt: 'https://static.tumblr.com/exbflx8/z13m20ek0/cover.png',
             useDefaultCoverArt: false,
-            isEditing: false
+            isEditing: false,
+            previewNotes: ''
         }
     },
 
@@ -103,9 +109,19 @@ export default {
         },
         replaceWithDefault() {
             this.useDefaultCoverArt = true;
-        }, 
+        },
         toggleToEditNotes() {
-            this.isEditing = true;
+            this.isEditing = !this.isEditing;
+        }, 
+        addUpdatedNotes() {
+            this.record.recordNotes = this.previewNotes;
+            RecordService
+            .updateRecordByRecordId(this.record.recordId, this.record)
+            this.isEditing = false; // exits the edit mode after saving/adding notes           
+        },
+        cancelEdit() {
+            this.isEditing = false;
+            this.previewNotes=''; // if cancel button is clicked, notes section reverts back to what it originally was
         }
     }
 
@@ -232,9 +248,9 @@ export default {
     background-color: #C09B09;
     border-color: white;
 }
+
 .button-container {
     display: inline-flex;
     align-items: flex-start;
 }
-
 </style>

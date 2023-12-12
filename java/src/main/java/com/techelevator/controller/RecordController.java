@@ -8,6 +8,7 @@ import com.techelevator.model.Collection;
 import com.techelevator.model.Record;
 import com.techelevator.model.User;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -129,6 +130,17 @@ public class RecordController {
         }
 
         return dbRecord;
+    }
+
+    @PutMapping("records/{recordId}")
+    public Record editRecordNotes(@PathVariable int recordId, @RequestBody Record newRecord) {
+//        Record record = recordDao.getRecordById(recordId);
+        Record updatedRecord = recordDao.updateNotes(newRecord);
+
+        if (updatedRecord == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No notes to add");
+        }
+        return updatedRecord;
     }
 
 

@@ -4,10 +4,15 @@
     <nav id="header" class="navbar navbar-expand-lg navbar-light bg-dark">
       <a id="page-title" class="header-piece navbar-brand text-white" href="#">SpoTEfy</a>
 
-      <nav class="header-piece navbar navbar-light">
+      <nav class="header-piece navbar navbar-light" id="search-component">
+        <select class="form-select" aria-label="Default select example" id="search-criteria" v-model="searchCriteria" @change="setSearchCriteria()">
+          <option value="Name">Collection Name</option>
+          <option value="Genre">Genre</option>
+          <option value="Artist">Artist</option>
+        </select>
         <form id="search-bar" class="form-inline">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="search-btn btn my-2 my-sm-0" type="submit">Search</button>
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" v-model="searchRequest">
+          <button class="search-btn btn my-2 my-sm-0" type="submit" @submit.prevent="setSearchRequest()">Search</button>
         </form>
       </nav>
 
@@ -111,7 +116,9 @@ export default {
   data() {
     return {
       numOfCollections: -1,
-      numOfRecords: -1
+      numOfRecords: -1,
+      searchCriteria: 'Name',
+      searchRequest: ''
     };
   },
   computed: {
@@ -145,6 +152,12 @@ export default {
     },
     changeLocation(location) {
       this.$store.commit("SET_LOCATION", location);
+    },
+    setSearchCriteria() {
+      this.$store.commit('SET_SEARCH_CRITERIA', this.searchCriteria);
+    },
+    setSearchRequest() {
+      this.$store.commit('SET_SEARCH_REQUEST', this.searchRequest)
     }
   }
 }
@@ -183,6 +196,17 @@ export default {
 
 #search-bar {
   display: flex;
+  width: 65%;
+}
+
+#search-component {
+  width: 25%;
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+#search-criteria {
+  width: 35%;
 }
 
 .header-piece {

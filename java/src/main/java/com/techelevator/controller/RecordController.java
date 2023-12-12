@@ -3,6 +3,7 @@ package com.techelevator.controller;
 import com.techelevator.dao.CollectionDao;
 import com.techelevator.dao.RecordDao;
 import com.techelevator.dao.UserDao;
+import com.techelevator.model.Authority;
 import com.techelevator.model.Collection;
 import com.techelevator.model.Record;
 import com.techelevator.model.User;
@@ -11,7 +12,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/")
@@ -62,8 +66,16 @@ public class RecordController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Records Not Found");
         }
 
-        if (loggedInUser.getId() != userId && !loggedInUser.getAuthorities().contains("ROLE_ADMIN")) {
-            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "You're not the owner of those records");
+        String roles = "";
+        List<Authority> authorities = new ArrayList<>(loggedInUser.getAuthorities());
+        for (Authority authority : authorities) {
+            roles += authority.getName() + " ";
+        }
+
+        if (loggedInUser.getId() != userId) {
+            if (!roles.contains("ROLE_ADMIN")) {
+                throw new ResponseStatusException(HttpStatus.FORBIDDEN, "That collection is private and you are not the owner");
+            }
         }
 
         return records;
@@ -75,15 +87,23 @@ public class RecordController {
     }
 
     @GetMapping("collections/{collectionId}/records")
-    public List<Record> getRecordByCollectionId(@PathVariable int collectionId, Principal principal) {
+    public List<Record> getRecordsByCollectionId(@PathVariable int collectionId, Principal principal) {
 
         Collection collection = collectionDao.getCollectionById(collectionId);
 
         if (!collection.isPublic()) {
             User loggedInUser = userDao.getUserByEmailAddress(principal.getName());
 
-            if (loggedInUser.getId() != collection.getUserId() || !loggedInUser.getAuthorities().contains("ROLE_ADMIN")) {
-                throw new ResponseStatusException(HttpStatus.FORBIDDEN, "That collection id private and you are not the owner");
+            String roles = "";
+            List<Authority> authorities = new ArrayList<>(loggedInUser.getAuthorities());
+            for (Authority authority : authorities) {
+                roles += authority.getName() + " ";
+            }
+
+            if (loggedInUser.getId() != collection.getUserId()) {
+                if (!roles.contains("ROLE_ADMIN")) {
+                    throw new ResponseStatusException(HttpStatus.FORBIDDEN, "That collection is private and you are not the owner");
+                }
             }
         }
 

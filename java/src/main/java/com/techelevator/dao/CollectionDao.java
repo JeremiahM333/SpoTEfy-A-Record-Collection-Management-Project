@@ -13,7 +13,13 @@ public interface CollectionDao {
 
      Collection getCollectionById(int collectionId);
 
+     List<Collection> getPublicCollectionsBySearch(List<String> search);
+
+     List<Collection> getCollectionsBySearchByUserId(List<String> search, int userId);
+
      int getNumOfCollectionsByUserId(int userId);
+
+     List<Collection> getCollectionsByRecordId(int recordId);
 
      Collection createCollection(Collection collection);
 

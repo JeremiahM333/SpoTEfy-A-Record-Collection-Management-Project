@@ -5,14 +5,16 @@
       <a id="page-title" class="header-piece navbar-brand text-white" href="#">SpoTEfy</a>
 
       <nav class="header-piece navbar navbar-light" id="search-component">
-        <select class="form-select" aria-label="Default select example" id="search-criteria" v-model="searchCriteria" @change="setSearchCriteria()">
+        <select class="form-select" aria-label="Default select example" id="search-criteria" v-model="searchCriteria"
+          @change="setSearchCriteria()">
           <option value="Name">Collection Name</option>
           <option value="Genre">Genre</option>
           <option value="Artist">Artist</option>
         </select>
         <form id="search-bar" class="form-inline">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" v-model="searchRequest">
-          <button class="search-btn btn my-2 my-sm-0" type="submit" @submit.prevent="setSearchRequest()">Search</button>
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
+            v-model="searchRequest">
+          <button class="search-btn btn my-2 my-sm-0" type="button" @click.prevent="setSearchRequest()">Search</button>
         </form>
       </nav>
 

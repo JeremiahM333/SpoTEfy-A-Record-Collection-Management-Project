@@ -49,6 +49,23 @@ public class JdbcCollectionDao implements CollectionDao {
         return collections;
     }
 
+    public List<Collection> getCollectionsByRecordId(int recordId) {
+        List<Collection> collections = new ArrayList<>();
+        String sql = "SELECT c.collection_id, user_id, collection_name, is_public, collection_cover " +
+                     "FROM collections c " +
+                     "JOIN collections_records cr ON c.collection_id = cr.collection_id " +
+                     "WHERE record_id = ?";
+        try {
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, recordId);
+            while (results.next()) {
+                collections.add(mapRowToCollection(results));
+            }
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        }
+        return collections;
+    }
+
     public Collection getCollectionById(int collectionId) {
         Collection collection = null;
         String sql = "SELECT collection_id, user_id, collection_name, is_public, collection_cover FROM collections WHERE collection_id = ?";
@@ -61,6 +78,68 @@ public class JdbcCollectionDao implements CollectionDao {
             throw new DaoException("Unable to connect to server or database", e);
         }
         return collection;
+    }
+
+    public List<Collection> getPublicCollectionsBySearch(List<String> search) {
+        List<Collection> filteredCollections = new ArrayList<>();
+
+        String subQuery = "(SELECT collection_id, user_id, collection_name, is_public, collection_cover FROM collections WHERE is_public)";
+        String whereClause = search.get(1).equals("Name") ? "collection_name ILIKE ?" :
+                (search.get(0).equals("Artist") ? "artist_name ILIKE ?" : "genre_name ILIKE ?");
+        String searchRequest = "%" + search.get(1) + "%";
+
+        String sql = "SELECT c.collection_id, c.user_id, collection_name, is_public, collection_cover " +
+                     "FROM " + subQuery + " AS c " +
+                     "JOIN collections_records cr ON c.collection_id = cr.collection_id " +
+                     "JOIN records r ON r.record_id = cr.record_id " +
+                     "JOIN artists_records ar ON r.record_id = ar.record_id " +
+                     "JOIN artists a ON a.artist_id = ar.artist_id " +
+                     "JOIN records_genres rg ON r.record_id = rg.record_id " +
+                     "JOIN genres g ON g.genre_id = rg.genre_id " +
+                     "WHERE " + whereClause;
+
+        try {
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, searchRequest);
+
+            while (results.next()) {
+                filteredCollections.add(mapRowToCollection(results));
+            }
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        }
+
+        return filteredCollections;
+    }
+
+    public List<Collection> getCollectionsBySearchByUserId(List<String> search, int userId) {
+        List<Collection> filteredCollections = new ArrayList<>();
+
+        String subQuery = "(SELECT collection_id, user_id, collection_name, is_public, collection_cover FROM collections WHERE user_id = ?)";
+        String whereClause = search.get(1).equals("Name") ? "collection_name ILIKE ?" :
+                (search.get(0).equals("Artist") ? "artist_name ILIKE ?" : "genre_name ILIKE ?");
+        String searchRequest = "%" + search.get(1) + "%";
+
+        String sql = "SELECT c.collection_id, c.user_id, collection_name, is_public, collection_cover " +
+                "FROM " + subQuery + " AS c " +
+                "JOIN collections_records cr ON c.collection_id = cr.collection_id " +
+                "JOIN records r ON r.record_id = cr.record_id " +
+                "JOIN artists_records ar ON r.record_id = ar.record_id " +
+                "JOIN artists a ON a.artist_id = ar.artist_id " +
+                "JOIN records_genres rg ON r.record_id = rg.record_id " +
+                "JOIN genres g ON g.genre_id = rg.genre_id " +
+                "WHERE " + whereClause;
+
+        try {
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId, searchRequest);
+
+            while (results.next()) {
+                filteredCollections.add(mapRowToCollection(results));
+            }
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        }
+
+        return filteredCollections;
     }
 
     public int getNumOfCollectionsByUserId(int userId) {

@@ -49,6 +49,16 @@ public class CollectionController {
         return collectionDao.getCollectionsByUserId(userId);
     }
 
+    @PostMapping("/collections/search")
+    public List<Collection> getPublicCollectionsBySearch(@RequestBody List<String> search) {
+        return collectionDao.getPublicCollectionsBySearch(search);
+    }
+
+    @PostMapping("/users/{userId}/collections/search")
+    public List<Collection> getCollectionsBySearchByUserId(@PathVariable int userId, @RequestBody List<String> search) {
+        return collectionDao.getCollectionsBySearchByUserId(search, userId);
+    }
+
     @GetMapping("/users/{userId}/collections/amount")
     public int getNumOfCollectionsByUserId(@PathVariable int userId) {
         return collectionDao.getNumOfCollectionsByUserId(userId);

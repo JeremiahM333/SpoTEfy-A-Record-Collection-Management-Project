@@ -15,7 +15,7 @@ export default {
 
     getNumOfRecordsByUserId(userId) {
         return axios.get(`/users/${userId}/records/amount`);
-    }, 
+    },
 
     getRecordByRecordId(recordId) {
         return axios.get(`/records/${recordId}`);
@@ -23,5 +23,9 @@ export default {
 
     updateRecordByRecordId(recordId, record) {
         return axios.put(`records/${recordId}`, record);
+    },
+
+    getRecords() {
+        return axios.get('/records');
     }
 }

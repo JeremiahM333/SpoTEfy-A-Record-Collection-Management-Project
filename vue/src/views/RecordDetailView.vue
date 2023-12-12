@@ -71,7 +71,8 @@ export default {
             collections: [],
             collectionCheckbox: [],
             defaultCoverArt: 'https://static.tumblr.com/exbflx8/z13m20ek0/cover.png',
-            useDefaultCoverArt: false
+            useDefaultCoverArt: false,
+            isEditing: false
         }
     },
 
@@ -102,6 +103,9 @@ export default {
         },
         replaceWithDefault() {
             this.useDefaultCoverArt = true;
+        }, 
+        toggleToEditNotes() {
+            this.isEditing = true;
         }
     }
 
@@ -231,8 +235,6 @@ export default {
 .button-container {
     display: inline-flex;
     align-items: flex-start;
-
-    
 }
 
 </style>

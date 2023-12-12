@@ -27,7 +27,7 @@
                 <div id="mediaType">{{ record.mediaType }}</div>
 
                 
-                    <div class="btn-group dropup">
+                    <div class="btn-group dropup button-container buttons" id="buttons">
                         <button class="btn btn-secondary dropdown-toggle collection-btn" type="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
                             Collections
@@ -41,12 +41,12 @@
                                 <!-- // filter collections shown if record is already in that collection -->
                             </li>
                         </ul>
-                    </div>
+                
                     <div>
                         <button class="btn btn-primary add-btn" type="submit"
                             v-on:click.prevent="addRecordToCollection">Add</button>
                     </div>
-                
+                    </div>
             </div>
         </div>
 
@@ -137,9 +137,9 @@ export default {
         "image     artist"
         "image     genre"
         "image     notes"
-        "title    date"
+        "title      date"
         "title     mediaType"
-        "buttons    ."
+        "buttons   ."
     ;
     padding: 0%;
 }
@@ -196,13 +196,17 @@ export default {
 .add-btn {
     background-color: #E5B80B;
     border-color: #E5B80B;
-    width: 30%;
+    min-width: 15rem;
+    max-width: 15rem;
+    margin: 2rem;
 }
 
 .collection-btn {
     background-color: #E5B80B;
     border-color: #E5B80B;
-    max-width: 30%;
+    min-width: 15rem;
+    max-width: 15rem;
+    margin: 2rem;
 }
 
 .edit-btn {
@@ -223,6 +227,12 @@ export default {
 .edit-btn:hover {
     background-color: #C09B09;
     border-color: white;
+}
+.button-container {
+    display: inline-flex;
+    align-items: flex-start;
+
+    
 }
 
 </style>

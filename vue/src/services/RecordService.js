@@ -15,9 +15,13 @@ export default {
 
     getNumOfRecordsByUserId(userId) {
         return axios.get(`/users/${userId}/records/amount`);
-    }, 
+    },
 
     getRecordByRecordId(recordId) {
         return axios.get(`/records/${recordId}`);
+    },
+
+    getRecords() {
+        return axios.get('/records');
     }
 }

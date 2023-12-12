@@ -1,12 +1,7 @@
 package com.techelevator.controller;
 
-import com.techelevator.dao.CollectionDao;
-import com.techelevator.dao.RecordDao;
-import com.techelevator.dao.UserDao;
-import com.techelevator.model.Authority;
-import com.techelevator.model.Collection;
-import com.techelevator.model.Record;
-import com.techelevator.model.User;
+import com.techelevator.dao.*;
+import com.techelevator.model.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -28,23 +23,46 @@ public class RecordController {
 
     private CollectionDao collectionDao;
 
-    public RecordController(RecordDao recordDao, UserDao userDao, CollectionDao collectionDao) {
+    private ArtistDao artistDao;
+
+    private GenreDao genreDao;
+
+    public RecordController(RecordDao recordDao, UserDao userDao, CollectionDao collectionDao, ArtistDao artistDao, GenreDao genreDao) {
         this.recordDao = recordDao;
         this.userDao = userDao;
         this.collectionDao = collectionDao;
+        this.artistDao = artistDao;
+        this.genreDao = genreDao;
     }
 
-    @GetMapping("records")
-    public List<Record> getCurrentUserRecords(Principal principal) {
-        User loggedInUser = userDao.getUserByEmailAddress(principal.getName());
+    @GetMapping("/records")
+    public List<Record2point0> getRecords() {
+        List<Record2point0> records = recordDao.getRecords();
 
-        List<Record> records = recordDao.getRecordsByUserId(loggedInUser.getId());
-        if (records == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Records Not Found");
+        for (Record2point0 record : records) {
+            List<Collection> collections = collectionDao.getCollectionsByRecordId(record.getRecordId());
+            List<Artist> artists = artistDao.getArtistsByRecordId(record.getRecordId());
+            List<Genre> genres = genreDao.getGenresByRecordId(record.getRecordId());
+
+            record.setCollections(collections);
+            record.setArtists(artists);
+            record.setGenres(genres);
         }
 
         return records;
     }
+
+//    @GetMapping("records")
+//    public List<Record> getCurrentUserRecords(Principal principal) {
+//        User loggedInUser = userDao.getUserByEmailAddress(principal.getName());
+//
+//        List<Record> records = recordDao.getRecordsByUserId(loggedInUser.getId());
+//        if (records == null) {
+//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Records Not Found");
+//        }
+//
+//        return records;
+//    }
 
     @GetMapping("records/{recordId}")
     public Record getRecordByRecordId(@PathVariable int recordId) {

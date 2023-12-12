@@ -20,5 +20,13 @@ export default {
 
     addRecordToCollection(recordId, collectionIds) {
         return axios.post(`records/${recordId}/collections`, collectionIds);
+    },
+
+    getPublicCollectionsBySearch(search) {
+        return axios.post('/collections/search', search);
+    },
+
+    getCollectionsBySearchByUserId(userId, search) {
+        return axios.post(`/users/${userId}/collections/search`, search);
     }
 }

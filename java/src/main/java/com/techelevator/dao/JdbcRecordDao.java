@@ -2,6 +2,7 @@ package com.techelevator.dao;
 
 import com.techelevator.exception.DaoException;
 import com.techelevator.model.Record;
+import com.techelevator.model.Record2point0;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -18,6 +19,21 @@ public class JdbcRecordDao implements RecordDao{
 
     public JdbcRecordDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
+    }
+
+    public List<Record2point0> getRecords() {
+        List<Record2point0> records = new ArrayList<>();
+        String sql = "SELECT record_id, user_id, album_name, album_cover, release_date, media_type, record_notes " +
+                "FROM records";
+        try {
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+            while (results.next()) {
+                records.add(mapRowToRecord2point0(results));
+            }
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        }
+        return records;
     }
 
     public List<Record> getRecordsByCollectionId(int id) {
@@ -116,6 +132,20 @@ public class JdbcRecordDao implements RecordDao{
 
     private Record mapRowToRecord(SqlRowSet rs) {
         Record record = new Record();
+        record.setRecordId(rs.getInt("record_id"));
+        record.setUserId(rs.getInt("user_id"));
+        record.setAlbumName(rs.getString("album_name"));
+        record.setAlbumCover(rs.getString("album_cover"));
+        if (rs.getDate("release_date") != null) {
+            record.setReleaseDate(rs.getDate("release_date").toLocalDate());
+        }
+        record.setMediaType(rs.getString("media_type"));
+        record.setRecordNotes(rs.getString("record_notes"));
+        return record;
+    }
+
+    private Record2point0 mapRowToRecord2point0(SqlRowSet rs) {
+        Record2point0 record = new Record2point0();
         record.setRecordId(rs.getInt("record_id"));
         record.setUserId(rs.getInt("user_id"));
         record.setAlbumName(rs.getString("album_name"));

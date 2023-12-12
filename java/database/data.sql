@@ -75,7 +75,7 @@ INSERT INTO genres (genre_name)
 VALUES
   ('Rock')
   ,('Pop')
-  ,('County')
+  ,('Country')
   ,('Synth-pop')
   ,('Electropop')
   ,('Pop rock')

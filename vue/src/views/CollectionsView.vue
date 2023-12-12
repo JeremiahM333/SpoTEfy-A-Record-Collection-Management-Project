@@ -21,8 +21,8 @@ export default {
   },
   computed: {
     filteredCollections() {
-      // TO DO 
-      // MAKE DAOS
+      let Search = [this.$store.state.searchCriteria, this.$store.state.searchRequest];
+
       return null;
     }
   },

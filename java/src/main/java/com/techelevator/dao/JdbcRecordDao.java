@@ -99,6 +99,20 @@ public class JdbcRecordDao implements RecordDao{
         return newRecord;
     }
 
+    public Record updateNotes(Record record) {
+
+        String updateNotesSql = "UPDATE records\n" +
+                "SET record_notes = ?\n" +
+                "WHERE record_id = ?;";
+
+        int rowsUpdate = jdbcTemplate.update(updateNotesSql, record.getRecordNotes(), record.getRecordId());
+
+        if (rowsUpdate > 0 ) {
+            return record;
+        } else {
+            return null;
+        }
+    }
 
     private Record mapRowToRecord(SqlRowSet rs) {
         Record record = new Record();

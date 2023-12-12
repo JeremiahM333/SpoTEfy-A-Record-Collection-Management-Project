@@ -17,4 +17,9 @@ public interface RecordDao {
     Record createRecord(Record record);
 
     Record updateNotes(Record record);
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 71a5db49d4bfb08294b5cc47dd0c64796f07ff9d
 }

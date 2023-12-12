@@ -9,8 +9,9 @@
 
                 <div id="artist">
                     <h2 class="heading">Artists</h2>
-                    <h4 v-for="artist in artists" v-bind:key="artist.artistId">{{ artist.artistName }}</h4>
+                    <h5 v-for="artist in artists" v-bind:key="artist.artistId">{{ artist.artistName }}</h5>
                 </div>
+
                 <div id="genre">
                     <h2 class="heading">Genres</h2>
                     <h5 v-for="genre in genres" v-bind:key="genre.genreId">{{ genre.genreName }}</h5>
@@ -29,8 +30,15 @@
                         </form>
                 </div>
 
-                <div id="date">{{ record.releaseDate }}</div>
-                <div id="mediaType">{{ record.mediaType }}</div>
+                <div id="date">
+                    <h2 class="heading">Release Date</h2> 
+                    <h5>{{ record.releaseDate }}</h5>
+                </div>
+
+                <div id="mediaType">
+                    <h2 class="heading">Media Type</h2>
+                    <h5>{{ record.mediaType }}</h5>
+                </div>
 
 
                 <div class="btn-group dropup button-container buttons" id="buttons">
@@ -51,8 +59,12 @@
                         <button class="btn btn-primary add-btn" type="submit"
                             v-on:click.prevent="addRecordToCollection">Add</button>
                     </div>
-                </div>
+                    </div>
+                    <div>
+                <a href='/users/:userId/records' class="btn btn-primary" id="library-button" role="button" aria-pressed="true">Back to Library</a>
             </div>
+            </div>
+           
         </div>
 
     </div>
@@ -159,7 +171,7 @@ export default {
         "image     notes"
         "title      date"
         "title     mediaType"
-        "buttons   ."
+        "buttons   library-button"
     ;
     padding: 0%;
 }
@@ -186,6 +198,7 @@ export default {
 
 #artist {
     grid-area: artist;
+    margin-top: 2rem;
 }
 
 #genre {
@@ -253,4 +266,20 @@ export default {
     display: inline-flex;
     align-items: flex-start;
 }
+
+#library-button {
+    grid-area: library-button;
+    background-color: #E5B80B;
+    border-color: #E5B80B;
+    min-width: 15rem;
+    max-width: 15rem;
+    margin-top: 2rem;
+    margin-left: 20rem;
+}
+
+#library-button:hover {
+    background-color: #C09B09;
+    border-color: white;
+}
+
 </style>

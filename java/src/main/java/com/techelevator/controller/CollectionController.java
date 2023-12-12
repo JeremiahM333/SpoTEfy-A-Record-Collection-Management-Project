@@ -4,6 +4,7 @@ import com.techelevator.dao.CollectionDao;
 import com.techelevator.dao.RecordDao;
 import com.techelevator.dao.UserDao;
 import com.techelevator.exception.DaoException;
+import com.techelevator.model.Authority;
 import com.techelevator.model.Collection;
 import com.techelevator.model.Record;
 import com.techelevator.model.User;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -38,8 +40,10 @@ public class CollectionController {
     public List<Collection> getCollectionsByUserId(@PathVariable int userId,  Principal principal) {
         User loggedInUser = userDao.getUserByEmailAddress(principal.getName());
 
-        if (loggedInUser.getId() != userId && !loggedInUser.getAuthorities().contains("ROLE_ADMIN")) {
-            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "You're not the owner of those collections");
+        if (loggedInUser.getId() != userId) {
+            if (!loggedInUser.getAuthorities().contains("ROLE_ADMIN")) {
+                throw new ResponseStatusException(HttpStatus.FORBIDDEN, "You're not the owner of those collections");
+            }
         }
 
         return collectionDao.getCollectionsByUserId(userId);
@@ -65,8 +69,16 @@ public class CollectionController {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Failed to add to Collections");
         }
 
-        if (loggedInUser.getId() != record.getUserId() && !loggedInUser.getAuthorities().contains("ROLE_ADMIN")) {
-            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "You're not the owner of this collections");
+        String roles = "";
+        List<Authority> authorities = new ArrayList<>(loggedInUser.getAuthorities());
+        for (Authority authority : authorities) {
+            roles += authority.getName() + " ";
+        }
+
+        if (loggedInUser.getId() != record.getUserId()) {
+            if (!roles.contains("ROLE_ADMIN")) {
+                throw new ResponseStatusException(HttpStatus.FORBIDDEN, "That collection is private and you are not the owner");
+            }
         }
 
         return rowsAffected;

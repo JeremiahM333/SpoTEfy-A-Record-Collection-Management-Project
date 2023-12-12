@@ -26,27 +26,24 @@
                 <div id="date">{{ record.releaseDate }}</div>
                 <div id="mediaType">{{ record.mediaType }}</div>
 
-                
-                    <div class="btn-group dropup">
-                        <button class="btn btn-secondary dropdown-toggle collection-btn" type="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Collections
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li class="dropdown-item" v-for="collection in collections"
-                                v-bind:key="collection.collectionId">
-                                {{ collection.collectionName }}
-                                <input class="form-check-input" type="checkbox" id="checkboxNoLabel"
-                                    v-bind:value="collection.collectionId" v-model="collectionCheckbox">
-                                <!-- // filter collections shown if record is already in that collection -->
-                            </li>
-                        </ul>
-                    </div>
-                    <div>
-                        <button class="btn btn-primary add-btn" type="submit"
-                            v-on:click.prevent="addRecordToCollection">Add</button>
-                    </div>
-                
+                <div class="btn-group dropup">
+                    <button class="btn btn-secondary dropdown-toggle collection-btn" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Collections
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-item" v-for="collection in collections" v-bind:key="collection.collectionId">
+                            {{ collection.collectionName }}
+                            <input class="form-check-input" type="checkbox" id="checkboxNoLabel"
+                                v-bind:value="collection.collectionId" v-model="collectionCheckbox">
+                            <!-- // filter collections shown if record is already in that collection -->
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <button class="btn btn-primary add-btn" type="submit"
+                        v-on:click.prevent="addRecordToCollection">Add</button>
+                </div>
             </div>
         </div>
 
@@ -71,7 +68,8 @@ export default {
             collections: [],
             collectionCheckbox: [],
             defaultCoverArt: 'https://static.tumblr.com/exbflx8/z13m20ek0/cover.png',
-            useDefaultCoverArt: false
+            useDefaultCoverArt: false,
+            isEditing: false
         }
     },
 
@@ -102,6 +100,9 @@ export default {
         },
         replaceWithDefault() {
             this.useDefaultCoverArt = true;
+        }, 
+        toggleToEditNotes() {
+            this.isEditing = true;
         }
     }
 
@@ -224,5 +225,4 @@ export default {
     background-color: #C09B09;
     border-color: white;
 }
-
 </style>

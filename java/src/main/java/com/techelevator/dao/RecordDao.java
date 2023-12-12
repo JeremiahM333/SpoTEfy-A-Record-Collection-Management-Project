@@ -16,5 +16,7 @@ public interface RecordDao {
 
     Record createRecord(Record record);
 
+    Record updateNotes(Record record);
+
 
 }

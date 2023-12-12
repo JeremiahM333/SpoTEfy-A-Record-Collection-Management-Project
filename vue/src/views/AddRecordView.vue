@@ -25,28 +25,28 @@
 
         <div class="artistInput formInput mb-3 listInput">
           <!-- <label for="ArtistNames" class="form-label">Artists</label> -->
-          <ul id="ArtistNames">
+          <!-- <ul id="ArtistNames"> -->
             <li v-for="n in getNumOfArtists" v-bind:key="n" class="listItem">
               <input type="text" class="form-control form-control-lg artistNameInputs"
                 placeholder="Enter Artist Name Here" aria-describedby="artistName" v-model="artists[n - 1]">
               <!-- <button type="button" class="btn btn-primary goldButtons removeButton"
                 @click="removeArtist(n - 1)">X</button> -->
             </li>
-          </ul>
+          <!-- </ul> -->
           <button type="button" class="btn btn-primary goldButtons" id="add-artist" @click="numOfArtists++">Add Additional
             Artist</button>
         </div>
 
         <div class="genreInput formInput mb-3 listInput">
           <!-- <label for="GenreNames" class="form-label">Genres</label> -->
-          <ul id="GenreNames">
+          <!-- <ul id="GenreNames"> -->
             <li v-for="n in getNumOfGenres" v-bind:key="n" class="listItem">
               <input type="text" class="form-control form-control-lg genreNameInputs" placeholder="Enter Genre Name Here"
                 aria-describedby="genreName" v-model="genres[n - 1]">
               <!-- <button type="button" class="btn btn-primary goldButtons removeButton"
                 @click="removeGenre(n - 1)">X</button> -->
             </li>
-          </ul>
+          <!-- </ul> -->
           <button type="button" class="btn btn-primary goldButtons" id="add-artist" @click="numOfGenres++">Add Additional
             Genre</button>
         </div>
@@ -239,4 +239,10 @@ export default {
 .removeButton {
   height: 100%;
 }
+
+#add-artist {
+  margin-top: 1rem;
+}
+
+
 </style>

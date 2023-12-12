@@ -16,7 +16,8 @@
                     <h5 v-for="genre in genres" v-bind:key="genre.genreId">{{ genre.genreName }}</h5>
                 </div>
                 <div id="notes">
-                    <h2 class="heading">Notes <button type="button" class="btn btn-primary btn-sm">Edit Notes</button></h2>
+                    <h2 class="heading">Notes <button type="button" class="btn btn-primary btn-sm edit-btn">Edit
+                            Notes</button></h2>
                     <p>This is a wider card with supporting text below as a natural lead-in to
                         additional This is a wider card with supporting text below as a natural lead-in to
                         additional This is a wider card with supporting text below as a natural lead-in to
@@ -25,22 +26,27 @@
                 <div id="date">{{ record.releaseDate }}</div>
                 <div id="mediaType">{{ record.mediaType }}</div>
 
-                <div class="btn-group dropup">
-                    <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        Collections
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li class="dropdown-item" v-for="collection in collections" v-bind:key="collection.collectionId">
-                            {{ collection.collectionName }}
-                            <input class="form-check-input" type="checkbox" id="checkboxNoLabel"
-                                v-bind:value="collection.collectionId" v-model="collectionCheckbox">
-                            <!-- // filter collections shown if record is already in that collection -->
-                        </li>
-                    </ul>
-                    <button class="btn btn-primary" type="submit" v-on:click.prevent="addRecordToCollection">Add</button>
-                </div>
-
+                
+                    <div class="btn-group dropup">
+                        <button class="btn btn-secondary dropdown-toggle collection-btn" type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Collections
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-item" v-for="collection in collections"
+                                v-bind:key="collection.collectionId">
+                                {{ collection.collectionName }}
+                                <input class="form-check-input" type="checkbox" id="checkboxNoLabel"
+                                    v-bind:value="collection.collectionId" v-model="collectionCheckbox">
+                                <!-- // filter collections shown if record is already in that collection -->
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <button class="btn btn-primary add-btn" type="submit"
+                            v-on:click.prevent="addRecordToCollection">Add</button>
+                    </div>
+                
             </div>
         </div>
 
@@ -133,7 +139,7 @@ export default {
         "image     notes"
         "title    date"
         "title     mediaType"
-        "buttons    buttons"
+        "buttons    ."
     ;
     padding: 0%;
 }
@@ -187,13 +193,36 @@ export default {
     font-weight: bold;
 }
 
-.btn {
+.add-btn {
+    background-color: #E5B80B;
+    border-color: #E5B80B;
+    width: 30%;
+}
+
+.collection-btn {
+    background-color: #E5B80B;
+    border-color: #E5B80B;
+    max-width: 30%;
+}
+
+.edit-btn {
     background-color: #E5B80B;
     border-color: #E5B80B;
 }
 
-.btn:hover {
+.add-btn:hover {
     background-color: #C09B09;
     border-color: white;
 }
+
+.collection-btn:hover {
+    background-color: #C09B09;
+    border-color: white;
+}
+
+.edit-btn:hover {
+    background-color: #C09B09;
+    border-color: white;
+}
+
 </style>

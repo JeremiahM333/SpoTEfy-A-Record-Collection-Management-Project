@@ -92,5 +92,6 @@ export default {
   z-index: -3;
   background-image: url(../resources/recordstore0_XnnKU_Lzqq6kegdE.jpg);
   background-size: cover;
+  height: 100%;
 }
 </style>

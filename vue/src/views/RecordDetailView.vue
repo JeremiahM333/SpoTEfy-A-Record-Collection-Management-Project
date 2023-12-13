@@ -4,10 +4,10 @@
         <div class="container" id="form-margin">
             <div class="detail-body">
 
-                <div v-if="showSuccessMessage" class="alert alert-success" role="alert" id="success" >
+                <div v-if="showSuccessMessage" class="alert alert-success" role="alert" id="success">
                     Successfully added this record to a collection!
                 </div>
-                
+
                 <img id="image" :src="useDefaultCoverArt ? defaultCoverArt : record.albumCover"
                     @error="replaceWithDefault()">
                 <h3 id="title">{{ record.albumName }}</h3>
@@ -23,9 +23,12 @@
                 </div>
 
                 <div id="notes">
-                    <h2 class="heading">Notes <button v-if="!isEditing" @click="toggleToEditNotes()" type="button"
+                    <h2 class="heading">Notes
+
+                        <button v-if="!isEditing && isOwner" @click="toggleToEditNotes()" type="button"
                             class="btn btn-primary btn-sm edit-btn">Edit
-                            Notes</button></h2>
+                            Notes</button>
+                    </h2>
                     <p v-if="!isEditing"> {{ record.recordNotes }} </p>
                     <form v-else v-on:submit.prevent="addUpdatedNotes">
                         <textarea class="form-control" id="exampleFormControlTextarea1" v-model="previewNotes"
@@ -49,8 +52,8 @@
 
 
                 <div class="btn-group dropup button-container buttons" id="buttons">
-                    <button class="btn btn-secondary dropdown-toggle collection-btn" type="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
+                    <button v-show="isOwner" class="btn btn-secondary dropdown-toggle collection-btn" type="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
                         Collections
                     </button>
                     <ul class="dropdown-menu">
@@ -63,16 +66,16 @@
                     </ul>
 
                     <div>
-                        <button class="btn btn-primary add-btn" type="submit"
+                        <button v-show="isOwner" class="btn btn-primary add-btn" type="submit"
                             v-on:click.prevent="addRecordToCollection">Add</button>
-                            </div>
-                            <div>
-                    <a href='/users/:userId/records' class="btn btn-primary" id="library-button" role="button"
-                        aria-pressed="true">Back to Library</a>
+                    </div>
+                    <div>
+                        <a href='/users/:userId/records' class="btn btn-primary" id="library-button" role="button"
+                            aria-pressed="true">Back to Library</a>
+                    </div>
                 </div>
-                        </div>
-                
-                
+
+
             </div>
 
         </div>
@@ -129,8 +132,8 @@ export default {
         addRecordToCollection() {
             CollectionsService
                 .addRecordToCollection(this.record.recordId, this.collectionCheckbox)
-                this.showSuccessMessage = true;
-                setTimeout(() => {
+            this.showSuccessMessage = true;
+            setTimeout(() => {
                 this.showSuccessMessage = false;
             }, 3000);
         },
@@ -149,6 +152,11 @@ export default {
         cancelEdit() {
             this.isEditing = false;
             this.previewNotes = ''; // if cancel button is clicked, notes section reverts back to what it originally was
+        }
+    },
+    computed: {
+        isOwner() {
+            return this.record.userId == this.$store.state.user.id;
         }
     }
 
@@ -196,6 +204,7 @@ export default {
     margin-top: 2rem;
     text-align: center;
 }
+
 #image {
     grid-area: image;
     min-height: 30rem;

@@ -2,8 +2,9 @@
   <div id="home-page">
     <!-- bootsstrap nav bar -->
     <nav id="header" class="navbar navbar-expand-lg navbar-light bg-dark">
-      <a id="page-title" class="header-piece navbar-brand text-white" href="#"><img src="./resources/Screenshot 2023-12-13 105903.png" id="logoPicture"/>SpoTEfy</a>
-      
+      <a id="page-title" class="header-piece navbar-brand text-white" href="#"><img
+          src="./resources/Screenshot 2023-12-13 105903.png" id="logoPicture" />SpoTEfy</a>
+
       <nav class="header-piece navbar navbar-light" id="search-component">
         <select class="form-select" aria-label="Default select example" id="search-criteria" v-model="searchCriteria"
           @change="setSearchCriteria()">
@@ -14,7 +15,8 @@
         <form id="search-bar" class="form-inline">
           <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
             v-model="searchRequest">
-          <button class="search-btn btn my-2 my-sm-0" id="button-search" type="button" @click.prevent="setSearchRequest()">Search</button>
+          <button class="search-btn btn my-2 my-sm-0" id="button-search" type="button"
+            @click.prevent="setSearchRequest()">Search</button>
         </form>
       </nav>
 
@@ -36,7 +38,8 @@
       <hr>
       <ul class="nav flex-column mb-auto">
         <li class="nav-item">
-          <router-link to="/" class="home-btn nav-link" :class="{active: $route.path === '/'}" @click="changeLocation('Home')">
+          <router-link to="/" class="home-btn nav-link" :class="{ active: $route.path === '/' }"
+            @click="changeLocation('Home')">
             <svg class="bi me-2" width="16" height="16">
               <use xlink:href="#home"></use>
             </svg>
@@ -44,18 +47,18 @@
           </router-link>
         </li>
         <li v-if="isAuthenticated">
-          <router-link :to="{ name: 'library', params: { userId: getUserId() } }" class="home-btn nav-link" :class="{active: $route.name === 'library'}"
-            v-on:click="changeLocation('Personal Library')">
+          <router-link :to="{ name: 'library', params: { userId: getUserId() } }" class="home-btn nav-link"
+            :class="{ active: $route.name === 'library' }" v-on:click="changeLocation('Personal Library')">
             <svg class="bi me-2" width="16" height="16">
-              <use xlink:href="#library"></use> 
+              <use xlink:href="#library"></use>
               <!-- possible change back to whatever was here before -->
             </svg>
             Personal Library
           </router-link>
         </li>
         <li v-if="isAuthenticated">
-          <router-link :to="{ name: 'collections', params: { userId: getUserId() } }" class="home-btn nav-link" :class="{active: $route.name === 'collections'}"
-            @click="changeLocation('Personal Collections')">
+          <router-link :to="{ name: 'collections', params: { userId: getUserId() } }" class="home-btn nav-link"
+            :class="{ active: $route.name === 'collections' }" @click="changeLocation('Personal Collections')">
             <svg class="bi me-2" width="16" height="16">
               <use xlink:href="#table"></use>
             </svg>
@@ -64,7 +67,8 @@
         </li>
         <li v-if="isAuthenticated">
           <router-link :to="{ name: 'addCollection' }" class="home-btn nav-link"
-            :class="{ disactive: !canAddMoreCollections, active: $route.name === 'addCollection' }" @click="changeLocation('Add Collection')">
+            :class="{ disactive: !canAddMoreCollections, active: $route.name === 'addCollection' }"
+            @click="changeLocation('Add Collection')">
             <svg class="bi me-2" width="16" height="16">
               <use xlink:href="#grid"></use>
             </svg>
@@ -72,7 +76,8 @@
           </router-link>
         </li>
         <li v-if="isAuthenticated">
-          <router-link :to="{ name: 'addrecord' }" class="home-btn nav-link" :class="{ disactive: !canAddMoreRecords, active: $route.name === 'addrecord' } "
+          <router-link :to="{ name: 'addrecord' }" class="home-btn nav-link"
+            :class="{ disactive: !canAddMoreRecords, active: $route.name === 'addrecord' }"
             @click="changeLocation('Add Record')">
             <svg class="bi me-2" width="16" height="16">
               <use xlink:href="#people-circle"></use>
@@ -231,7 +236,7 @@ export default {
   top: 80px;
   bottom: 40px;
   left: 0px;
-  
+
 }
 
 #router-view {
@@ -281,18 +286,15 @@ export default {
   background-color: #E5B80B;
   border-radius: 0.375rem;
 }
+
 .home-btn:hover {
   background-color: #c09b09;
   color: white;
+  border-radius: 0.375rem;
 }
 
 .nav-btn {
   color: white;
-}
-
-.nav-btn:hover {
-  color: #E5B80B;
-
 }
 
 .btn-secondary {
@@ -302,6 +304,7 @@ export default {
 .btn-secondary:hover {
   background-color: #c09b09;
   border-color: white;
+  border-radius: 0.375rem;
 }
 
 .footer {
@@ -311,12 +314,6 @@ export default {
 
 .footer p {
   margin-left: 1rem;
-}
-</style>
-
-<style>
-#app {
-  height: 100vh;
 }
 
 #displayName {
@@ -341,7 +338,7 @@ export default {
 }
 
 #search-bar {
- padding: 0.5rem;
+  padding: 0.5rem;
 }
 
 #button-search {
@@ -355,6 +352,10 @@ export default {
   margin-right: 1rem;
   filter: brightness(110%) saturate(150%) hue-rotate(0deg);
 }
+</style>
 
-
+<style>
+#app {
+  height: 100vh;
+}
 </style>

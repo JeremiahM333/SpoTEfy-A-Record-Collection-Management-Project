@@ -90,7 +90,7 @@ export default {
   align-content: flex-start;
   padding: 5px 0px 45px 5px;
   z-index: -3;
-  background-image: url(../resources/recordstore0_XnnKU_Lzqq6kegdE.jpg);
+  background-image: url(../resources/Vinyl-Records.webp);
   background-size: cover;
   height: 100%;
 }

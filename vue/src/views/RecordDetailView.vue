@@ -3,6 +3,11 @@
 
         <div class="container" id="form-margin">
             <div class="detail-body">
+
+                <div v-if="showSuccessMessage" class="alert alert-success" role="alert" id="success" >
+                    This is a success alert—check it out!
+                </div>
+                
                 <img id="image" :src="useDefaultCoverArt ? defaultCoverArt : record.albumCover"
                     @error="replaceWithDefault()">
                 <h3 id="title">{{ record.albumName }}</h3>
@@ -60,12 +65,14 @@
                     <div>
                         <button class="btn btn-primary add-btn" type="submit"
                             v-on:click.prevent="addRecordToCollection">Add</button>
-                    </div>
-                </div>
-                <div>
+                            </div>
+                            <div>
                     <a href='/users/:userId/records' class="btn btn-primary" id="library-button" role="button"
                         aria-pressed="true">Back to Library</a>
                 </div>
+                        </div>
+                
+                
             </div>
 
         </div>
@@ -93,7 +100,8 @@ export default {
             defaultCoverArt: 'https://static.tumblr.com/exbflx8/z13m20ek0/cover.png',
             useDefaultCoverArt: false,
             isEditing: false,
-            previewNotes: ''
+            previewNotes: '',
+            showSuccessMessage: false
         }
     },
 
@@ -121,6 +129,10 @@ export default {
         addRecordToCollection() {
             CollectionsService
                 .addRecordToCollection(this.record.recordId, this.collectionCheckbox)
+                this.showSuccessMessage = true;
+                setTimeout(() => {
+                this.showSuccessMessage = false;
+            }, 3000);
         },
         replaceWithDefault() {
             this.useDefaultCoverArt = true;
@@ -169,16 +181,20 @@ export default {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-areas:
+        "success   success"
         "image     artist"
         "image     genre"
         "image     notes"
         "title      date"
         "title     mediaType"
-        "buttons   library-button"
-    ;
+        "buttons   buttons";
     padding: 0%;
 }
 
+#success {
+    grid-area: success;
+    margin-top: 2rem;
+}
 #image {
     grid-area: image;
     min-height: 30rem;

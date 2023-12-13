@@ -48,7 +48,6 @@
             v-on:click="changeLocation('Personal Library')">
             <svg class="bi me-2" width="16" height="16">
               <use xlink:href="#library"></use> 
-              <!-- possible change back to whatever was here before -->
             </svg>
             Personal Library
           </router-link>

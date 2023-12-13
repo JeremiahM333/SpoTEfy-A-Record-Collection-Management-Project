@@ -91,6 +91,8 @@ export default {
   align-content: flex-start;
   padding: 5px 0px 45px 5px;
   z-index: -3;
+  background-image: url(../resources/why-is-vinyl-more-expensive-than-cd-1-1.webp);
+  background-size: cover;
   height: 100%;
 }
 

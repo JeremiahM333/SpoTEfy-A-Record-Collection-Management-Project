@@ -1,9 +1,8 @@
 
 
 <template>
-    
     <div class="record-card card-deck">
-        <router-link :to="{name: 'recordDetail', params: {recordId: record.recordId} }"
+        <router-link :to="{ name: 'recordDetail', params: { recordId: record.recordId } }"
             @click="setCurrentRecordId(record.recordId)" class="router-link-custom">
             <div class="card">
                 <img class="card-img-top" id="record-picture" :src="recordCover" @error="replaceWithDefault()">
@@ -39,7 +38,7 @@ export default {
     methods: {
         replaceWithDefault() {
             this.useDefaultCoverArt = true;
-        }, 
+        },
         setCurrentRecordId(recordId) {
             this.$store.commit("SET_CURRENT_RECORD", recordId);
         }
@@ -56,10 +55,17 @@ export default {
     border-radius: 1.5rem;
 }
 
+.card-body {
+    min-height: 5.5rem;
+    max-height: 5.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .card-title {
     text-align: center;
-    min-height: 4rem;
-    max-height: 4rem;
+
 }
 
 .router-link-custom {
@@ -71,6 +77,4 @@ export default {
     max-height: 15rem;
     min-height: 15rem;
 }
-
-
 </style>

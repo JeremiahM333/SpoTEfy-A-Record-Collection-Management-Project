@@ -42,7 +42,7 @@ VALUES
 INSERT INTO collections (user_id, collection_cover, collection_name, is_public)
 VALUES
   (1, 'https://fydn.imgix.net/m%2Fgen%2Fcanvas-square-p1%2F03ba4bd1-7e0f-4ad6-8449-d6dcaaf8c0f6.jpg?auto=format%2Ccompress&q=75', 'Taylor Swift Collection', true)
-  ,(2, 'https://www.albumartexchange.com/coverart/gallery/ja/jackharlowfeaturingd_whatspoppin_ddo5.jpg', 'mock', true)
+  ,(2, null, 'mock', true)
   ,(2, 'https://render.fineartamerica.com/images/rendered/default/poster/6/8/break/images/artworkimages/medium/1/the-beatles-on-wpap-ahmad-nusyirwan.jpg', 'The Beatles Collection', true)
   ,(4, 'https://fydn.imgix.net/m%2Fgen%2Fart-print-square-p1%2F00d3e865-f52a-4db7-9502-f2fc547945bd.jpg?auto=format%2Ccompress&q=75', 'Rock Music', true)
   ,(2, null, 'Twenty One Pilot', true)

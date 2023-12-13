@@ -50,7 +50,7 @@
           <router-link :to="{ name: 'library', params: { userId: getUserId() } }" class="home-btn nav-link"
             :class="{ active: $route.name === 'library' }" v-on:click="changeLocation('Personal Library')">
             <svg class="bi me-2" width="16" height="16">
-              <use xlink:href="#library"></use> 
+              <use xlink:href="#library"></use>
             </svg>
             Personal Library
           </router-link>

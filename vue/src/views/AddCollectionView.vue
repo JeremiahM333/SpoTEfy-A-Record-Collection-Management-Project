@@ -5,6 +5,7 @@
     </div> -->
 
   <div class="add-collection-pg">
+    <img src="../resources/s-l1600.jpg" id="backgroundImage">
 
     <form class="container">
       <div id="collectionForm">
@@ -116,11 +117,18 @@ export default {
 <style scoped>
 .add-collection-pg {
   align-self: center;
-  background-image: url(../resources/s-l1600.jpg);
-  background-size: cover;
   padding-top: 40px;
   padding-bottom: 40px;
   height: 100%;
+}
+
+#backgroundImage {
+  position: fixed;
+  width: 86%;
+  left: 16%;
+  top: 80px;
+  bottom: 40px;
+  z-index: -3;
 }
 
 #collectionForm {

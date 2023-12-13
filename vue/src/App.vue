@@ -292,6 +292,7 @@ export default {
 
 .nav-btn:hover {
   color: #E5B80B;
+  
 }
 
 .btn-secondary {

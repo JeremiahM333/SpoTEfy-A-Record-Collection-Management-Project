@@ -8,7 +8,6 @@ VALUES ('user','$2a$10$6i6ldKOyr9C9d5Cg69VukeMgec2hluJWcTca8AUEAOWUetKp1BEHm', '
        ,('Smitty', '$2a$10$9tX0SbgPmR6ief2D/Qcjpu44Xos91iox4gAG.qFsg22BryFv8TGZq', 'smitty05@gmail.com', 'ROLE_USER', 'premium')
        ,('Liz', '$2a$10$aM74liarpaGXq8.w80kJJOCw2lbehVRcT9P6roarUaG3fNuqwxsHS', 'elizabethroberts@gmail.com', 'ROLE_USER', 'basic')
        ,('Big Mike', '$2a$10$UAjF0qKuFFmfCeXnJX1Jsuob8cpIvYep4qgPtqQH6TQue1iyqaEbe', 'bigmike@gmail.com', 'ROLE_ADMIN', 'premium')
-
        ;
 
 -- Insert sample data into records table
@@ -121,6 +120,19 @@ VALUES
   ,(1, 7)
   ,(2, 8)
   ,(3, 9)
+  ,(3, 10)
+  ,(3, 11)
+  ,(3, 12)
+  ,(3, 13)
+  ,(3, 14)
+  ,(3, 15)
+  ,(3, 16)
+  ,(3, 17)
+  ,(3, 18)
+  ,(3, 19)
+  ,(3, 20)
+  ,(3, 21)
+
 
   ;
 
@@ -142,6 +154,42 @@ VALUES
   ,(1, 9)
   ,(2, 9)
   ,(6, 9)
+  ,(1, 10)
+  ,(2, 10)
+  ,(6, 10)
+  ,(1, 11)
+  ,(2, 11)
+  ,(6, 11)
+  ,(1, 12)
+  ,(2, 12)
+  ,(6, 12)
+  ,(1, 13)
+  ,(2, 13)
+  ,(6, 13)
+  ,(1, 14)
+  ,(2, 14)
+  ,(6, 14)
+  ,(1, 15)
+  ,(2, 15)
+  ,(6, 15)
+  ,(1, 16)
+  ,(2, 16)
+  ,(6, 16)
+  ,(1, 17)
+  ,(2, 17)
+  ,(6, 17)
+  ,(1, 18)
+  ,(2, 18)
+  ,(6, 18)
+  ,(1, 19)
+  ,(2, 19)
+  ,(6, 19)
+  ,(1, 20)
+  ,(2, 20)
+  ,(6, 20)
+  ,(1, 21)
+  ,(2, 21)
+  ,(6, 21)
 
   ;
 

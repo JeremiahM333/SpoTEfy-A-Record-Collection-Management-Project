@@ -1,6 +1,7 @@
 <template>
   <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%"
     data-bs-smooth-scroll="true" class="home scrollspy-example bg-body-tertiary" tabindex="0">
+    <img src="../resources/Vinyl-Records.webp" id="backgroundImage">
     <collection v-for="collection in filteredCollections" v-bind:key="collection.collectionId"
       v-bind:collection="collection" />
   </div>
@@ -90,8 +91,20 @@ export default {
   align-content: flex-start;
   padding: 5px 0px 45px 5px;
   z-index: -3;
+<<<<<<< HEAD
   background-image: url(../resources/why-is-vinyl-more-expensive-than-cd-1-1.webp);
   background-size: cover;
+=======
+>>>>>>> 3cea67b3aa45c220af4b7f405c849ae2a3370c7c
   height: 100%;
+}
+
+#backgroundImage {
+  position: fixed;
+  width: 86%;
+  left: 16%;
+  top: 80px;
+  bottom: 40px;
+  z-index: 0;
 }
 </style>

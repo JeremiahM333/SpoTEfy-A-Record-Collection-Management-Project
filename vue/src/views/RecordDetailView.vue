@@ -1,13 +1,14 @@
 <template>
     <div class="background" id="main-page">
+        <img src="../resources/ezgif.com-gif-maker-10-.jpg" id="backgroundImage">
 
         <div class="container" id="form-margin">
             <div class="detail-body">
 
-                <div v-if="showSuccessMessage" class="alert alert-success" role="alert" id="success" >
+                <div v-if="showSuccessMessage" class="alert alert-success" role="alert" id="success">
                     Successfully added this record to a collection!
                 </div>
-                
+
                 <img id="image" :src="useDefaultCoverArt ? defaultCoverArt : record.albumCover"
                     @error="replaceWithDefault()">
                 <h3 id="title">{{ record.albumName }}</h3>
@@ -23,9 +24,12 @@
                 </div>
 
                 <div id="notes">
-                    <h2 class="heading">Notes <button v-if="!isEditing" @click="toggleToEditNotes()" type="button"
+                    <h2 class="heading">Notes
+
+                        <button v-if="!isEditing && isOwner" @click="toggleToEditNotes()" type="button"
                             class="btn btn-primary btn-sm edit-btn">Edit
-                            Notes</button></h2>
+                            Notes</button>
+                    </h2>
                     <p v-if="!isEditing"> {{ record.recordNotes }} </p>
                     <form v-else v-on:submit.prevent="addUpdatedNotes">
                         <textarea class="form-control" id="exampleFormControlTextarea1" v-model="previewNotes"
@@ -49,8 +53,8 @@
 
 
                 <div class="btn-group dropup button-container buttons" id="buttons">
-                    <button class="btn btn-secondary dropdown-toggle collection-btn" type="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
+                    <button v-if="isOwner" class="btn btn-secondary dropdown-toggle collection-btn" type="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
                         Collections
                     </button>
                     <ul class="dropdown-menu">
@@ -62,17 +66,20 @@
                         </li>
                     </ul>
 
-                    <div>
+                    <div v-if="isOwner">
                         <button class="btn btn-primary add-btn" type="submit"
                             v-on:click.prevent="addRecordToCollection">Add</button>
-                            </div>
-                            <div>
-                    <a href='/users/:userId/records' class="btn btn-primary" id="library-button" role="button"
-                        aria-pressed="true">Back to Library</a>
+                    </div>
+                    <div v-else id="placeholder-box">
+
+                    </div>
+                    <div id="library-button-container">
+                        <a href='/users/:userId/records' class="btn btn-primary" id="library-button" role="button"
+                            aria-pressed="true">Back to Library</a>
+                    </div>
                 </div>
-                        </div>
-                
-                
+
+
             </div>
 
         </div>
@@ -129,8 +136,8 @@ export default {
         addRecordToCollection() {
             CollectionsService
                 .addRecordToCollection(this.record.recordId, this.collectionCheckbox)
-                this.showSuccessMessage = true;
-                setTimeout(() => {
+            this.showSuccessMessage = true;
+            setTimeout(() => {
                 this.showSuccessMessage = false;
             }, 3000);
         },
@@ -150,6 +157,11 @@ export default {
             this.isEditing = false;
             this.previewNotes = ''; // if cancel button is clicked, notes section reverts back to what it originally was
         }
+    },
+    computed: {
+        isOwner() {
+            return this.record.userId == this.$store.state.user.id;
+        }
     }
 
 }
@@ -161,11 +173,18 @@ export default {
 
 <style scoped>
 .background {
-    background-image: url(../resources/ezgif.com-gif-maker-10-.jpg);
-    background-size: cover;
     height: 100%;
     padding-top: 3rem;
     padding-bottom: 5rem;
+}
+
+#backgroundImage {
+    position: fixed;
+    width: 86%;
+    left: 16%;
+    top: 80px;
+    bottom: 40px;
+    z-index: -3;
 }
 
 
@@ -196,6 +215,7 @@ export default {
     margin-top: 2rem;
     text-align: center;
 }
+
 #image {
     grid-area: image;
     min-height: 30rem;
@@ -239,7 +259,8 @@ export default {
 
 #buttons {
     grid-area: buttons;
-    padding-bottom: 2rem;
+    /* padding-bottom: 2rem; */
+    display: flex;
 }
 
 .heading {
@@ -249,17 +270,19 @@ export default {
 .add-btn {
     background-color: #E5B80B;
     border-color: #E5B80B;
-    min-width: 15rem;
-    max-width: 15rem;
+    min-width: 16.75rem;
+    max-width: 16.75rem;
     margin: 2rem;
+    margin-left: 0.25rem;
 }
 
 .collection-btn {
     background-color: #E5B80B;
     border-color: #E5B80B;
-    min-width: 15rem;
-    max-width: 15rem;
+    min-width: 16.75rem;
+    max-width: 16.75rem;
     margin: 2rem;
+    margin-right: 0.25rem;
 }
 
 .edit-btn {
@@ -294,9 +317,23 @@ export default {
     border-color: white;
 }
 
+.btn-check:checked+.btn,
+.btn.active,
+.btn.show,
+.btn:first-child:active,
+:not(.btn-check)+.btn:active {
+    background-color: silver;
+    border-color: rgb(156, 156, 156);
+    color: black;
+}
+
 .edit-btn:hover {
     background-color: #C09B09;
     border-color: white;
+}
+
+#placeholder-box {
+    width: 47%;
 }
 
 .button-container {
@@ -304,20 +341,36 @@ export default {
     align-items: flex-start;
 }
 
-
-
 #library-button {
     grid-area: library-button;
     background-color: #E5B80B;
     border-color: #E5B80B;
     min-width: 15rem;
     max-width: 15rem;
-    margin-top: 2rem;
-    margin-left: 20rem;
+    margin: 2rem;
+    position: relative;
+    left: 60%;
+}
+
+#library-button-container {
+    position: relative;
+    width: 50%;
+    right: 0%
 }
 
 #library-button:hover {
     background-color: #C09B09;
     border-color: white;
+}
+
+.dropdown-menu {
+    background-color: silver;
+    width: 16.75rem;
+}
+
+.dropdown-item {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
 }
 </style>

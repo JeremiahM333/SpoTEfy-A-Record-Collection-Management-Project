@@ -4,9 +4,9 @@
     
     <div class="record-card card-deck">
         <router-link :to="{name: 'recordDetail', params: {recordId: record.recordId} }"
-            @click="setCurrentRecordId(record.recordId)">
+            @click="setCurrentRecordId(record.recordId)" class="router-link-custom">
             <div class="card">
-                <img class="card-img-top" :src="recordCover" @error="replaceWithDefault()">
+                <img class="card-img-top" id="record-picture" :src="recordCover" @error="replaceWithDefault()">
                 <div class="card-body">
                     <h5 class="card-title">{{ record.albumName }}</h5>
                     <!-- <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
@@ -58,9 +58,19 @@ export default {
 
 .card-title {
     text-align: center;
+    min-height: 4rem;
+    max-height: 4rem;
 }
 
+.router-link-custom {
+    text-decoration: none;
+    color: inherit;
+}
 
+#record-picture {
+    max-height: 15rem;
+    min-height: 15rem;
+}
 
 
 </style>

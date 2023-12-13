@@ -1,6 +1,7 @@
 <template>
   <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%"
     data-bs-smooth-scroll="true" class="collections scrollspy-example bg-body-tertiary" tabindex="0">
+    <img src="../resources/Screenshot-2023-04-12-at-20.54.52.png" id="backgroundImage">
     <collection v-for="collection in filteredCollections" v-bind:key="collection.collectionId"
       v-bind:collection="collection" />
   </div>
@@ -89,8 +90,15 @@ export default {
   align-content: flex-start;
   padding: 5px 0px 45px 5px;
   z-index: -3;
-  background-image: url(../resources/Screenshot-2023-04-12-at-20.54.52.png);
-  background-size: cover;
   height: 100%;
+}
+
+#backgroundImage {
+  position: fixed;
+  width: 86%;
+  left: 16%;
+  top: 80px;
+  bottom: 40px;
+  z-index: 0;
 }
 </style>

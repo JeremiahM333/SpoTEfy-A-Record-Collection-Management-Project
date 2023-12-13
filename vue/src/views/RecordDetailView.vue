@@ -5,7 +5,7 @@
             <div class="detail-body">
 
                 <div v-if="showSuccessMessage" class="alert alert-success" role="alert" id="success" >
-                    This is a success alert—check it out!
+                    Successfully added this record to a collection!
                 </div>
                 
                 <img id="image" :src="useDefaultCoverArt ? defaultCoverArt : record.albumCover"
@@ -194,6 +194,7 @@ export default {
 #success {
     grid-area: success;
     margin-top: 2rem;
+    text-align: center;
 }
 #image {
     grid-area: image;

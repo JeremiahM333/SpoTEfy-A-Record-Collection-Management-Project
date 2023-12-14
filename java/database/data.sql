@@ -34,7 +34,11 @@ VALUES
   ,(2, 'Past Masters', 'https://www.thebeatles.com/sites/default/files/styles/responsive_thumbnail_mobile/public/2021-06/PastMasters.jpg?itok=EaLCnkb_', '1988-03-07', 'Vinyl')
   ,(2, 'Yellow Submarine Songtrack', 'https://www.thebeatles.com/sites/default/files/styles/responsive_thumbnail_mobile/public/2021-06/YS-A.jpg?itok=VxNXlio6', '1999-09-13', 'Vinyl')
   ,(2, 'Love', 'https://www.thebeatles.com/sites/default/files/styles/responsive_thumbnail_mobile/public/2021-06/Love-Album%201024.png?itok=jv1ZNE2o', '2006-11-20', 'Vinyl')
-
+,(2, 'Blurryface', 'https://images.squarespace-cdn.com/content/v1/58ab2fce20099e7487a18b2a/1488423618745-3IDAU928ZPC21H89CEGN/Blurryface-twenty-one-pilots-cover-art.png?format=2500w', '2015-05-17', 'Vinyl')
+,(2, 'Vessel', 'https://i.scdn.co/image/ab67616d0000b273d263500f1f97e978daa5ceb1', '2013-01-08', 'CD')
+,(2, 'Scaled and Icy', 'https://theartsdesk.com/sites/default/files/styles/mast_image_landscape/public/mastimages/Scaled_and_Icy.jpeg?itok=QFEMV9-G', '2021-05-21', 'Digital')
+,(2, 'Twenty One Pilots', 'https://f4.bcbits.com/img/a3849502748_65', '2009-12-29', 'CD')
+,(2, 'Trench', 'https://upload.wikimedia.org/wikipedia/en/f/f3/Trench_Twenty_One_Pilots.png', '2018-10-05', 'CD')
   ;
 
 -- Insert sample data into collections table
@@ -66,6 +70,7 @@ VALUES
   ('Taylor Swift')
   ,('Pink Floyd')
   ,('The Beatles')
+  ,('Twenty One Pilots')
 
   ;
 
@@ -105,6 +110,11 @@ VALUES
   ,(3, 19)
   ,(3, 20)
   ,(3, 21)
+  ,(5, 22)
+  ,(5, 23)
+  ,(5, 24)
+  ,(5, 25)
+  ,(5, 26)
 
   ;
 
@@ -132,6 +142,11 @@ VALUES
   ,(3, 19)
   ,(3, 20)
   ,(3, 21)
+  ,(4, 22)
+  ,(4, 23)
+  ,(4, 24)
+  ,(4, 25)
+  ,(4, 26)
 
 
   ;
@@ -190,6 +205,11 @@ VALUES
   ,(1, 21)
   ,(2, 21)
   ,(6, 21)
+   ,(7, 22)
+   ,(7, 23)
+   ,(7, 24)
+  ,(7, 25)
+  ,(7, 26)
 
   ;
 

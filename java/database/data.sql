@@ -45,7 +45,7 @@ VALUES
 INSERT INTO collections (user_id, collection_cover, collection_name, is_public)
 VALUES
   (1, 'https://fydn.imgix.net/m%2Fgen%2Fcanvas-square-p1%2F03ba4bd1-7e0f-4ad6-8449-d6dcaaf8c0f6.jpg?auto=format%2Ccompress&q=75', 'Taylor Swift Collection', true)
-  ,(2, 'https://static.stereogum.com/uploads/2022/12/All-I-Want-For-Chrismas-Is-You-1670942437-1000x1000.jpeg', 'Christmas',true)
+  ,(2, 'https://i.scdn.co/image/ab67616100005174fa1fefa8ffda96713d9f759b', 'Study LoFi',true)
   ,(2, 'https://render.fineartamerica.com/images/rendered/default/poster/6/8/break/images/artworkimages/medium/1/the-beatles-on-wpap-ahmad-nusyirwan.jpg', 'The Beatles Collection', true)
   ,(4, 'https://fydn.imgix.net/m%2Fgen%2Fart-print-square-p1%2F00d3e865-f52a-4db7-9502-f2fc547945bd.jpg?auto=format%2Ccompress&q=75', 'Rock Music', true)
   ,(2, 'https://upload.wikimedia.org/wikipedia/en/f/f3/Trench_Twenty_One_Pilots.png', 'Twenty One Pilots', true)
